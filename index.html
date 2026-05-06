@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamaarts - Interactive 3D Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'canvas-bg': '#f5efe6', // Warm cream background
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f5efe6;
+            color: #111;
+            overflow-x: hidden; 
+            overflow-y: auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Dandelion Canvas Background Layer */
+        #dandelion-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; 
+            z-index: 40; 
+        }
+
+        /* NAVBAR - Perfectly Responsive */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 20px;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            z-index: 100; /* Stays on top of mobile menu overlay */
+        }
+
+        @media (min-width: 1024px) {
+            .navbar {
+                padding: 20px 60px;
+            }
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Hide desktop links on all mobile & tablet screens under 1024px */
+        .desktop-nav {
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .desktop-nav {
+                display: flex;
+            }
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #000;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn {
+            background: black;
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            font-size: 13px;
+        }
+
+        /* Hamburger Menu Icon */
+        .menu-toggle {
+            display: flex; /* Always show on mobile/tablet */
+            flex-direction: column;
+            justify-content: space-between;
+            width: 22px;
+            height: 16px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: #111;
+            transition: all 0.3s ease;
+        }
+
+        /* Hide hamburger menu on desktop screens */
+        @media (min-width: 1024px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        /* Slide-out Mobile Menu Panel */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%; /* Hidden off-screen by default */
+            width: 280px;
+            height: 100%;
+            background-color: rgba(245, 239, 230, 0.98); /* Matching canvas-bg with slight blur */
+            backdrop-filter: blur(10px);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+            z-index: 90;
+            display: flex;
+            flex-direction: column;
+            padding: 100px 40px 40px 40px;
+            gap: 24px;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-menu.open {
+            right: 0; /* Slide in */
+        }
+
+        .mobile-menu a {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: #000;
+        }
+
+        /* Hamburger Animation when open */
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* 3D SLIDER VIEWPORT & LAYOUT */
+        .slider-viewport {
+            perspective: 800px; 
+            perspective-origin: 50% 38%; 
+            touch-action: pan-y;
+            position: relative;
+            z-index: 50;
+        }
+
+        @media (min-width: 1024px) {
+            .slider-viewport {
+                perspective: 1200px;
+            }
+        }
+
+        .slider-track {
+            transform-style: preserve-3d;
+        }
+
+        /* Core card configurations */
+        .slider-card {
+            position: absolute;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+            cursor: grab;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 1024px) {
+            .slider-card {
+                border-radius: 24px;
+                box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        .slider-card:active {
+            cursor: grabbing;
+        }
+
+        /* 3D Spatial Mapping along a Panoramic Curve */
+        .pos-1 { 
+            left: -15%; 
+            transform: rotateY(40deg) translateZ(-180px) scale(0.8); 
+            opacity: 0.15; 
+            z-index: 10; 
+        }
+        .pos-2 { 
+            left: 2%; 
+            transform: rotateY(28deg) translateZ(-100px) scale(0.88); 
+            opacity: 0.55; 
+            z-index: 20; 
+        }
+        .pos-3 { 
+            left: 18%; 
+            transform: rotateY(15deg) translateZ(-30px) scale(0.95); 
+            opacity: 0.85; 
+            z-index: 30; 
+        }
+        .pos-4 { 
+            left: 34%; 
+            transform: rotateY(0deg) translateZ(40px) scale(1.05); 
+            opacity: 1; 
+            z-index: 50; 
+        }
+        .pos-5 { 
+            left: 50%; 
+            transform: rotateY(-15deg) translateZ(-30px) scale(0.95); 
+            opacity: 0.85; 
+            z-index: 30; 
+        }
+        .pos-6 { 
+            left: 66%; 
+            transform: rotateY(-28deg) translateZ(-100px) scale(0.88); 
+            opacity: 0.55; 
+            z-index: 20; 
+        }
+        .pos-7 { 
+            left: 83%; 
+            transform: rotateY(-40deg) translateZ(-180px) scale(0.8); 
+            opacity: 0.15; 
+            z-index: 10; 
+        }
+
+        /* Laptop Responsive Adjustments */
+        @media (min-width: 1024px) {
+            .pos-1 { left: 2%; transform: rotateY(36deg) translateZ(-160px) scale(0.9); opacity: 0.35; }
+            .pos-2 { left: 15%; transform: rotateY(24deg) translateZ(-80px) scale(0.95); opacity: 0.8; }
+            .pos-3 { left: 28%; transform: rotateY(12deg) translateZ(-20px) scale(0.98); opacity: 0.95; }
+            .pos-4 { left: 41.5%; transform: rotateY(0deg) translateZ(35px) scale(1.05); opacity: 1; }
+            .pos-5 { left: 55%; transform: rotateY(-12deg) translateZ(-20px) scale(0.98); opacity: 0.95; }
+            .pos-6 { left: 68%; transform: rotateY(-24deg) translateZ(-80px) scale(0.95); opacity: 0.8; }
+            .pos-7 { left: 81%; transform: rotateY(-36deg) translateZ(-160px) scale(0.9); opacity: 0.35; }
+        }
+
+        /* Edge vignetting layers */
+        .edge-fade-left {
+            background: linear-gradient(to right, #f5efe6 0%, rgba(245, 239, 230, 0.9) 15%, rgba(245, 239, 230, 0) 100%);
+        }
+        .edge-fade-right {
+            background: linear-gradient(to left, #f5efe6 0%, rgba(245, 239, 230, 0.9) 15%, rgba(245, 239, 230, 0) 100%);
+        }
+
+        /* HERO CONTAINER (MIDDLE) */
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 16px;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 50;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-container {
+                flex-direction: row;
+                gap: 60px;
+                text-align: left;
+                justify-content: center;
+                padding-bottom: 50px;
+            }
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-text {
+                text-align: left;
+                max-width: 500px;
+            }
+        }
+
+        .hero-text h2 {
+            font-size: 13px;
+            font-weight: 300;
+            margin-bottom: 2px;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-text h2 {
+                font-size: 18px;
+            }
+        }
+
+        .hero-text h1 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-text h1 {
+                font-size: 42px;
+            }
+        }
+
+        .hero-text p {
+            color: #666;
+            margin: 4px 0;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        @media (min-width: 768px) {
+            .hero-text p {
+                font-size: 15px;
+                margin: 8px 0;
+            }
+        }
+
+        /* Heart Sticker Wrappers */
+        .sticker-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 1024px) {
+            .sticker-wrapper {
+                margin-bottom: 0;
+                flex-shrink: 0;
+                order: -1;
+            }
+        }
+
+        .heart-sticker {
+            width: 130px;
+            height: 130px;
+            object-fit: contain;
+            transform: rotate(-3deg);
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
+            transition: transform 0.3s ease;
+        }
+
+        @media (min-width: 1024px) {
+            .heart-sticker {
+                width: 240px;
+                height: 240px;
+                transform: rotate(-4deg);
+            }
+        }
+
+        .heart-sticker:hover {
+            transform: scale(1.05) rotate(-1deg);
+        }
+
+        /* --- PRODUCT GRID SECTION --- */
+        .grid-section {
+            width: 100%;
+            padding: 80px 24px 120px 24px; 
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 50;
+        }
+
+        .main-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 300px); 
+            gap: 60px; 
+            justify-content: center;
+        }
+
+        /* Responsive spacing transitions */
+        @media (max-width: 1023px) {
+            .main-wrapper {
+                grid-template-columns: repeat(2, 300px);
+                gap: 40px; 
+            }
+        }
+        @media (max-width: 680px) {
+            .main-wrapper {
+                grid-template-columns: repeat(1, 300px);
+                gap: 40px; 
+            }
+        }
+
+        .ad-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .ad-link:hover {
+            transform: scale(1.03); 
+        }
+
+        .ad-container {
+            width: 300px;
+            height: 300px;
+            background-image: url('background3.jpg'); 
+            background-size: cover;       
+            background-position: center;   
+            background-repeat: no-repeat;  
+            
+            display: grid;
+            grid-template-columns: 1.1fr 1fr; 
+            grid-template-rows: 1fr 1fr;
+            border: 1px solid #000;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06); 
+        }
+
+        .photo-area {
+            grid-row: span 2; 
+            border-right: 1px solid #ffffff;
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 1.2s ease-in-out;
+            transform: scale(1.1);
+        }
+
+        .photo-area img.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .cell {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 12px;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.5); 
+        }
+
+        .top-right {
+            border-bottom: 1px solid #000000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            line-height: 1.3;
+            font-size: 0.65rem;
+        }
+
+        .bottom-right {
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+
+        .currency { font-size: 0.9rem; vertical-align: top; margin-right: 1px; }
+        .cents { font-size: 0.9rem; vertical-align: top; }
+        
+    </style>
+</head>
+
+<body class="select-none">
+
+    <canvas id="dandelion-canvas"></canvas>
+
+    <div class="navbar">
+        <div class="nav-left">
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="desktop-nav gap-5">
+                <a href="#">Services</a>
+                <a href="#">Customer review</a>
+                <a href="#">Direct message</a>
+            </div>
+        </div>
+
+        <div class="logo">Mamaarts</div>
+
+        <div class="nav-right">
+            <div class="desktop-nav gap-5 items-center">
+                <a href="#">About</a>
+                <a href="#">Pricing</a>
+                <a href="#">Contact</a>
+            </div>
+            <a href="#" class="btn">Get started</a>
+        </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#">Services</a>
+        <a href="#">Customer review</a>
+        <a href="#">Direct message</a>
+        <a href="#">About</a>
+        <a href="#">Pricing</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div class="relative w-full max-w-[1340px] mx-auto my-auto py-4">
+        <div class="slider-viewport relative h-[32vh] md:h-[40vh] w-full flex items-center" id="touchArea">
+            <div class="slider-track relative w-full h-full flex items-center" id="sliderTrack">
+                
+                <div class="slider-card pos-1 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#7c7569] border border-white/10" data-index="0">
+                    <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
+                        <source src="video4.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="slider-card pos-2 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#3c3443] border border-white/10" data-index="1">
+                    <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
+                        <source src="video2.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="slider-card pos-3 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#212730] border border-white/15" data-index="2">
+                    <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
+                        <source src="video3.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="slider-card pos-4 w-[33%] lg:w-[17%] min-w-[115px] max-w-[200px] aspect-[3/4] overflow-hidden bg-[#4e5a60] border-2 border-white" data-index="3">
+                    <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
+                        <source src="rama.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="slider-card pos-5 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#d194a8] border border-white/15" data-index="4">
+                    <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
+                        <source src="video5.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="slider-card pos-6 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#4c3950] border border-white/10" data-index="5">
+                    <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
+                        <source src="https://drive.google.com/uc?export=download&id=1ma_35jvigq-dxrEt8qgAWWsBB9DzWwA5" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="slider-card pos-7 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#bd7957] border border-white/10" data-index="6">
+                    <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
+                        <source src="https://player.cloudinary.com/embed/?cloud_name=df4bozkza&public_id=Some_women_love_jewelry_some_men_love_bikes_but_my_heart_awhb4m" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="absolute left-0 top-0 bottom-0 w-[15%] md:w-[18%] edge-fade-left pointer-events-none z-50"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-[15%] md:w-[18%] edge-fade-right pointer-events-none z-50"></div> 
+        </div>
+    </div>
+
+    <div class="hero-container">
+        <div class="sticker-wrapper">
+            <img src="image1.png" alt="Heart Hands Artwork" class="heart-sticker">
+        </div>
+
+        <div class="hero-text">
+            <h2>warm, creative, handmade feel</h2>
+            <h1>At MamaArts,</h1>
+            <p>We believe art is not just decoration<br>it’s a feeling, a memory, and a story.</p>
+        </div>
+    </div>
+
+    <div class="grid-section">
+        <div class="main-wrapper">
+            <a href="#" class="ad-link">
+                <div class="ad-container">
+                    <div class="photo-area slider">
+                        <img src="product1.jpeg" class="active" alt="Art">
+                        <img src="product1.0.jpeg" alt="Art">
+                        <img src="product1.1.jpeg" alt="Art">
+                        <img src="product1.2.jpeg" alt="Art">
+                    </div>
+                    <div class="cell top-right">ENJOY<br>PEN ART<br>FURNITURE</div>
+                    <div class="cell bottom-right"><span><span class="currency">$</span>99<span class="cents">.99</span></span></div>
+                </div>
+            </a>
+
+            <a href="#" class="ad-link">
+                <div class="ad-container">
+                    <div class="photo-area slider">
+                        <img src="product3.jpeg" class="active" alt="Art">
+                        <img src="product4.jpeg" alt="Art">
+                    </div>
+                    <div class="cell top-right">PREMIUM<br>MODERN<br>DESIGN</div>
+                    <div class="cell bottom-right"><span><span class="currency">$</span>120<span class="cents">.00</span></span></div>
+                </div>
+            </a>
+
+            <a href="#" class="ad-link">
+                <div class="ad-container">
+                    <div class="photo-area slider">
+                        <img src="product5.jpeg" class="active" alt="Art">
+                        <img src="product6.jpeg" alt="Art">
+                    </div>
+                    <div class="cell top-right">LIMITED<br>EDITION<br>ART</div>
+                    <div class="cell bottom-right"><span><span class="currency">$</span>85<span class="cents">.50</span></span></div>
+                </div>
+            </a>
+
+            <a href="#" class="ad-link">
+                <div class="ad-container">
+                    <div class="photo-area slider">
+                        <img src="product7.jpeg" class="active" alt="Art">
+                        <img src="product8.jpeg" alt="Art">
+                    </div>
+                    <div class="cell top-right">HANDMADE<br>CRAFTED<br>WOOD</div>
+                    <div class="cell bottom-right"><span><span class="currency">$</span>150<span class="cents">.99</span></span></div>
+                </div>
+            </a>
+
+            <a href="#" class="ad-link">
+                <div class="ad-container">
+                    <div class="photo-area slider">
+                        <img src="product1.jpeg" class="active" alt="Art">
+                        <img src="product2.jpeg" alt="Art">
+                    </div>
+                    <div class="cell top-right">NEW<br>STYLES<br>2026</div>
+                    <div class="cell bottom-right"><span><span class="currency">$</span>210<span class="cents">.00</span></span></div>
+                </div>
+            </a>
+
+            <a href="#" class="ad-link">
+                <div class="ad-container">
+                    <div class="photo-area slider">
+                        <img src="product3.jpeg" class="active" alt="Art">
+                        <img src="product4.jpeg" alt="Art">
+                    </div>
+                    <div class="cell top-right">MINIMAL<br>BLACK<br>INK</div>
+                    <div class="cell bottom-right"><span><span class="currency">$</span>95<span class="cents">.99</span></span></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. RESPONSIVE NAVIGATION CONTROLLER ---
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close mobile menu if clicked outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('open');
+            }
+        });
+
+        // --- 2. DANDELION SEED EFFECT ---
+        const canvas = document.getElementById('dandelion-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const seeds = [];
+        const maxSeeds = 25; 
+
+        class DandelionSeed {
+            constructor() {
+                this.reset(true);
+            }
+
+            reset(initPhase = false) {
+                this.x = initPhase ? Math.random() * canvas.width : -20;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 8 + 5; 
+                this.stemLength = Math.random() * 15 + 10;
+                this.speedX = Math.random() * 0.8 + 0.4; 
+                this.speedY = Math.random() * 0.3 - 0.15; 
+                this.opacity = Math.random() * 0.4 + 0.2; 
+                this.angle = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.01;
+                this.swaySpeed = Math.random() * 0.02 + 0.01;
+                this.swayOffset = Math.random() * 100;
+            }
+
+            update() {
+                this.angle += this.rotationSpeed;
+                this.x += this.speedX + Math.sin(Date.now() * this.swaySpeed + this.swayOffset) * 0.2;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width + 50) {
+                    this.reset(false);
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.strokeStyle = `rgba(130, 115, 95, ${this.opacity})`; 
+                ctx.lineWidth = 0.8;
+
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, this.stemLength);
+                ctx.stroke();
+
+                const rays = 8;
+                for (let i = 0; i < rays; i++) {
+                    const rayAngle = (i / rays) * Math.PI * 2;
+                    const rayX = Math.cos(rayAngle) * this.radius;
+                    const rayY = Math.sin(rayAngle) * this.radius * 0.5; 
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(rayX, rayY);
+                    ctx.stroke();
+                }
+
+                ctx.fillStyle = `rgba(100, 85, 70, ${this.opacity + 0.1})`;
+                ctx.beginPath();
+                ctx.arc(0, 0, 1.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < maxSeeds; i++) {
+            seeds.push(new DandelionSeed());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            seeds.forEach(seed => {
+                seed.update();
+                seed.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // --- 3. 3D CAROUSEL PORTFOLIO ENGINE ---
+        const cards = Array.from(document.querySelectorAll('.slider-card'));
+        const totalCards = cards.length;
+        const positionClasses = ['pos-1', 'pos-2', 'pos-3', 'pos-4', 'pos-5', 'pos-6', 'pos-7'];
+        let currentPositions = [0, 1, 2, 3, 4, 5, 6];
+
+        function updateCarousel() {
+            cards.forEach((card, idx) => {
+                positionClasses.forEach(cls => card.classList.remove(cls));
+                const assignedPosIndex = currentPositions[idx];
+                card.classList.add(positionClasses[assignedPosIndex]);
+            });
+        }
+
+        function shiftCarousel(direction) {
+            if (direction === 'next') {
+                currentPositions = currentPositions.map(pos => (pos - 1 + totalCards) % totalCards);
+            } else if (direction === 'prev') {
+                currentPositions = currentPositions.map(pos => (pos + 1) % totalCards);
+            }
+            updateCarousel();
+        }
+
+        cards.forEach((card, clickedIdx) => {
+            card.addEventListener('click', (e) => {
+                if (isDragging) return; 
+                const targetPos = currentPositions[clickedIdx];
+                const offset = targetPos - 3;
+                if (offset !== 0) {
+                    const shiftsNeeded = Math.abs(offset);
+                    const direction = offset > 0 ? 'next' : 'prev';
+                    for (let i = 0; i < shiftsNeeded; i++) {
+                        shiftCarousel(direction);
+                    }
+                }
+            });
+        });
+
+        const touchArea = document.getElementById('touchArea');
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        const dragThreshold = 50; 
+
+        function handleDragStart(x) {
+            isDragging = true;
+            startX = x;
+        }
+
+        function handleDragMove(x) {
+            if (!isDragging) return;
+            currentX = x;
+            const diff = currentX - startX;
+
+            if (diff > dragThreshold) {
+                shiftCarousel('prev');
+                startX = currentX; 
+            } 
+            else if (diff < -dragThreshold) {
+                shiftCarousel('next');
+                startX = currentX; 
+            }
+        }
+
+        function handleDragEnd() {
+            setTimeout(() => { isDragging = false; }, 50);
+        }
+
+        touchArea.addEventListener('mousedown', (e) => handleDragStart(e.clientX));
+        window.addEventListener('mousemove', (e) => handleDragMove(e.clientX));
+        window.addEventListener('mouseup', handleDragEnd);
+
+        touchArea.addEventListener('touchstart', (e) => handleDragStart(e.touches[0].clientX));
+        window.addEventListener('touchmove', (e) => handleDragMove(e.touches[0].clientX));
+        window.addEventListener('touchend', handleDragEnd);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') shiftCarousel('prev');
+            if (e.key === 'ArrowRight') shiftCarousel('next');
+        });
+
+        updateCarousel();
+
+        // --- 4. PRODUCT SLIDERS INTERVAL HANDLER ---
+        const sliders = document.querySelectorAll('.slider');
+        sliders.forEach(slider => {
+            const images = slider.querySelectorAll('img');
+            let currentIndex = 0;
+
+            setInterval(() => {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
