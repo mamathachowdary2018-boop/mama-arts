@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mamaarts - Interactive 3D Portfolio</title>
-
+    <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -46,8 +46,8 @@
             position: relative;
         }
 
-        /* Dandelion Canvas Background Layer */
-        #dandelion-canvas {
+        /*canvas styles with flower-canvas */
+        #flower-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -56,7 +56,6 @@
             pointer-events: none; 
             z-index: 40; 
         }
-
         /* NAVBAR - Perfectly Responsive */
         .navbar {
             display: flex;
@@ -296,81 +295,47 @@
         }
 
         /* HERO CONTAINER (MIDDLE) */
-        .hero-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 16px;
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 50;
-        }
+        .hero { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 100px; 
+    padding: 100px 60px; 
+}
 
-        @media (min-width: 1024px) {
-            .hero-container {
-                flex-direction: row;
-                gap: 60px;
-                text-align: left;
-                justify-content: center;
-                padding-bottom: 50px;
-            }
-        }
+.hero-text h1 { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 80px; 
+    line-height: 0.9; 
+    margin-bottom: 20px; 
+}
 
-        .hero-text {
-            text-align: center;
-        }
+.heart-img { 
+    width: 350px; 
+    filter: grayscale(1) contrast(1.1); 
+    transition: 0.5s; 
+}
 
-        @media (min-width: 1024px) {
-            .hero-text {
-                text-align: left;
-                max-width: 500px;
-            }
-        }
+.heart-img:hover { 
+    filter: grayscale(0); 
+    transform: rotate(-5deg) scale(1.05); 
+}
 
-        .hero-text h2 {
-            font-size: 13px;
-            font-weight: 300;
-            margin-bottom: 2px;
-            color: #555;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        @media (min-width: 768px) {
-            .hero-text h2 {
-                font-size: 18px;
-            }
-        }
-
-        .hero-text h1 {
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 4px;
-        }
-
-        @media (min-width: 768px) {
-            .hero-text h1 {
-                font-size: 42px;
-            }
-        }
-
-        .hero-text p {
-            color: #666;
-            margin: 4px 0;
-            font-size: 12px;
-            line-height: 1.4;
-        }
-
-        @media (min-width: 768px) {
-            .hero-text p {
-                font-size: 15px;
-                margin: 8px 0;
-            }
-        }
+/* Responsive adjustment for smaller screens */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+        gap: 50px;
+        text-align: center;
+        padding: 60px 20px;
+    }
+    .hero-text h1 {
+        font-size: 50px;
+    }
+    .heart-img {
+        width: 250px;
+    }
+}
 
         /* Heart Sticker Wrappers */
         .sticker-wrapper {
@@ -409,123 +374,174 @@
             transform: scale(1.05) rotate(-1deg);
         }
 
-        /* --- PRODUCT GRID SECTION --- */
-        .grid-section {
-            width: 100%;
-            padding: 80px 24px 120px 24px; 
-            display: flex;
-            justify-content: center;
-            position: relative;
-            z-index: 50;
-        }
-
-        .main-wrapper {
-            display: grid;
-            grid-template-columns: repeat(3, 300px); 
-            gap: 60px; 
-            justify-content: center;
-        }
-
-        /* Responsive spacing transitions */
-        @media (max-width: 1023px) {
-            .main-wrapper {
-                grid-template-columns: repeat(2, 300px);
-                gap: 40px; 
-            }
-        }
-        @media (max-width: 680px) {
-            .main-wrapper {
-                grid-template-columns: repeat(1, 300px);
-                gap: 40px; 
-            }
-        }
-
-        .ad-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            cursor: pointer;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .ad-link:hover {
-            transform: scale(1.03); 
-        }
-
-        .ad-container {
-            width: 300px;
-            height: 300px;
-            background-image: url('background3.jpg'); 
-            background-size: cover;       
-            background-position: center;   
-            background-repeat: no-repeat;  
-            
-            display: grid;
-            grid-template-columns: 1.1fr 1fr; 
-            grid-template-rows: 1fr 1fr;
-            border: 1px solid #000;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06); 
-        }
-
-        .photo-area {
-            grid-row: span 2; 
-            border-right: 1px solid #ffffff;
-            background-color: #fff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .photo-area img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out, transform 1.2s ease-in-out;
-            transform: scale(1.1);
-        }
-
-        .photo-area img.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .cell {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 12px;
-            box-sizing: border-box;
-            background-color: rgba(255, 255, 255, 0.5); 
-        }
-
-        .top-right {
-            border-bottom: 1px solid #000000;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
-            line-height: 1.3;
-            font-size: 0.65rem;
-        }
-
-        .bottom-right {
-            align-items: center;
-            font-size: 1.8rem;
-            font-weight: 500;
-        }
-
-        .currency { font-size: 0.9rem; vertical-align: top; margin-right: 1px; }
-        .cents { font-size: 0.9rem; vertical-align: top; }
+    
         
+                /* Ticker Bar Styling */
+        .ticker-container {
+            width: 100%;
+            overflow: hidden;
+            background: #f5efe6; 
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            padding: 6px 0; /* Reduced from 12px to make the bar smaller */
+            margin: 10px 0;
+            white-space: nowrap;
+            position: relative;
+            z-index: 60;
+        }
+
+        .ticker-wrapper {
+            display: inline-block;
+            animation: ticker-scroll 35s linear infinite; /* Slowed down slightly for better readability */
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 10px; /* Padding reduced since spaces are now in the HTML text */
+            font-size: 13px; /* Slightly smaller font for a more refined look */
+            font-weight: 800; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #111;
+        }
+
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+/* Container Layout - Mobile First Approach */
+/* --- ADAPTIVE GALLERY GRID --- */
+/* Container Layout */
+.grid-section { 
+    padding: 60px 20px;
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 30px; 
+    max-width: 1400px; 
+    margin: 0 auto; 
+}
+
+/* Desktop Gallery Logic */
+@media (min-width: 1024px) {
+    .grid-section {
+        padding: 100px 60px;
+        /* Creates a 3-column base */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+
+    /* First and Last containers are "Featured" and span 2 columns */
+    .feature-card {
+        grid-column: span 2;
+    }
+}
+
+/* Artistic Card Design */
+.art-card { 
+    background: #fff; 
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 4px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.7s cubic-bezier(0.15, 0.83, 0.66, 1); 
+    position: relative;
+}
+
+.art-card:hover { 
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.08); 
+}
+
+/* Image Handling with Head-Focus */
+.card-img-wrap { 
+    height: 300px; 
+    overflow: hidden; 
+    position: relative;
+    background-color: #f9f9f9;
+}
+
+/* Make featured images taller for impact */
+@media (min-width: 1024px) {
+    .feature-card .card-img-wrap { height: 450px; }
+}
+
+.card-img-wrap img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    object-position: top; /* Keeps heads/faces visible */
+}
+
+/* Typography Details */
+.card-details { 
+    padding: 20px 5px 10px 5px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-end; 
+}
+
+.art-name { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.art-cat { 
+    font-size: 10px; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    color: #aaa;
+}
+/* Only hide the default system cursor on Desktop */
+@media (pointer: fine) {
+    body, a, button, video, .slider-card, .art-card {
+        cursor: none !important;
+    }
+
+    #cursor {
+        width: 8px; height: 8px; background: #000; border-radius: 50%;
+        position: fixed; pointer-events: none; z-index: 9999;
+        transition: transform 0.1s ease;
+        display: block; /* Show on desktop */
+    }
+
+    #cursor-follower {
+        width: 30px; height: 30px; border: 1px solid rgba(0,0,0,0.2); border-radius: 50%;
+        position: fixed; pointer-events: none; z-index: 9998;
+        transition: transform 0.2s ease, width 0.3s, height 0.3s;
+        display: block; /* Show on desktop */
+    }
+}
+
+/* Hide custom cursor elements on Mobile/Tablets */
+@media (pointer: coarse) {
+    #cursor, #cursor-follower {
+        display: none !important;
+    }
+    /* Restore default touch behavior */
+    body, a, button, video, .slider-card, .art-card {
+        cursor: auto !important;
+    }
+}
+
+/* Maintain the expansion effect only for desktop */
+.cursor-expand {
+    width: 60px !important;
+    height: 60px !important;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
     </style>
 </head>
 
 <body class="select-none">
 
-    <canvas id="dandelion-canvas"></canvas>
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+    
+    <canvas id="flower-canvas"></canvas>
 
     <div class="navbar">
         <div class="nav-left">
@@ -614,91 +630,159 @@
         </div>
     </div>
 
-    <div class="hero-container">
-        <div class="sticker-wrapper">
-            <img src="image1.png" alt="Heart Hands Artwork" class="heart-sticker">
-        </div>
+<section class="hero">
+    <img src="image1.png" alt="Artwork" class="heart-img">
+    <div class="hero-text">
+        <p class="uppercase tracking-widest text-xs mb-4">Fine Art Studio & Collective</p>
+        <h1>Every Stroke<br>Has a Soul.</h1>
+        <p class="max-w-md text-gray-500 italic">MamaArts is where raw graphite, flowing pigment, and hand-stitched threads converge to tell your unique story.</p>
+    </div>
+</section>
 
-        <div class="hero-text">
-            <h2>warm, creative, handmade feel</h2>
-            <h1>At MamaArts,</h1>
-            <p>We believe art is not just decoration<br>it’s a feeling, a memory, and a story.</p>
+    <div class="ticker-container">
+        <div class="ticker-wrapper">
+            <span class="ticker-item">
+                MAMAARTS: WHERE EVERY STROKE TELLS A STORY &nbsp; • &nbsp; ART IS NOT JUST DECORATION, IT'S A MEMORY &nbsp; • &nbsp; EXPLORE OUR HANDMADE COLLECTION &nbsp; • &nbsp; NEW STYLES ADDED &nbsp; • &nbsp; CUSTOM ORDERS OPEN &nbsp; • &nbsp; PREMIUM QUALITY &nbsp; • &nbsp; CREATIVE &nbsp; • &nbsp; WARM &nbsp; • &nbsp; EST. 2026
+            </span>
+            <span class="ticker-item">
+                &nbsp; • &nbsp; MAMAARTS: WHERE EVERY STROKE TELLS A STORY &nbsp; • &nbsp; ART IS NOT JUST DECORATION, IT'S A MEMORY &nbsp; • &nbsp; EXPLORE OUR HANDMADE COLLECTION &nbsp; • &nbsp; NEW STYLES ADDED &nbsp; • &nbsp; CUSTOM ORDERS OPEN &nbsp; • &nbsp; PREMIUM QUALITY &nbsp; • &nbsp; CREATIVE &nbsp; • &nbsp; WARM &nbsp; • &nbsp; EST. 2026
+            </span>
         </div>
     </div>
 
-    <div class="grid-section">
-        <div class="main-wrapper">
-            <a href="#" class="ad-link">
-                <div class="ad-container">
-                    <div class="photo-area slider">
-                        <img src="product1.jpeg" class="active" alt="Art">
-                        <img src="product1.0.jpeg" alt="Art">
-                        <img src="product1.1.jpeg" alt="Art">
-                        <img src="product1.2.jpeg" alt="Art">
-                    </div>
-                    <div class="cell top-right">ENJOY<br>PEN ART<br>FURNITURE</div>
-                    <div class="cell bottom-right"><span><span class="currency">$</span>99<span class="cents">.99</span></span></div>
-                </div>
-            </a>
-
-            <a href="#" class="ad-link">
-                <div class="ad-container">
-                    <div class="photo-area slider">
-                        <img src="product3.jpeg" class="active" alt="Art">
-                        <img src="product4.jpeg" alt="Art">
-                    </div>
-                    <div class="cell top-right">PREMIUM<br>MODERN<br>DESIGN</div>
-                    <div class="cell bottom-right"><span><span class="currency">$</span>120<span class="cents">.00</span></span></div>
-                </div>
-            </a>
-
-            <a href="#" class="ad-link">
-                <div class="ad-container">
-                    <div class="photo-area slider">
-                        <img src="product5.jpeg" class="active" alt="Art">
-                        <img src="product6.jpeg" alt="Art">
-                    </div>
-                    <div class="cell top-right">LIMITED<br>EDITION<br>ART</div>
-                    <div class="cell bottom-right"><span><span class="currency">$</span>85<span class="cents">.50</span></span></div>
-                </div>
-            </a>
-
-            <a href="#" class="ad-link">
-                <div class="ad-container">
-                    <div class="photo-area slider">
-                        <img src="product7.jpeg" class="active" alt="Art">
-                        <img src="product8.jpeg" alt="Art">
-                    </div>
-                    <div class="cell top-right">HANDMADE<br>CRAFTED<br>WOOD</div>
-                    <div class="cell bottom-right"><span><span class="currency">$</span>150<span class="cents">.99</span></span></div>
-                </div>
-            </a>
-
-            <a href="#" class="ad-link">
-                <div class="ad-container">
-                    <div class="photo-area slider">
-                        <img src="product1.jpeg" class="active" alt="Art">
-                        <img src="product2.jpeg" alt="Art">
-                    </div>
-                    <div class="cell top-right">NEW<br>STYLES<br>2026</div>
-                    <div class="cell bottom-right"><span><span class="currency">$</span>210<span class="cents">.00</span></span></div>
-                </div>
-            </a>
-
-            <a href="#" class="ad-link">
-                <div class="ad-container">
-                    <div class="photo-area slider">
-                        <img src="product3.jpeg" class="active" alt="Art">
-                        <img src="product4.jpeg" alt="Art">
-                    </div>
-                    <div class="cell top-right">MINIMAL<br>BLACK<br>INK</div>
-                    <div class="cell bottom-right"><span><span class="currency">$</span>95<span class="cents">.99</span></span></div>
-                </div>
-            </a>
+   <div class="grid-section">
+    <div class="art-card feature-card">
+        <div class="card-img-wrap slider">
+            <img src="product1.jpeg" class="active" alt="Art">
+            <img src="product1.0.jpeg" alt="Art">
+            <img src="product1.1.jpeg" alt="Art">
+            <img src="product1.2.jpeg" alt="Art">
+        </div>
+        <div class="view-btn">Explore Details</div>
+        <div class="card-details">
+            <div>
+                <p class="art-cat">Black Pen Art</p>
+                <h3 class="art-name">The Void</h3>
+            </div>
+            <p class="art-price">₹2000</p>
         </div>
     </div>
+
+    <div class="art-card">
+        <div class="card-img-wrap slider">
+            <img src="product2.png" class="active" alt="Art">
+            <img src="product2.0.png" alt="Art">
+            <img src="product2.1.png" alt="Art">
+            <img src="product2.2.png" alt="Art">
+        </div>
+        <div class="card-details">
+            <div>
+                <p class="art-cat">Color Pen Art</p>
+                <h3 class="art-name">Prism Pulse</h3>
+            </div>
+            <p class="art-price">₹2500</p>
+        </div>
+    </div>
+
+    <div class="art-card">
+        <div class="card-img-wrap slider">
+            <img src="product3.jpeg" class="active" alt="Art">
+            <img src="product3.0.jpeg" alt="Art">
+            <img src="product3.1.jpeg" alt="Art">
+            <img src="product3.2.jpeg" alt="Art">
+        </div>
+        <div class="card-details">
+            <div>
+                <p class="art-cat">Acrylic Paint</p>
+                <h3 class="art-name">Texture Talk</h3>
+            </div>
+            <p class="art-price">₹3000</p>
+        </div>
+    </div>
+
+    <div class="art-card">
+        <div class="card-img-wrap slider">
+            <img src="product4.png" class="active" alt="Art">
+            <img src="product4.0.png" alt="Art">
+            <img src="product4.1.png" alt="Art">
+            <img src="product4.2.png" alt="Art">
+        </div>
+        <div class="card-details">
+            <div>
+                <p class="art-cat">Water Painting</p>
+                <h3 class="art-name">Aqueous Dreams</h3>
+            </div>
+            <p class="art-price">₹2500</p>
+        </div>
+    </div>
+
+    <div class="art-card">
+        <div class="card-img-wrap slider">
+            <img src="product5.png" class="active" alt="Art">
+            <img src="product5.0.png" alt="Art">
+            <img src="product5.1.png" alt="Art">
+            <img src="product5.2.png" alt="Art">
+        </div>
+        <div class="card-details">
+            <div>
+                <p class="art-cat">Thread Art</p>
+                <h3 class="art-name">Silk Stitch</h3>
+            </div>
+            <p class="art-price">₹3000</p>
+        </div>
+    </div>
+
+    <div class="art-card">
+        <div class="card-img-wrap slider">
+            <img src="cartoon1.jpg" class="active" alt="Art">
+            <img src="cartoon2.jpg" alt="Art">
+        </div>
+        <div class="card-details">
+            <div>
+                <p class="art-cat">Cartoon Art</p>
+                <h3 class="art-name">Pop Soul</h3>
+            </div>
+            <p class="art-price">₹1500</p>
+        </div>
+    </div>
+
+    <div class="art-card feature-card">
+        <div class="card-img-wrap slider">
+            <img src="pencil1.jpg" class="active" alt="Art">
+            <img src="pencil2.jpg" alt="Art">
+        </div>
+        <div class="view-btn">Explore Details</div>
+        <div class="card-details">
+            <div>
+                <p class="art-cat">Pencil Art</p>
+                <h3 class="art-name">Graphite Pure</h3>
+            </div>
+            <p class="art-price">₹1800</p>
+        </div>
+    </div>
+</div>
 
     <script>
+// --- Custom Cursor Logic ---
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+        
+        document.addEventListener('mousemove', e => {
+            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+            follower.style.transform = `translate3d(${e.clientX - 11}px, ${e.clientY - 11}px, 0)`;
+        });
+
+        // Artistic Interaction: Expand when hovering over links or cards
+        const interactives = document.querySelectorAll('a, button, .art-card, .slider-card, video');
+
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                follower.classList.add('cursor-expand');
+            });
+            el.addEventListener('mouseleave', () => {
+                follower.classList.remove('cursor-expand');
+            });
+        });
         // --- 1. RESPONSIVE NAVIGATION CONTROLLER ---
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -717,94 +801,7 @@
             }
         });
 
-        // --- 2. DANDELION SEED EFFECT ---
-        const canvas = document.getElementById('dandelion-canvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const seeds = [];
-        const maxSeeds = 25; 
-
-        class DandelionSeed {
-            constructor() {
-                this.reset(true);
-            }
-
-            reset(initPhase = false) {
-                this.x = initPhase ? Math.random() * canvas.width : -20;
-                this.y = Math.random() * canvas.height;
-                this.radius = Math.random() * 8 + 5; 
-                this.stemLength = Math.random() * 15 + 10;
-                this.speedX = Math.random() * 0.8 + 0.4; 
-                this.speedY = Math.random() * 0.3 - 0.15; 
-                this.opacity = Math.random() * 0.4 + 0.2; 
-                this.angle = Math.random() * Math.PI * 2;
-                this.rotationSpeed = (Math.random() - 0.5) * 0.01;
-                this.swaySpeed = Math.random() * 0.02 + 0.01;
-                this.swayOffset = Math.random() * 100;
-            }
-
-            update() {
-                this.angle += this.rotationSpeed;
-                this.x += this.speedX + Math.sin(Date.now() * this.swaySpeed + this.swayOffset) * 0.2;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width + 50) {
-                    this.reset(false);
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle);
-                ctx.strokeStyle = `rgba(130, 115, 95, ${this.opacity})`; 
-                ctx.lineWidth = 0.8;
-
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.lineTo(0, this.stemLength);
-                ctx.stroke();
-
-                const rays = 8;
-                for (let i = 0; i < rays; i++) {
-                    const rayAngle = (i / rays) * Math.PI * 2;
-                    const rayX = Math.cos(rayAngle) * this.radius;
-                    const rayY = Math.sin(rayAngle) * this.radius * 0.5; 
-                    ctx.beginPath();
-                    ctx.moveTo(0, 0);
-                    ctx.lineTo(rayX, rayY);
-                    ctx.stroke();
-                }
-
-                ctx.fillStyle = `rgba(100, 85, 70, ${this.opacity + 0.1})`;
-                ctx.beginPath();
-                ctx.arc(0, 0, 1.5, 0, Math.PI * 2);
-                ctx.fill();
-
-                ctx.restore();
-            }
-        }
-
-        for (let i = 0; i < maxSeeds; i++) {
-            seeds.push(new DandelionSeed());
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            seeds.forEach(seed => {
-                seed.update();
-                seed.draw();
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
+        
 
         // --- 3. 3D CAROUSEL PORTFOLIO ENGINE ---
         const cards = Array.from(document.querySelectorAll('.slider-card'));
@@ -889,18 +886,120 @@
 
         updateCarousel();
 
-        // --- 4. PRODUCT SLIDERS INTERVAL HANDLER ---
-        const sliders = document.querySelectorAll('.slider');
-        sliders.forEach(slider => {
-            const images = slider.querySelectorAll('img');
-            let currentIndex = 0;
+        // --- 1. FALLING FLOWER PETAL EFFECT ---
+        const canvas = document.getElementById('flower-canvas');
+        const ctx = canvas.getContext('2d');
 
-            setInterval(() => {
-                images[currentIndex].classList.remove('active');
-                currentIndex = (currentIndex + 1) % images.length;
-                images[currentIndex].classList.add('active');
-            }, 2000);
-        });
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const petals = [];
+        const petalCount = 30;
+        const colors = ['#fce4ec', '#f8bbd0', '#ffffff', '#fff9c4']; // Pink and White palette
+
+        class FlowerPetal {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = -20;
+                this.size = Math.random() * 10 + 5;
+                this.speedY = Math.random() * 1.5 + 0.5;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.opacity = Math.random() * 0.6 + 0.2;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.angle = Math.random() * Math.PI * 2;
+                this.spin = Math.random() * 0.05 - 0.025;
+                this.sway = Math.random() * 2;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y / 30 + this.sway) * 0.5;
+                this.angle += this.spin;
+
+                if (this.y > canvas.height + 20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.beginPath();
+                // Draw an organic petal shape
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(-this.size, -this.size, -this.size, this.size, 0, this.size);
+                ctx.bezierCurveTo(this.size, this.size, this.size, -this.size, 0, 0);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < petalCount; i++) {
+            petals.push(new FlowerPetal());
+        }
+
+        function animatePetals() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petals.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animatePetals);
+        }
+        animatePetals();
+
+// --- ARTISTIC HORIZONTAL SLIDE ENGINE ---
+const sliders = document.querySelectorAll('.slider');
+
+sliders.forEach(slider => {
+    const images = slider.querySelectorAll('img');
+    let currentIndex = 0;
+
+    // Set initial positions for a sliding effect
+    images.forEach((img, i) => {
+        if (i !== 0) img.style.transform = "translateX(100%)";
+        img.style.position = "absolute";
+        img.style.opacity = "1"; // Keep opacity solid for the slide
+    });
+
+    setInterval(() => {
+        const currentImg = images[currentIndex];
+        currentIndex = (currentIndex + 1) % images.length;
+        const nextImg = images[currentIndex];
+
+        // Slide current image out to the left
+        currentImg.style.transform = "translateX(-100%)";
+        
+        // Prepare next image to come from the right
+        nextImg.style.transition = "none";
+        nextImg.style.transform = "translateX(100%)";
+        
+        // Force a reflow for the transition to work
+        nextImg.offsetHeight; 
+        
+        // Slide next image in to the center
+        nextImg.style.transition = "transform 1.5s cubic-bezier(0.16, 1, 0.3, 1)";
+        nextImg.style.transform = "translateX(0)";
+        
+        // Reset the previous image's position after it finishes sliding out
+        setTimeout(() => {
+            currentImg.style.transition = "none";
+            currentImg.style.transform = "translateX(100%)";
+        }, 1500);
+
+    }, 3500); // 3.5 seconds per slide
+});
     </script>
 </body>
 </html>
