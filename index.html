@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mamaarts - Interactive 3D Portfolio</title>
+    <title>Mamaarts - Art Of Life</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -295,47 +295,47 @@
         }
 
         /* HERO CONTAINER (MIDDLE) */
-        .hero { 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    gap: 100px; 
-    padding: 100px 60px; 
-}
-
-.hero-text h1 { 
-    font-family: 'Playfair Display', serif; 
-    font-size: 80px; 
-    line-height: 0.9; 
-    margin-bottom: 20px; 
-}
-
-.heart-img { 
-    width: 350px; 
-    filter: grayscale(1) contrast(1.1); 
-    transition: 0.5s; 
-}
-
-.heart-img:hover { 
-    filter: grayscale(0); 
-    transform: rotate(-5deg) scale(1.05); 
-}
-
-/* Responsive adjustment for smaller screens */
-@media (max-width: 1024px) {
-    .hero {
-        flex-direction: column;
-        gap: 50px;
-        text-align: center;
-        padding: 60px 20px;
+            .hero { 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        gap: 100px; 
+        padding: 100px 60px; 
     }
-    .hero-text h1 {
-        font-size: 50px;
+
+    .hero-text h1 { 
+        font-family: 'Playfair Display', serif; 
+        font-size: 80px; 
+        line-height: 0.9; 
+        margin-bottom: 20px; 
     }
-    .heart-img {
-        width: 250px;
+
+    .heart-img { 
+        width: 350px; 
+        filter: grayscale(1) contrast(1.1); 
+        transition: 0.5s; 
     }
-}
+
+    .heart-img:hover { 
+        filter: grayscale(0); 
+        transform: rotate(-5deg) scale(1.05); 
+    }
+
+    /* Responsive adjustment for smaller screens */
+    @media (max-width: 1024px) {
+        .hero {
+            flex-direction: column;
+            gap: 50px;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .hero-text h1 {
+            font-size: 50px;
+        }
+        .heart-img {
+            width: 250px;
+        }
+    }
 
         /* Heart Sticker Wrappers */
         .sticker-wrapper {
@@ -410,95 +410,11 @@
             100% { transform: translateX(-50%); }
         }
 
-/* Container Layout - Mobile First Approach */
-/* --- ADAPTIVE GALLERY GRID --- */
-/* Container Layout */
-.grid-section { 
-    padding: 60px 20px;
-    display: grid; 
-    grid-template-columns: 1fr; 
-    gap: 30px; 
-    max-width: 1400px; 
-    margin: 0 auto; 
-}
-
-/* Desktop Gallery Logic */
-@media (min-width: 1024px) {
-    .grid-section {
-        padding: 100px 60px;
-        /* Creates a 3-column base */
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
-    }
-
-    /* First and Last containers are "Featured" and span 2 columns */
-    .feature-card {
-        grid-column: span 2;
-    }
-}
-
-/* Artistic Card Design */
-.art-card { 
-    background: #fff; 
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 4px;
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.7s cubic-bezier(0.15, 0.83, 0.66, 1); 
-    position: relative;
-}
-
-.art-card:hover { 
-    transform: translateY(-12px);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.08); 
-}
-
-/* Image Handling with Head-Focus */
-.card-img-wrap { 
-    height: 300px; 
-    overflow: hidden; 
-    position: relative;
-    background-color: #f9f9f9;
-}
-
-/* Make featured images taller for impact */
-@media (min-width: 1024px) {
-    .feature-card .card-img-wrap { height: 450px; }
-}
-
-.card-img-wrap img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    object-position: top; /* Keeps heads/faces visible */
-}
-
-/* Typography Details */
-.card-details { 
-    padding: 20px 5px 10px 5px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: flex-end; 
-}
-
-.art-name { 
-    font-family: 'Playfair Display', serif; 
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.art-cat { 
-    font-size: 10px; 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-    color: #aaa;
-}
-/* Only hide the default system cursor on Desktop */
-@media (pointer: fine) {
-    body, a, button, video, .slider-card, .art-card {
-        cursor: none !important;
-    }
+    /* Only hide the default system cursor on Desktop */
+    @media (pointer: fine) {
+        body, a, button, video, .slider-card, .art-card {
+            cursor: none !important;
+        }
 
     #cursor {
         width: 8px; height: 8px; background: #000; border-radius: 50%;
@@ -513,25 +429,235 @@
         transition: transform 0.2s ease, width 0.3s, height 0.3s;
         display: block; /* Show on desktop */
     }
+    }
+
+    /* Hide custom cursor elements on Mobile/Tablets */
+    @media (pointer: coarse) {
+        #cursor, #cursor-follower {
+            display: none !important;
+        }
+        /* Restore default touch behavior */
+        body, a, button, video, .slider-card, .art-card {
+            cursor: auto !important;
+        }
+    }
+
+    /* Maintain the expansion effect only for desktop */
+    .cursor-expand {
+        width: 60px !important;
+        height: 60px !important;
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    }
+    /* --- THE MAIN CARD CONTAINER --- */
+/* Container Grid: Adjusted for 3 columns on smaller screens too */
+/* Container Grid: Configured for 4 columns on desktop */
+.container-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Mobile */
+    gap: 20px; /* Tighter gap for 4-column layout */
+    padding: 40px 20px;
+    justify-items: center;
+    align-items: start;
+    max-width: 1400px; /* Wider max-width to allow 4 cards in a row */
+    margin: 0 auto;
 }
 
-/* Hide custom cursor elements on Mobile/Tablets */
-@media (pointer: coarse) {
-    #cursor, #cursor-follower {
-        display: none !important;
-    }
-    /* Restore default touch behavior */
-    body, a, button, video, .slider-card, .art-card {
-        cursor: auto !important;
-    }
+@media (min-width: 640px) {
+    .container-grid { grid-template-columns: repeat(2, 1fr); } /* Tablet */
 }
 
-/* Maintain the expansion effect only for desktop */
-.cursor-expand {
-    width: 60px !important;
-    height: 60px !important;
-    background: rgba(0, 0, 0, 0.03);
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+@media (min-width: 1024px) {
+    .container-grid { grid-template-columns: repeat(3, 1fr); } /* Small Laptops */
+}
+
+@media (min-width: 1300px) {
+    .container-grid { grid-template-columns: repeat(4, 1fr); } /* Desktop */
+}
+
+/* Updated Card Size for 4-column layout */
+.card-container {
+    background-color: #fff;
+    width: 260px; /* Slightly smaller width to fit 4 in a row comfortably */
+    border-radius: 30px;
+    padding: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-container:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure the wrapper hides the images that aren't active */
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 30px;
+    overflow: hidden; /* This is critical to hide the extra images */
+    background-color: #eee;
+}
+
+/* 1. Define the animation to move through all 4 images */
+@keyframes slideShow {
+    0% { transform: translateX(0); }          /* Image 1 */
+    33% { transform: translateX(-25%); }     /* Image 2 */
+    66% { transform: translateX(-50%); }     /* Image 3 */
+    100% { transform: translateX(-75%); }    /* Image 4 */
+}
+
+/* 2. Apply the animation ONLY on hover */
+.image-wrapper:hover .slides-container {
+    animation: slideShow 4s steps(1, end) infinite; 
+    /* 'steps(1, end)' makes it snap to each photo like a reel */
+}
+
+/* 3. Ensure your container is wide enough for all 4 */
+.slides-container {
+    display: flex;
+    width: 400%; /* 4 images * 100% each */
+    height: 100%;
+}
+
+.slides-container img {
+    width: 25%; /* Each image is 1/4 of the 400% width */
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures shoe remains centered and covers frame */
+}
+
+/* --- Badges (Floating elements) --- */
+.badge-best {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    backdrop-filter: blur(10px); /* Modern glassmorphism effect */
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.badge-logo {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.brand-logo {
+    width: 24px;
+}
+
+/* --- Pagination Dots --- */
+.dots-group {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+}
+
+.dot.active {
+    background-color: #fff;
+}
+
+/* --- CONTENT SECTION (BOTTOM) --- */
+.details-wrapper {
+    padding: 25px 5px 10px 5px; /* Balanced spacing around content */
+}
+
+.product-title {
+    font-size: 20px !important; /* Smaller heading */
+    font-weight: 800;
+    color: #111;
+    line-height: 1.1;
+}
+
+.product-subtitle {
+    font-size: 13px;
+    font-weight: 600;
+    color: #bbb; /* Light gray */
+    margin-top: 4px;
+}
+
+.product-description {
+    font-size: 12px !important; /* Smaller description */
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+/* --- FOOTER ACTION (PRICE & BUY) --- */
+.footer-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.price-bubble {
+    background-color: #f5f5f5;
+    color: #111;
+    font-size: 16px;
+    font-weight: 800;
+    padding: 8px 16px;
+    border-radius: 30px;
+}
+
+.buy-btn {
+    background-color: #111;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    padding: 8px 8px 8px 16px; /* Lopsided padding for the inner circle */
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buy-btn:hover {
+    background-color: #000;
+}
+
+.btn-arrow {
+    width: 26px;
+    height: 26px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
 }
     </style>
 </head>
@@ -553,7 +679,7 @@
             <div class="desktop-nav gap-5">
                 <a href="#">Services</a>
                 <a href="#">Customer review</a>
-                <a href="#">Direct message</a>
+                <a href="#">Direct message</a> 
             </div>
         </div>
 
@@ -650,117 +776,200 @@
         </div>
     </div>
 
-   <div class="grid-section">
-    <div class="art-card feature-card">
-        <div class="card-img-wrap slider">
-            <img src="product1.jpeg" class="active" alt="Art">
-            <img src="product1.0.jpeg" alt="Art">
-            <img src="product1.1.jpeg" alt="Art">
-            <img src="product1.2.jpeg" alt="Art">
-        </div>
-        <div class="view-btn">Explore Details</div>
-        <div class="card-details">
-            <div>
-                <p class="art-cat">Black Pen Art</p>
-                <h3 class="art-name">The Void</h3>
+<div class="container-grid">
+    <div class="card-container">
+        <div class="image-wrapper">
+                <div class="slides-container">
+                <img src="product1.jpeg" alt="View 1" class="product-image">
+                <img src="product1.0.jpeg" alt="View 2" class="product-image">
+                <img src="product1.1.jpeg" alt="View 3" class="product-image">
+                <img src="product1.2.jpeg" alt="View 4" class="product-image">
+                </div>
+            <div class="badge-best">Best Seller</div>
+            <div class="badge-logo">
+                <img src="logo.png" alt="Logo" class="brand-logo">
             </div>
-            <p class="art-price">₹2000</p>
+        </div>
+        <div class="details-wrapper">
+            <h2 class="product-title text-xl">The Void</h2>
+            <p class="product-subtitle">Black Pen Art</p>
+            <p class="product-description">Hand-drawn black pen portrait on premium textured paper.</p>
+            <div class="footer-action">
+                <div class="price-bubble">₹2000</div>
+                <button class="buy-btn">
+                    Buy Now 
+                    <span class="btn-arrow">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <div class="art-card">
-        <div class="card-img-wrap slider">
-            <img src="product2.png" class="active" alt="Art">
-            <img src="product2.0.png" alt="Art">
-            <img src="product2.1.png" alt="Art">
-            <img src="product2.2.png" alt="Art">
-        </div>
-        <div class="card-details">
-            <div>
-                <p class="art-cat">Color Pen Art</p>
-                <h3 class="art-name">Prism Pulse</h3>
+    <div class="card-container">
+        <div class="image-wrapper">
+                <div class="slides-container">
+                <img src="product2.png" alt="View 1" class="product-image">
+                <img src="product2.0.png" alt="View 2" class="product-image">
+                <img src="product2.1.png" alt="View 3" class="product-image">
+                <img src="product2.2.png" alt="View 4" class="product-image">
+                </div>
+            <div class="badge-best">New</div>
+            <div class="badge-logo">
+                <img src="logo.png" alt="Logo" class="brand-logo">
             </div>
-            <p class="art-price">₹2500</p>
+        </div>
+        <div class="details-wrapper">
+            <h2 class="product-title text-xl">Prism Fine</h2>
+            <p class="product-subtitle">Color Pen art</p>
+            <p class="product-description">Vibrant pigments layered to capture the perfect sunset glow.</p>
+            <div class="footer-action">
+                <div class="price-bubble">₹3000</div>
+                <button class="buy-btn">
+                    Buy Now 
+                    <span class="btn-arrow">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <div class="art-card">
-        <div class="card-img-wrap slider">
-            <img src="product3.jpeg" class="active" alt="Art">
-            <img src="product3.0.jpeg" alt="Art">
-            <img src="product3.1.jpeg" alt="Art">
-            <img src="product3.2.jpeg" alt="Art">
-        </div>
-        <div class="card-details">
-            <div>
-                <p class="art-cat">Acrylic Paint</p>
-                <h3 class="art-name">Texture Talk</h3>
+    <div class="card-container">
+        <div class="image-wrapper">
+                <div class="slides-container">
+                <img src="product3.jpeg" alt="View 1" class="product-image">
+                <img src="product3.0.jpeg" alt="View 2" class="product-image">
+                <img src="product3.1.jpeg" alt="View 3" class="product-image">
+                <img src="product3.2.jpeg" alt="View 4" class="product-image">
+                </div>
+            <div class="badge-best">Limited</div>
+            <div class="badge-logo">
+                <img src="logo.png" alt="Logo" class="brand-logo">
             </div>
-            <p class="art-price">₹3000</p>
+        </div>
+        <div class="details-wrapper">
+            <h2 class="product-title text-xl">Tactile Layering</h2>
+            <p class="product-subtitle">Painting</p>
+            <p class="product-description">Intricate needlework using organic dyed silk on linen.</p>
+            <div class="footer-action">
+                <div class="price-bubble">₹2000</div>
+                <button class="buy-btn">
+                    Buy Now 
+                    <span class="btn-arrow">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <div class="art-card">
-        <div class="card-img-wrap slider">
-            <img src="product4.png" class="active" alt="Art">
-            <img src="product4.0.png" alt="Art">
-            <img src="product4.1.png" alt="Art">
-            <img src="product4.2.png" alt="Art">
-        </div>
-        <div class="card-details">
-            <div>
-                <p class="art-cat">Water Painting</p>
-                <h3 class="art-name">Aqueous Dreams</h3>
+    <div class="card-container">
+        <div class="image-wrapper">
+                <div class="slides-container">
+                <img src="product4.png" alt="View 1" class="product-image">
+                <img src="product4.0.png" alt="View 2" class="product-image">
+                <img src="product4.1.png" alt="View 3" class="product-image">
+                <img src="product4.2.png" alt="View 4" class="product-image">
+                </div>
+            <div class="badge-best">Limited</div>
+            <div class="badge-logo">
+                <img src="logo.png" alt="Logo" class="brand-logo">
             </div>
-            <p class="art-price">₹2500</p>
+        </div>
+        <div class="details-wrapper">
+            <h2 class="product-title text-xl">Liquid Flow</h2>
+            <p class="product-subtitle">Water Painting</p>
+            <p class="product-description">Intricate needlework using organic dyed silk on linen.</p>
+            <div class="footer-action">
+                <div class="price-bubble">₹3500</div>
+                <button class="buy-btn">
+                    Buy Now 
+                    <span class="btn-arrow">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <div class="art-card">
-        <div class="card-img-wrap slider">
-            <img src="product5.png" class="active" alt="Art">
-            <img src="product5.0.png" alt="Art">
-            <img src="product5.1.png" alt="Art">
-            <img src="product5.2.png" alt="Art">
-        </div>
-        <div class="card-details">
-            <div>
-                <p class="art-cat">Thread Art</p>
-                <h3 class="art-name">Silk Stitch</h3>
+    <div class="card-container">
+        <div class="image-wrapper">
+                <div class="slides-container">
+                <img src="product5.png" alt="View 1" class="product-image">
+                <img src="product5.0.png" alt="View 2" class="product-image">
+                <img src="product5.1.png" alt="View 3" class="product-image">
+                <img src="product5.2.png" alt="View 4" class="product-image">
+                </div>
+            <div class="badge-best">Limited</div>
+            <div class="badge-logo">
+                <img src="logo.png" alt="Logo" class="brand-logo">
             </div>
-            <p class="art-price">₹3000</p>
+        </div>
+        <div class="details-wrapper">
+            <h2 class="product-title text-xl">Physical Pixels</h2>
+            <p class="product-subtitle">Thread Painting</p>
+            <p class="product-description">Intricate needlework using organic dyed silk on linen.</p>
+            <div class="footer-action">
+                <div class="price-bubble">₹2000</div>
+                <button class="buy-btn">
+                    Buy Now 
+                    <span class="btn-arrow">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <div class="art-card">
-        <div class="card-img-wrap slider">
-            <img src="cartoon1.jpg" class="active" alt="Art">
-            <img src="cartoon2.jpg" alt="Art">
-        </div>
-        <div class="card-details">
-            <div>
-                <p class="art-cat">Cartoon Art</p>
-                <h3 class="art-name">Pop Soul</h3>
+    <div class="card-container">
+        <div class="image-wrapper">
+                <div class="slides-container">
+                <img src="product6.png" alt="View 1" class="product-image">
+                <img src="product4.0.png" alt="View 2" class="product-image">
+                <img src="product4.1.png" alt="View 3" class="product-image">
+                <img src="product4.2.png" alt="View 4" class="product-image">
+                </div>
+            <div class="#badge-best"></div>
+            <div class="badge-logo">
+                <img src="logo.png" alt="Logo" class="brand-logo">
             </div>
-            <p class="art-price">₹1500</p>
         </div>
-    </div>
-
-    <div class="art-card feature-card">
-        <div class="card-img-wrap slider">
-            <img src="pencil1.jpg" class="active" alt="Art">
-            <img src="pencil2.jpg" alt="Art">
-        </div>
-        <div class="view-btn">Explore Details</div>
-        <div class="card-details">
-            <div>
-                <p class="art-cat">Pencil Art</p>
-                <h3 class="art-name">Graphite Pure</h3>
+        <div class="details-wrapper">
+            <h2 class="product-title text-xl">Pop Pulp</h2>
+            <p class="product-subtitle">Cartoon Art</p>
+            <p class="product-description">Intricate needlework using organic dyed silk on linen.</p>
+            <div class="footer-action">
+                <div class="price-bubble">₹2000</div>
+                <button class="buy-btn">
+                    Buy Now 
+                    <span class="btn-arrow">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </span>
+                </button>
             </div>
-            <p class="art-price">₹1800</p>
         </div>
     </div>
 </div>
+
 
     <script>
 // --- Custom Cursor Logic ---
@@ -959,47 +1168,7 @@
         }
         animatePetals();
 
-// --- ARTISTIC HORIZONTAL SLIDE ENGINE ---
-const sliders = document.querySelectorAll('.slider');
 
-sliders.forEach(slider => {
-    const images = slider.querySelectorAll('img');
-    let currentIndex = 0;
-
-    // Set initial positions for a sliding effect
-    images.forEach((img, i) => {
-        if (i !== 0) img.style.transform = "translateX(100%)";
-        img.style.position = "absolute";
-        img.style.opacity = "1"; // Keep opacity solid for the slide
-    });
-
-    setInterval(() => {
-        const currentImg = images[currentIndex];
-        currentIndex = (currentIndex + 1) % images.length;
-        const nextImg = images[currentIndex];
-
-        // Slide current image out to the left
-        currentImg.style.transform = "translateX(-100%)";
-        
-        // Prepare next image to come from the right
-        nextImg.style.transition = "none";
-        nextImg.style.transform = "translateX(100%)";
-        
-        // Force a reflow for the transition to work
-        nextImg.offsetHeight; 
-        
-        // Slide next image in to the center
-        nextImg.style.transition = "transform 1.5s cubic-bezier(0.16, 1, 0.3, 1)";
-        nextImg.style.transform = "translateX(0)";
-        
-        // Reset the previous image's position after it finishes sliding out
-        setTimeout(() => {
-            currentImg.style.transition = "none";
-            currentImg.style.transform = "translateX(100%)";
-        }, 1500);
-
-    }, 3500); // 3.5 seconds per slide
-});
     </script>
 </body>
 </html>
