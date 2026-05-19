@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mamaarts - Art Of Life</title>
+    <title>Mamaarts - Art Of Life </title>
     <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -44,6 +44,14 @@
             display: flex;
             flex-direction: column;
             position: relative;
+        }
+
+        /* Fix mobile horizontal scrolling and overflow */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+            position: relative;
+            box-sizing: border-box;
         }
 
         /*canvas styles with flower-canvas */
@@ -295,47 +303,47 @@
         }
 
         /* HERO CONTAINER (MIDDLE) */
-            .hero { 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        gap: 100px; 
-        padding: 100px 60px; 
-    }
-
-    .hero-text h1 { 
-        font-family: 'Playfair Display', serif; 
-        font-size: 80px; 
-        line-height: 0.9; 
-        margin-bottom: 20px; 
-    }
-
-    .heart-img { 
-        width: 350px; 
-        filter: grayscale(1) contrast(1.1); 
-        transition: 0.5s; 
-    }
-
-    .heart-img:hover { 
-        filter: grayscale(0); 
-        transform: rotate(-5deg) scale(1.05); 
-    }
-
-    /* Responsive adjustment for smaller screens */
-    @media (max-width: 1024px) {
-        .hero {
-            flex-direction: column;
-            gap: 50px;
-            text-align: center;
-            padding: 60px 20px;
+        .hero { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 100px; 
+            padding: 100px 60px; 
         }
-        .hero-text h1 {
-            font-size: 50px;
+
+        .hero-text h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 80px; 
+            line-height: 0.9; 
+            margin-bottom: 20px; 
         }
-        .heart-img {
-            width: 250px;
+
+        .heart-img { 
+            width: 350px; 
+            filter: grayscale(1) contrast(1.1); 
+            transition: 0.5s; 
         }
-    }
+
+        .heart-img:hover { 
+            filter: grayscale(0); 
+            transform: rotate(-5deg) scale(1.05); 
+        }
+
+        /* Responsive adjustment for smaller screens */
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                gap: 50px;
+                text-align: center;
+                padding: 60px 20px;
+            }
+            .hero-text h1 {
+                font-size: 50px;
+            }
+            .heart-img {
+                width: 250px;
+            }
+        }
 
         /* Heart Sticker Wrappers */
         .sticker-wrapper {
@@ -374,16 +382,14 @@
             transform: scale(1.05) rotate(-1deg);
         }
 
-    
-        
-                /* Ticker Bar Styling */
+        /* Ticker Bar Styling */
         .ticker-container {
             width: 100%;
             overflow: hidden;
             background: #f5efe6; 
             border-top: 1px solid #000;
             border-bottom: 1px solid #000;
-            padding: 6px 0; /* Reduced from 12px to make the bar smaller */
+            padding: 6px 0; 
             margin: 10px 0;
             white-space: nowrap;
             position: relative;
@@ -392,13 +398,13 @@
 
         .ticker-wrapper {
             display: inline-block;
-            animation: ticker-scroll 35s linear infinite; /* Slowed down slightly for better readability */
+            animation: ticker-scroll 35s linear infinite; 
         }
 
         .ticker-item {
             display: inline-block;
-            padding: 0 10px; /* Padding reduced since spaces are now in the HTML text */
-            font-size: 13px; /* Slightly smaller font for a more refined look */
+            padding: 0 10px; 
+            font-size: 13px; 
             font-weight: 800; 
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -410,255 +416,255 @@
             100% { transform: translateX(-50%); }
         }
 
-    /* Only hide the default system cursor on Desktop */
-    @media (pointer: fine) {
-        body, a, button, video, .slider-card, .art-card {
-            cursor: none !important;
+        /* Only hide the default system cursor on Desktop */
+        @media (pointer: fine) {
+            body, a, button, video, .slider-card, .card-container {
+                cursor: none !important;
+            }
+
+            #cursor {
+                width: 8px; height: 8px; background: #000; border-radius: 50%;
+                position: fixed; pointer-events: none; z-index: 9999;
+                transition: transform 0.1s ease;
+                display: block; 
+            }
+
+            #cursor-follower {
+                width: 30px; height: 30px; border: 1px solid rgba(0,0,0,0.2); border-radius: 50%;
+                position: fixed; pointer-events: none; z-index: 9998;
+                transition: transform 0.2s ease, width 0.3s, height 0.3s;
+                display: block; 
+            }
         }
 
-    #cursor {
-        width: 8px; height: 8px; background: #000; border-radius: 50%;
-        position: fixed; pointer-events: none; z-index: 9999;
-        transition: transform 0.1s ease;
-        display: block; /* Show on desktop */
-    }
-
-    #cursor-follower {
-        width: 30px; height: 30px; border: 1px solid rgba(0,0,0,0.2); border-radius: 50%;
-        position: fixed; pointer-events: none; z-index: 9998;
-        transition: transform 0.2s ease, width 0.3s, height 0.3s;
-        display: block; /* Show on desktop */
-    }
-    }
-
-    /* Hide custom cursor elements on Mobile/Tablets */
-    @media (pointer: coarse) {
-        #cursor, #cursor-follower {
-            display: none !important;
+        /* Hide custom cursor elements on Mobile/Tablets */
+        @media (pointer: coarse) {
+            #cursor, #cursor-follower {
+                display: none !important;
+            }
+            body, a, button, video, .slider-card, .card-container {
+                cursor: auto !important;
+            }
         }
-        /* Restore default touch behavior */
-        body, a, button, video, .slider-card, .art-card {
-            cursor: auto !important;
+
+        /* Maintain the expansion effect only for desktop */
+        .cursor-expand {
+            width: 60px !important;
+            height: 60px !important;
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
         }
-    }
 
-    /* Maintain the expansion effect only for desktop */
-    .cursor-expand {
-        width: 60px !important;
-        height: 60px !important;
-        background: rgba(0, 0, 0, 0.03);
-        border: 1px solid rgba(0, 0, 0, 0.1) !important;
-    }
-    /* --- THE MAIN CARD CONTAINER --- */
-/* Container Grid: Adjusted for 3 columns on smaller screens too */
-/* Container Grid: Configured for 4 columns on desktop */
-.container-grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr); /* Mobile */
-    gap: 20px; /* Tighter gap for 4-column layout */
-    padding: 40px 20px;
-    justify-items: center;
-    align-items: start;
-    max-width: 1400px; /* Wider max-width to allow 4 cards in a row */
-    margin: 0 auto;
-}
+        /* --- REFOCUSED COMPACT PRODUCT GRID PATTERN --- */
+        .container-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px; 
+            padding: 20px 12px; 
+            justify-content: center;
+            max-width: 1400px; 
+            margin: 0 auto;
+        }
 
-@media (min-width: 640px) {
-    .container-grid { grid-template-columns: repeat(2, 1fr); } /* Tablet */
-}
+        /* Unified Card Architecture */
+        .card-container {
+            background-color: #fff;
+            width: calc(50% - 6px); /* Perfect mathematical layout mapping for 2 elements per row */
+            border-radius: 24px;
+            padding: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column; 
+            justify-content: flex-start;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        }
 
-@media (min-width: 1024px) {
-    .container-grid { grid-template-columns: repeat(3, 1fr); } /* Small Laptops */
-}
+        .card-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+        }
 
-@media (min-width: 1300px) {
-    .container-grid { grid-template-columns: repeat(4, 1fr); } /* Desktop */
-}
+        /* Image Wrapper with Square Constraint mapping */
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Standard square constraint configuration to avoid height shifts */
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: #f0ede9;
+            flex-shrink: 0;
+        }
 
-/* Updated Card Size for 4-column layout */
-.card-container {
-    background-color: #fff;
-    width: 260px; /* Slightly smaller width to fit 4 in a row comfortably */
-    border-radius: 30px;
-    padding: 10px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
+        /* Sliding track configurations */
+        .slides-container {
+            display: flex;
+            width: 400%; 
+            height: 100%;
+        }
 
-.card-container:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
-}
+        .slides-container img {
+            width: 25%; 
+            height: 100%;
+            object-fit: cover;
+        }
 
-/* Ensure the wrapper hides the images that aren't active */
-.image-wrapper {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    border-radius: 30px;
-    overflow: hidden; /* This is critical to hide the extra images */
-    background-color: #eee;
-}
+        /* Hover animation workflow sequence */
+        @keyframes slideShow {
+            0% { transform: translateX(0); }
+            33% { transform: translateX(-25%); }
+            66% { transform: translateX(-50%); }
+            100% { transform: translateX(-75%); }
+        }
 
-/* 1. Define the animation to move through all 4 images */
-@keyframes slideShow {
-    0% { transform: translateX(0); }          /* Image 1 */
-    33% { transform: translateX(-25%); }     /* Image 2 */
-    66% { transform: translateX(-50%); }     /* Image 3 */
-    100% { transform: translateX(-75%); }    /* Image 4 */
-}
+        .image-wrapper:hover .slides-container {
+            animation: slideShow 5s steps(1, end) infinite; 
+        }
 
-/* 2. Apply the animation ONLY on hover */
-.image-wrapper:hover .slides-container {
-    animation: slideShow 4s steps(1, end) infinite; 
-    /* 'steps(1, end)' makes it snap to each photo like a reel */
-}
+        /* Badges styling alignment */
+        .badge-best {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.5); 
+            backdrop-filter: blur(10px); 
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-/* 3. Ensure your container is wide enough for all 4 */
-.slides-container {
-    display: flex;
-    width: 400%; /* 4 images * 100% each */
-    height: 100%;
-}
+        .badge-logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 28px;
+            height: 28px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
 
-.slides-container img {
-    width: 25%; /* Each image is 1/4 of the 400% width */
-    height: 100%;
-    object-fit: cover;
-}
+        .brand-logo {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+        }
 
-.product-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures shoe remains centered and covers frame */
-}
+        /* Bottom Text Details Structural Engine */
+        .details-wrapper {
+            padding: 10px 2px 0 2px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; 
+        }
 
-/* --- Badges (Floating elements) --- */
-.badge-best {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-    backdrop-filter: blur(10px); /* Modern glassmorphism effect */
-    color: #fff;
-    font-size: 9px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 20px;
-}
+        .product-title {
+            font-size: 15px !important; 
+            font-weight: 800;
+            color: #111;
+            line-height: 1.2;
+            margin-bottom: 2px;
+        }
 
-.badge-logo {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 32px;
-    height: 32px;
-    background-color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+        .product-subtitle {
+            font-size: 11px !important;
+            font-weight: 500;
+            color: #999; 
+            margin-bottom: 12px;
+        }
 
-.brand-logo {
-    width: 24px;
-}
+        /* Hide descriptions on responsive breakpoints to ensure compact layout architecture */
+        .product-description {
+            display: none !important; 
+        }
 
-/* --- Pagination Dots --- */
-.dots-group {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 6px;
-}
+        /* Global structural button alignments across runtime */
+        .footer-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto; 
+            padding-top: 4px;
+        }
 
-.dot {
-    width: 6px;
-    height: 6px;
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-}
+        .price-bubble {
+            background-color: #f7f5f2;
+            color: #111;
+            font-size: 13px !important;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
 
-.dot.active {
-    background-color: #fff;
-}
+        .buy-btn {
+            background-color: #111;
+            color: #fff;
+            font-size: 11px !important;
+            font-weight: 700;
+            border: none;
+            padding: 6px 6px 6px 12px; 
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
 
-/* --- CONTENT SECTION (BOTTOM) --- */
-.details-wrapper {
-    padding: 25px 5px 10px 5px; /* Balanced spacing around content */
-}
+        .buy-btn:hover {
+            background-color: #000;
+        }
 
-.product-title {
-    font-size: 20px !important; /* Smaller heading */
-    font-weight: 800;
-    color: #111;
-    line-height: 1.1;
-}
+        .btn-arrow {
+            width: 18px;
+            height: 18px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+        }
 
-.product-subtitle {
-    font-size: 13px;
-    font-weight: 600;
-    color: #bbb; /* Light gray */
-    margin-top: 4px;
-}
-
-.product-description {
-    font-size: 12px !important; /* Smaller description */
-    margin-top: 6px;
-    line-height: 1.4;
-}
-
-/* --- FOOTER ACTION (PRICE & BUY) --- */
-.footer-action {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.price-bubble {
-    background-color: #f5f5f5;
-    color: #111;
-    font-size: 16px;
-    font-weight: 800;
-    padding: 8px 16px;
-    border-radius: 30px;
-}
-
-.buy-btn {
-    background-color: #111;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    border: none;
-    padding: 8px 8px 8px 16px; /* Lopsided padding for the inner circle */
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.buy-btn:hover {
-    background-color: #000;
-}
-
-.btn-arrow {
-    width: 26px;
-    height: 26px;
-    background-color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-}
+        /* Desktop Media Query Layout Architecture Override Configurations */
+        @media (min-width: 1024px) {
+            .container-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+                padding: 40px 60px;
+            }
+            .card-container {
+                width: 100%;
+                max-width: 260px;
+                padding: 12px;
+                border-radius: 28px;
+            }
+            .product-title {
+                font-size: 18px !important;
+            }
+            .product-subtitle {
+                font-size: 13px !important;
+            }
+            .price-bubble {
+                font-size: 15px !important;
+                padding: 8px 16px;
+            }
+            .buy-btn {
+                font-size: 13px !important;
+                padding: 8px 8px 8px 16px;
+            }
+            .btn-arrow {
+                width: 22px;
+                height: 22px;
+            }
+        }
     </style>
 </head>
 
@@ -756,14 +762,14 @@
         </div>
     </div>
 
-<section class="hero">
-    <img src="image1.png" alt="Artwork" class="heart-img">
-    <div class="hero-text">
-        <p class="uppercase tracking-widest text-xs mb-4">Fine Art Studio & Collective</p>
-        <h1>Every Stroke<br>Has a Soul.</h1>
-        <p class="max-w-md text-gray-500 italic">MamaArts is where raw graphite, flowing pigment, and hand-stitched threads converge to tell your unique story.</p>
-    </div>
-</section>
+    <section class="hero">
+        <img src="image1.png" alt="Artwork" class="heart-img">
+        <div class="hero-text">
+            <p class="uppercase tracking-widest text-xs mb-4">Fine Art Studio & Collective</p>
+            <h1>Every Stroke<br>Has a Soul.</h1>
+            <p class="max-w-md text-gray-500 italic">MamaArts is where raw graphite, flowing pigment, and hand-stitched threads converge to tell your unique story.</p>
+        </div>
+    </section>
 
     <div class="ticker-container">
         <div class="ticker-wrapper">
@@ -776,203 +782,195 @@
         </div>
     </div>
 
-<div class="container-grid">
-    <div class="card-container">
-        <div class="image-wrapper">
+    <div class="container-grid">
+        <div class="card-container">
+            <div class="image-wrapper">
                 <div class="slides-container">
-                <img src="product1.jpeg" alt="View 1" class="product-image">
-                <img src="product1.0.jpeg" alt="View 2" class="product-image">
-                <img src="product1.1.jpeg" alt="View 3" class="product-image">
-                <img src="product1.2.jpeg" alt="View 4" class="product-image">
+                    <img src="product1.jpeg" alt="View 1" class="product-image">
+                    <img src="product1.0.jpeg" alt="View 2" class="product-image">
+                    <img src="product1.1.jpeg" alt="View 3" class="product-image">
+                    <img src="product1.2.jpeg" alt="View 4" class="product-image">
                 </div>
-            <div class="badge-best">Best Seller</div>
-            <div class="badge-logo">
-                <img src="logo.png" alt="Logo" class="brand-logo">
+                <div class="badge-best">Best Seller</div>
+                <div class="badge-logo">
+                    <img src="logo.png" alt="Logo" class="brand-logo">
+                </div>
+            </div>
+            <div class="details-wrapper">
+                <h2 class="product-title">The Void</h2>
+                <p class="product-subtitle">Black Pen Art</p>
+                <div class="footer-action">
+                    <div class="price-bubble">₹2000</div>
+                    <button class="buy-btn">
+                        Buy Now 
+                        <span class="btn-arrow">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="details-wrapper">
-            <h2 class="product-title text-xl">The Void</h2>
-            <p class="product-subtitle">Black Pen Art</p>
-            <p class="product-description">Hand-drawn black pen portrait on premium textured paper.</p>
-            <div class="footer-action">
-                <div class="price-bubble">₹2000</div>
-                <button class="buy-btn">
-                    Buy Now 
-                    <span class="btn-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                    </span>
-                </button>
+
+        <div class="card-container">
+            <div class="image-wrapper">
+                <div class="slides-container">
+                    <img src="product2.png" alt="View 1" class="product-image">
+                    <img src="product2.0.png" alt="View 2" class="product-image">
+                    <img src="product2.1.png" alt="View 3" class="product-image">
+                    <img src="product2.2.png" alt="View 4" class="product-image">
+                </div>
+                <div class="badge-best">New</div>
+                <div class="badge-logo">
+                    <img src="logo.png" alt="Logo" class="brand-logo">
+                </div>
+            </div>
+            <div class="details-wrapper">
+                <h2 class="product-title">Prism Fine</h2>
+                <p class="product-subtitle">Color Pen art</p>
+                <div class="footer-action">
+                    <div class="price-bubble">₹3000</div>
+                    <button class="buy-btn">
+                        Buy Now 
+                        <span class="btn-arrow">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container">
+            <div class="image-wrapper">
+                <div class="slides-container">
+                    <img src="product3.jpeg" alt="View 1" class="product-image">
+                    <img src="product3.0.jpeg" alt="View 2" class="product-image">
+                    <img src="product3.1.jpeg" alt="View 3" class="product-image">
+                    <img src="product3.2.jpeg" alt="View 4" class="product-image">
+                </div>
+                <div class="badge-best">Limited</div>
+                <div class="badge-logo">
+                    <img src="logo.png" alt="Logo" class="brand-logo">
+                </div>
+            </div>
+            <div class="details-wrapper">
+                <h2 class="product-title">Tactile Layering</h2>
+                <p class="product-subtitle">Painting</p>
+                <div class="footer-action">
+                    <div class="price-bubble">₹2000</div>
+                    <button class="buy-btn">
+                        Buy Now 
+                        <span class="btn-arrow">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container">
+            <div class="image-wrapper">
+                <div class="slides-container">
+                    <img src="product4.png" alt="View 1" class="product-image">
+                    <img src="product4.0.png" alt="View 2" class="product-image">
+                    <img src="product4.1.png" alt="View 3" class="product-image">
+                    <img src="product4.2.png" alt="View 4" class="product-image">
+                </div>
+                <div class="badge-best">Limited</div>
+                <div class="badge-logo">
+                    <img src="logo.png" alt="Logo" class="brand-logo">
+                </div>
+            </div>
+            <div class="details-wrapper">
+                <h2 class="product-title">Liquid Flow</h2>
+                <p class="product-subtitle">Water Painting</p>
+                <div class="footer-action">
+                    <div class="price-bubble">₹3500</div>
+                    <button class="buy-btn">
+                        Buy Now 
+                        <span class="btn-arrow">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container">
+            <div class="image-wrapper">
+                <div class="slides-container">
+                    <img src="product5.png" alt="View 1" class="product-image">
+                    <img src="product5.0.png" alt="View 2" class="product-image">
+                    <img src="product5.1.png" alt="View 3" class="product-image">
+                    <img src="product5.2.png" alt="View 4" class="product-image">
+                </div>
+                <div class="badge-best">Limited</div>
+                <div class="badge-logo">
+                    <img src="logo.png" alt="Logo" class="brand-logo">
+                </div>
+            </div>
+            <div class="details-wrapper">
+                <h2 class="product-title">Physical Pixels</h2>
+                <p class="product-subtitle">Thread Painting</p>
+                <div class="footer-action">
+                    <div class="price-bubble">₹2000</div>
+                    <button class="buy-btn">
+                        Buy Now 
+                        <span class="btn-arrow">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container">
+            <div class="image-wrapper">
+                <div class="slides-container">
+                    <img src="product6.png" alt="View 1" class="product-image">
+                    <img src="product4.0.png" alt="View 2" class="product-image">
+                    <img src="product4.1.png" alt="View 3" class="product-image">
+                    <img src="product4.2.png" alt="View 4" class="product-image">
+                </div>
+                <div class="badge-logo">
+                    <img src="logo.png" alt="Logo" class="brand-logo">
+                </div>
+            </div>
+            <div class="details-wrapper">
+                <h2 class="product-title">Pop Pulp</h2>
+                <p class="product-subtitle">Cartoon Art</p>
+                <div class="footer-action">
+                    <div class="price-bubble">₹2000</div>
+                    <button class="buy-btn">
+                        Buy Now 
+                        <span class="btn-arrow">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="card-container">
-        <div class="image-wrapper">
-                <div class="slides-container">
-                <img src="product2.png" alt="View 1" class="product-image">
-                <img src="product2.0.png" alt="View 2" class="product-image">
-                <img src="product2.1.png" alt="View 3" class="product-image">
-                <img src="product2.2.png" alt="View 4" class="product-image">
-                </div>
-            <div class="badge-best">New</div>
-            <div class="badge-logo">
-                <img src="logo.png" alt="Logo" class="brand-logo">
-            </div>
-        </div>
-        <div class="details-wrapper">
-            <h2 class="product-title text-xl">Prism Fine</h2>
-            <p class="product-subtitle">Color Pen art</p>
-            <p class="product-description">Vibrant pigments layered to capture the perfect sunset glow.</p>
-            <div class="footer-action">
-                <div class="price-bubble">₹3000</div>
-                <button class="buy-btn">
-                    Buy Now 
-                    <span class="btn-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="card-container">
-        <div class="image-wrapper">
-                <div class="slides-container">
-                <img src="product3.jpeg" alt="View 1" class="product-image">
-                <img src="product3.0.jpeg" alt="View 2" class="product-image">
-                <img src="product3.1.jpeg" alt="View 3" class="product-image">
-                <img src="product3.2.jpeg" alt="View 4" class="product-image">
-                </div>
-            <div class="badge-best">Limited</div>
-            <div class="badge-logo">
-                <img src="logo.png" alt="Logo" class="brand-logo">
-            </div>
-        </div>
-        <div class="details-wrapper">
-            <h2 class="product-title text-xl">Tactile Layering</h2>
-            <p class="product-subtitle">Painting</p>
-            <p class="product-description">Intricate needlework using organic dyed silk on linen.</p>
-            <div class="footer-action">
-                <div class="price-bubble">₹2000</div>
-                <button class="buy-btn">
-                    Buy Now 
-                    <span class="btn-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="card-container">
-        <div class="image-wrapper">
-                <div class="slides-container">
-                <img src="product4.png" alt="View 1" class="product-image">
-                <img src="product4.0.png" alt="View 2" class="product-image">
-                <img src="product4.1.png" alt="View 3" class="product-image">
-                <img src="product4.2.png" alt="View 4" class="product-image">
-                </div>
-            <div class="badge-best">Limited</div>
-            <div class="badge-logo">
-                <img src="logo.png" alt="Logo" class="brand-logo">
-            </div>
-        </div>
-        <div class="details-wrapper">
-            <h2 class="product-title text-xl">Liquid Flow</h2>
-            <p class="product-subtitle">Water Painting</p>
-            <p class="product-description">Intricate needlework using organic dyed silk on linen.</p>
-            <div class="footer-action">
-                <div class="price-bubble">₹3500</div>
-                <button class="buy-btn">
-                    Buy Now 
-                    <span class="btn-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="card-container">
-        <div class="image-wrapper">
-                <div class="slides-container">
-                <img src="product5.png" alt="View 1" class="product-image">
-                <img src="product5.0.png" alt="View 2" class="product-image">
-                <img src="product5.1.png" alt="View 3" class="product-image">
-                <img src="product5.2.png" alt="View 4" class="product-image">
-                </div>
-            <div class="badge-best">Limited</div>
-            <div class="badge-logo">
-                <img src="logo.png" alt="Logo" class="brand-logo">
-            </div>
-        </div>
-        <div class="details-wrapper">
-            <h2 class="product-title text-xl">Physical Pixels</h2>
-            <p class="product-subtitle">Thread Painting</p>
-            <p class="product-description">Intricate needlework using organic dyed silk on linen.</p>
-            <div class="footer-action">
-                <div class="price-bubble">₹2000</div>
-                <button class="buy-btn">
-                    Buy Now 
-                    <span class="btn-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="card-container">
-        <div class="image-wrapper">
-                <div class="slides-container">
-                <img src="product6.png" alt="View 1" class="product-image">
-                <img src="product4.0.png" alt="View 2" class="product-image">
-                <img src="product4.1.png" alt="View 3" class="product-image">
-                <img src="product4.2.png" alt="View 4" class="product-image">
-                </div>
-            <div class="#badge-best"></div>
-            <div class="badge-logo">
-                <img src="logo.png" alt="Logo" class="brand-logo">
-            </div>
-        </div>
-        <div class="details-wrapper">
-            <h2 class="product-title text-xl">Pop Pulp</h2>
-            <p class="product-subtitle">Cartoon Art</p>
-            <p class="product-description">Intricate needlework using organic dyed silk on linen.</p>
-            <div class="footer-action">
-                <div class="price-bubble">₹2000</div>
-                <button class="buy-btn">
-                    Buy Now 
-                    <span class="btn-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
     <script>
-// --- Custom Cursor Logic ---
+        // --- Custom Cursor Logic ---
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursor-follower');
         
@@ -981,8 +979,7 @@
             follower.style.transform = `translate3d(${e.clientX - 11}px, ${e.clientY - 11}px, 0)`;
         });
 
-        // Artistic Interaction: Expand when hovering over links or cards
-        const interactives = document.querySelectorAll('a, button, .art-card, .slider-card, video');
+        const interactives = document.querySelectorAll('a, button, .card-container, .slider-card, video');
 
         interactives.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -992,6 +989,7 @@
                 follower.classList.remove('cursor-expand');
             });
         });
+
         // --- 1. RESPONSIVE NAVIGATION CONTROLLER ---
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -1002,15 +1000,12 @@
             mobileMenu.classList.toggle('open');
         });
 
-        // Close mobile menu if clicked outside
         document.addEventListener('click', (e) => {
             if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
                 menuToggle.classList.remove('active');
                 mobileMenu.classList.remove('open');
             }
         });
-
-        
 
         // --- 3. 3D CAROUSEL PORTFOLIO ENGINE ---
         const cards = Array.from(document.querySelectorAll('.slider-card'));
@@ -1108,7 +1103,7 @@
 
         const petals = [];
         const petalCount = 30;
-        const colors = ['#fce4ec', '#f8bbd0', '#ffffff', '#fff9c4']; // Pink and White palette
+        const colors = ['#fce4ec', '#f8bbd0', '#ffffff', '#fff9c4']; 
 
         class FlowerPetal {
             constructor() {
@@ -1143,7 +1138,6 @@
                 ctx.translate(this.x, this.y);
                 ctx.rotate(this.angle);
                 ctx.beginPath();
-                // Draw an organic petal shape
                 ctx.moveTo(0, 0);
                 ctx.bezierCurveTo(-this.size, -this.size, -this.size, this.size, 0, this.size);
                 ctx.bezierCurveTo(this.size, this.size, this.size, -this.size, 0, 0);
@@ -1167,8 +1161,6 @@
             requestAnimationFrame(animatePetals);
         }
         animatePetals();
-
-
     </script>
 </body>
 </html>
