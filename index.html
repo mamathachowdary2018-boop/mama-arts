@@ -665,6 +665,101 @@
                 height: 22px;
             }
         }
+        /* --- ART PROTECTION CANVAS ENGINE STYLES --- */
+.blueprint-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Central Museum Showcase Frame */
+.showcase-master-frame {
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    background: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 
+        0 0 0 2px #2c251e,
+        0 8px 0 #1c1713,
+        0 25px 60px -15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Diagonal glass glaze glare mask layer */
+.frame-glass-sheen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0) 60%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Blueprint Line Drawing Overlay Track */
+.blueprint-line-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Fallback background helper for mobile images */
+.fallback-bg {
+    background-color: #ebdccd;
+    object-fit: cover;
+}
+/* ==========================================
+   COLLECTOR CARE HOVER INTERACTION
+   ========================================== */
+
+/* The base layout card structure */
+.shipping-brick {
+    background-color: #ffffff; /* Default crisp gallery white */
+    border: 1px solid #f3f3f3;
+    border-radius: 24px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+    
+    /* Hardware acceleration for smooth frame animation loops */
+    will-change: transform, background-color;
+    transition: 
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+        background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Elegant color inversion state on hover */
+.shipping-brick:hover {
+    background-color: #f6f1ea; /* Complementing contrast linen shade */
+    border-color: rgba(0, 0, 0, 0.03);
+    transform: translateY(-4px); /* Clean uplift micro-interaction */
+}
+
+/* Icon box styling wrapper */
+.brick-icon-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background-color: #fcfbfa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111111;
+    transition: background-color 0.3s ease;
+}
+
+/* Invert icon background on parent hover for high-end feel */
+.shipping-brick:hover .brick-icon-container {
+    background-color: #ffffff;
+}
     </style>
 </head>
 
@@ -969,6 +1064,123 @@
         </div>
     </div>
 
+<section class="max-w-[1400px] mx-auto px-4 py-16 lg:px-12 relative" id="protection">
+    <div class="text-center mb-12">
+        <p class="uppercase tracking-widest text-[11px] text-gray-400 font-bold mb-2">ARCHIVAL STUDIO SPECIFICATIONS</p>
+        <h2 class="font-serif text-3xl lg:text-5xl font-bold tracking-tight text-gray-900">Art Protection</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-[1150px] mx-auto">
+        
+        <div class="flex flex-col gap-6 lg:gap-16 justify-center order-2 lg:order-1">
+            
+            <div class="bg-[#ebdfcf] rounded-[24px] p-6 shadow-sm border border-black/5 transition-transform duration-300 hover:-translate-y-0.5 blueprint-pointer" id="card-acrylic">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-[9px] font-mono bg-black/10 px-2 py-0.5 rounded-full font-bold text-gray-700">LAYER</span>
+                    <h3 class="font-bold text-base lg:text-lg text-gray-900">Acrylic Paintings</h3>
+                </div>
+                <p class="text-xs text-gray-600 leading-relaxed font-medium">A professional varnish is applied to the surface to protect the texture and colors from dust and fading.</p>
+                
+                <div class="block lg:hidden w-full aspect-[16/10] mt-4 rounded-xl overflow-hidden bg-black/5 border border-black/5 relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
+                    <img src="artcare1.png" alt="Varnish Layer Process" class="w-full h-full object-cover">
+                    <span class="absolute bottom-3 left-3 text-[9px] font-mono uppercase text-white tracking-widest z-20 bg-black/30 px-2 py-0.5 rounded-sm">Varnish Glaze Process</span>
+                </div>
+            </div>
+
+            <div class="bg-[#ebdfcf] rounded-[24px] p-6 shadow-sm border border-black/5 transition-transform duration-300 hover:-translate-y-0.5 blueprint-pointer" id="card-stitch">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-[9px] font-mono bg-black/10 px-2 py-0.5 rounded-full font-bold text-gray-700">WEAVE</span>
+                    <h3 class="font-bold text-base lg:text-lg text-gray-900">Stitch Inspection</h3>
+                </div>
+                <p class="text-xs text-gray-600 leading-relaxed font-medium">For Silk Stitch (thread art), we perform a tension check to ensure every fiber is perfectly secure.</p>
+                
+                <div class="block lg:hidden w-full aspect-[16/10] mt-4 rounded-xl overflow-hidden bg-black/5 border border-black/5 relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
+                    <img src="artcare2.png" alt="Fiber Tension Check" class="w-full h-full object-cover">
+                    <span class="absolute bottom-3 left-3 text-[9px] font-mono uppercase text-white tracking-widest z-20 bg-black/30 px-2 py-0.5 rounded-sm">Tension Inspection Grid</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden lg:flex items-center justify-center order-1 lg:order-2 px-4">
+            <div class="w-full max-w-[340px] aspect-square bg-neutral-900 p-4 rounded-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)] relative group border-4 border-[#2c251e]" id="central-artwork-target">
+                <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent pointer-events-none z-10"></div>
+                <div class="absolute inset-0 pointer-events-none border border-white/10 z-20"></div>
+                <img src="frame1.png" alt="Archival Master Artwork Frame Showcase" class="w-full h-full object-cover rounded-sm border border-neutral-800">
+            </div>
+        </div>
+
+        <div class="flex flex-col justify-center order-3">
+            <div class="bg-[#ebdfcf] rounded-[24px] p-6 shadow-sm border border-black/5 transition-transform duration-300 hover:-translate-y-0.5 blueprint-pointer" id="card-frame">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-[9px] font-mono bg-black/10 px-2 py-0.5 rounded-full font-bold text-gray-700">SHIELD</span>
+                    <h3 class="font-bold text-base lg:text-lg text-gray-900">Pen & Pencil Art</h3>
+                </div>
+                <p class="text-xs text-gray-600 leading-relaxed font-medium">These delicate works are mounted in a premium wooden frame with glass, which acts as a permanent shield to prevent smudging and environmental damage.</p>
+                
+                <div class="block lg:hidden w-full aspect-[16/10] mt-4 rounded-xl overflow-hidden bg-black/5 border border-black/5 relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
+                    <img src="artcare2.png" alt="Archival Glass Enclosure" class="w-full h-full object-cover">
+                    <span class="absolute bottom-3 left-3 text-[9px] font-mono uppercase text-white tracking-widest z-20 bg-black/30 px-2 py-0.5 rounded-sm">Archival Frame Shield</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="max-w-[1400px] mx-auto px-4 pb-20 pt-4 lg:px-12" id="shipping">
+    <div class="mb-10 text-center lg:text-left">
+        <p class="uppercase tracking-widest text-[11px] text-gray-400 font-bold mb-2">White-Glove Distribution Networks</p>
+        <h2 class="font-serif text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">Collector Care</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <div class="shipping-brick shadow-[0_8px_30px_rgba(0,0,0,0.01)]">
+            <div class="brick-icon-container">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Secure Courier</h4>
+                <p class="text-xs text-gray-400 leading-relaxed font-medium">We partner with premium couriers experienced in handling fragile items.</p>
+            </div>
+        </div>
+
+        <div class="shipping-brick shadow-[0_8px_30px_rgba(0,0,0,0.01)]">
+            <div class="brick-icon-container">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Tracking Link</h4>
+                <p class="text-xs text-gray-400 leading-relaxed font-medium">As soon as the package leaves the gallery, you receive a tracking number via email or DM.</p>
+            </div>
+        </div>
+
+        <div class="shipping-brick shadow-[0_8px_30px_rgba(0,0,0,0.01)]">
+            <div class="brick-icon-container">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Delivery Alert</h4>
+                <p class="text-xs text-gray-400 leading-relaxed font-medium">Our system monitors the progress and alerts you when the "Every Stroke Has a Soul" package is arriving at your door.</p>
+            </div>
+        </div>
+
+        <div class="shipping-brick shadow-[0_8px_30px_rgba(0,0,0,0.01)]">
+            <div class="brick-icon-container">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Art Insurance</h4>
+                <p class="text-xs text-gray-400 leading-relaxed font-medium">For high-value pieces like The Void or Aqueous Dreams, we use shipping insurance to cover the full value of the work in case of loss or damage.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
     <script>
         // --- Custom Cursor Logic ---
         const cursor = document.getElementById('cursor');
@@ -1161,6 +1373,69 @@
             requestAnimationFrame(animatePetals);
         }
         animatePetals();
+
+        // --- DESKTOP BLUEPRINT OVERLAY VECTOR LINE SYNCHRONIZER ENGINE ---
+function synchronizeBlueprintLines() {
+    if (window.innerWidth < 1024) return;
+
+    // Create the connection lines layer on runtime if it doesn't exist
+    let svgOverlay = document.getElementById('blueprint-line-overlay');
+    if (!svgOverlay) {
+        svgOverlay = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svgOverlay.id = 'blueprint-line-overlay';
+        svgOverlay.setAttribute('class', 'absolute inset-0 w-full h-full hidden lg:block pointer-events-none');
+        svgOverlay.style.zIndex = '1';
+        svgOverlay.innerHTML = `
+            <path id="line-acrylic" stroke="#111" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
+            <path id="line-frame" stroke="#111" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
+            <path id="line-stitch" stroke="#111" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
+        `;
+        document.getElementById('protection').appendChild(svgOverlay);
+    }
+
+    const sectionEl = document.getElementById('protection').getBoundingClientRect();
+    const frameEl = document.getElementById('central-artwork-target').getBoundingClientRect();
+
+    const cAcrylic = document.getElementById('card-acrylic').getBoundingClientRect();
+    const cFrame = document.getElementById('card-frame').getBoundingClientRect();
+    const cStitch = document.getElementById('card-stitch').getBoundingClientRect();
+
+    // Line 1: Acrylic Varnish Card -> Top Core of Central Painting
+    document.getElementById('line-acrylic').setAttribute('d', 
+        `M ${(cAcrylic.right - sectionEl.left)} ${(cAcrylic.top + cAcrylic.height/2 - sectionEl.top)} ` +
+        `L ${(frameEl.left + frameEl.width*0.35 - sectionEl.left)} ${(frameEl.top + 20 - sectionEl.top)}`
+    );
+
+    // Line 2: Frame Shield Card -> Right Wooden Outer Frame Rim Edge
+    document.getElementById('line-frame').setAttribute('d', 
+        `M ${(cFrame.left - sectionEl.left)} ${(cFrame.top + cFrame.height/2 - sectionEl.top)} ` +
+        `L ${(frameEl.right - 4 - sectionEl.left)} ${(frameEl.top + frameEl.height*0.5 - sectionEl.top)}`
+    );
+
+    // Line 3: Stitch Inspection Card -> Bottom Weave Base Edge of Frame
+    document.getElementById('line-stitch').setAttribute('d', 
+        `M ${(cStitch.right - sectionEl.left)} ${(cStitch.top + cStitch.height/2 - sectionEl.top)} ` +
+        `L ${(frameEl.left + frameEl.width*0.5 - sectionEl.left)} ${(frameEl.bottom - 20 - sectionEl.top)}`
+    );
+}
+
+// Attach listeners for fluid real-time alignment mapping
+window.addEventListener('resize', synchronizeBlueprintLines);
+window.addEventListener('load', synchronizeBlueprintLines);
+setTimeout(synchronizeBlueprintLines, 500); // Fail-safe delay initialization check
+
+// Register custom cursor expansion triggers for the newly styled shipping elements
+const shippingElements = document.querySelectorAll('.shipping-brick');
+
+shippingElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        // Triggers your premium custom layout follower ring expanding macro animation
+        if (follower) follower.classList.add('cursor-expand');
+    });
+    el.addEventListener('mouseleave', () => {
+        if (follower) follower.classList.remove('cursor-expand');
+    });
+});
     </script>
 </body>
 </html>
