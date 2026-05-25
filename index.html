@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mamaarts - Art Of Life </title>
+    <title>Mamaarts - Art Of Life</title>
     <link rel="icon" type="image/png" href="logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -13,10 +13,11 @@
             theme: {
                 extend: {
                     colors: {
-                        'canvas-bg': '#f5efe6', // Warm cream background
+                        'canvas-bg': '#f5efe6',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                     }
                 }
             }
@@ -28,33 +29,18 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: #f5efe6;
-            color: #111;
-            overflow-x: hidden; 
-            overflow-y: auto;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        /* Fix mobile horizontal scrolling and overflow */
         html, body {
             max-width: 100%;
             overflow-x: hidden;
             position: relative;
-            box-sizing: border-box;
+            background: #f5efe6;
+            color: #111;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
 
-        /*canvas styles with flower-canvas */
         #flower-canvas {
             position: fixed;
             top: 0;
@@ -64,7 +50,8 @@
             pointer-events: none; 
             z-index: 40; 
         }
-        /* NAVBAR - Perfectly Responsive */
+
+        /* NAVBAR */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -72,22 +59,15 @@
             align-items: center;
             width: 100%;
             position: relative;
-            z-index: 100; /* Stays on top of mobile menu overlay */
+            z-index: 100;
         }
 
         @media (min-width: 1024px) {
             .navbar {
-                padding: 20px 60px;
+                padding: 24px 60px;
             }
         }
 
-        .nav-left, .nav-right {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        /* Hide desktop links on all mobile & tablet screens under 1024px */
         .desktop-nav {
             display: none;
         }
@@ -100,7 +80,7 @@
 
         .navbar a {
             text-decoration: none;
-            color: #333;
+            color: #555;
             font-size: 14px;
             font-weight: 500;
             transition: color 0.3s ease;
@@ -112,27 +92,29 @@
 
         .logo {
             font-weight: 700;
-            font-size: 20px;
-            letter-spacing: 0.5px;
+            font-size: 22px;
+            letter-spacing: -0.5px;
         }
 
         .btn {
             background: black;
             color: white !important;
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 24px;
             font-weight: 600;
-            transition: background 0.3s ease;
+            transition: opacity 0.3s ease;
             font-size: 13px;
         }
+        .btn:hover {
+            opacity: 0.8;
+        }
 
-        /* Hamburger Menu Icon */
         .menu-toggle {
-            display: flex; /* Always show on mobile/tablet */
+            display: flex;
             flex-direction: column;
             justify-content: space-between;
             width: 22px;
-            height: 16px;
+            height: 14px;
             background: transparent;
             border: none;
             cursor: pointer;
@@ -146,21 +128,19 @@
             transition: all 0.3s ease;
         }
 
-        /* Hide hamburger menu on desktop screens */
         @media (min-width: 1024px) {
             .menu-toggle {
                 display: none;
             }
         }
 
-        /* Slide-out Mobile Menu Panel */
         .mobile-menu {
             position: fixed;
             top: 0;
-            right: -100%; /* Hidden off-screen by default */
+            right: -100%;
             width: 280px;
             height: 100%;
-            background-color: rgba(245, 239, 230, 0.98); /* Matching canvas-bg with slight blur */
+            background-color: rgba(245, 239, 230, 0.98);
             backdrop-filter: blur(10px);
             box-shadow: -10px 0 30px rgba(0,0,0,0.05);
             z-index: 90;
@@ -172,7 +152,7 @@
         }
 
         .mobile-menu.open {
-            right: 0; /* Slide in */
+            right: 0;
         }
 
         .mobile-menu a {
@@ -180,25 +160,13 @@
             font-weight: 500;
             color: #333;
             text-decoration: none;
-            transition: color 0.3s ease;
         }
 
-        .mobile-menu a:hover {
-            color: #000;
-        }
+        .menu-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-        /* Hamburger Animation when open */
-        .menu-toggle.active span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-toggle.active span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
-        /* 3D SLIDER VIEWPORT & LAYOUT */
+        /* 3D SLIDER */
         .slider-viewport {
             perspective: 800px; 
             perspective-origin: 50% 38%; 
@@ -208,16 +176,11 @@
         }
 
         @media (min-width: 1024px) {
-            .slider-viewport {
-                perspective: 1200px;
-            }
+            .slider-viewport { perspective: 1200px; }
         }
 
-        .slider-track {
-            transform-style: preserve-3d;
-        }
+        .slider-track { transform-style: preserve-3d; }
 
-        /* Core card configurations */
         .slider-card {
             position: absolute;
             transform-style: preserve-3d;
@@ -235,74 +198,28 @@
             }
         }
 
-        .slider-card:active {
-            cursor: grabbing;
-        }
+        .pos-1 { left: -15%; transform: rotateY(40deg) translateZ(-180px) scale(0.8); opacity: 0.15; z-index: 10; }
+        .pos-2 { left: 2%; transform: rotateY(28deg) translateZ(-100px) scale(0.88); opacity: 0.55; z-index: 20; }
+        .pos-3 { left: 18%; transform: rotateY(15deg) translateZ(-30px) scale(0.95); opacity: 0.85; z-index: 30; }
+        .pos-4 { left: 34%; transform: rotateY(0deg) translateZ(40px) scale(1.05); opacity: 1; z-index: 50; }
+        .pos-5 { left: 50%; transform: rotateY(-15deg) translateZ(-30px) scale(0.95); opacity: 0.85; z-index: 30; }
+        .pos-6 { left: 66%; transform: rotateY(-28deg) translateZ(-100px) scale(0.88); opacity: 0.55; z-index: 20; }
+        .pos-7 { left: 83%; transform: rotateY(-40deg) translateZ(-180px) scale(0.8); opacity: 0.15; z-index: 10; }
 
-        /* 3D Spatial Mapping along a Panoramic Curve */
-        .pos-1 { 
-            left: -15%; 
-            transform: rotateY(40deg) translateZ(-180px) scale(0.8); 
-            opacity: 0.15; 
-            z-index: 10; 
-        }
-        .pos-2 { 
-            left: 2%; 
-            transform: rotateY(28deg) translateZ(-100px) scale(0.88); 
-            opacity: 0.55; 
-            z-index: 20; 
-        }
-        .pos-3 { 
-            left: 18%; 
-            transform: rotateY(15deg) translateZ(-30px) scale(0.95); 
-            opacity: 0.85; 
-            z-index: 30; 
-        }
-        .pos-4 { 
-            left: 34%; 
-            transform: rotateY(0deg) translateZ(40px) scale(1.05); 
-            opacity: 1; 
-            z-index: 50; 
-        }
-        .pos-5 { 
-            left: 50%; 
-            transform: rotateY(-15deg) translateZ(-30px) scale(0.95); 
-            opacity: 0.85; 
-            z-index: 30; 
-        }
-        .pos-6 { 
-            left: 66%; 
-            transform: rotateY(-28deg) translateZ(-100px) scale(0.88); 
-            opacity: 0.55; 
-            z-index: 20; 
-        }
-        .pos-7 { 
-            left: 83%; 
-            transform: rotateY(-40deg) translateZ(-180px) scale(0.8); 
-            opacity: 0.15; 
-            z-index: 10; 
-        }
-
-        /* Laptop Responsive Adjustments */
         @media (min-width: 1024px) {
             .pos-1 { left: 2%; transform: rotateY(36deg) translateZ(-160px) scale(0.9); opacity: 0.35; }
             .pos-2 { left: 15%; transform: rotateY(24deg) translateZ(-80px) scale(0.95); opacity: 0.8; }
             .pos-3 { left: 28%; transform: rotateY(12deg) translateZ(-20px) scale(0.98); opacity: 0.95; }
-            .pos-4 { left: 41.5%; transform: rotateY(0deg) translateZ(35px) scale(1.05); opacity: 1; }
+            .pos-4 { left: 41.5%; transform: rotateY(0deg) translateZ(35px) scale(1.05); opacity: 1; z-index: 50; }
             .pos-5 { left: 55%; transform: rotateY(-12deg) translateZ(-20px) scale(0.98); opacity: 0.95; }
             .pos-6 { left: 68%; transform: rotateY(-24deg) translateZ(-80px) scale(0.95); opacity: 0.8; }
             .pos-7 { left: 81%; transform: rotateY(-36deg) translateZ(-160px) scale(0.9); opacity: 0.35; }
         }
 
-        /* Edge vignetting layers */
-        .edge-fade-left {
-            background: linear-gradient(to right, #f5efe6 0%, rgba(245, 239, 230, 0.9) 15%, rgba(245, 239, 230, 0) 100%);
-        }
-        .edge-fade-right {
-            background: linear-gradient(to left, #f5efe6 0%, rgba(245, 239, 230, 0.9) 15%, rgba(245, 239, 230, 0) 100%);
-        }
+        .edge-fade-left { background: linear-gradient(to right, #f5efe6 0%, rgba(245, 239, 230, 0) 100%); }
+        .edge-fade-right { background: linear-gradient(to left, #f5efe6 0%, rgba(245, 239, 230, 0) 100%); }
 
-        /* HERO CONTAINER (MIDDLE) */
+        /* HERO CONTAINER */
         .hero { 
             display: flex; 
             align-items: center; 
@@ -312,7 +229,6 @@
         }
 
         .hero-text h1 { 
-            font-family: 'Playfair Display', serif; 
             font-size: 80px; 
             line-height: 0.9; 
             margin-bottom: 20px; 
@@ -329,68 +245,20 @@
             transform: rotate(-5deg) scale(1.05); 
         }
 
-        /* Responsive adjustment for smaller screens */
         @media (max-width: 1024px) {
-            .hero {
-                flex-direction: column;
-                gap: 50px;
-                text-align: center;
-                padding: 60px 20px;
-            }
-            .hero-text h1 {
-                font-size: 50px;
-            }
-            .heart-img {
-                width: 250px;
-            }
+            .hero { flex-direction: column; gap: 40px; text-align: center; padding: 60px 20px; }
+            .hero-text h1 { font-size: 48px; }
+            .heart-img { width: 220px; }
         }
 
-        /* Heart Sticker Wrappers */
-        .sticker-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-
-        @media (min-width: 1024px) {
-            .sticker-wrapper {
-                margin-bottom: 0;
-                flex-shrink: 0;
-                order: -1;
-            }
-        }
-
-        .heart-sticker {
-            width: 130px;
-            height: 130px;
-            object-fit: contain;
-            transform: rotate(-3deg);
-            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
-            transition: transform 0.3s ease;
-        }
-
-        @media (min-width: 1024px) {
-            .heart-sticker {
-                width: 240px;
-                height: 240px;
-                transform: rotate(-4deg);
-            }
-        }
-
-        .heart-sticker:hover {
-            transform: scale(1.05) rotate(-1deg);
-        }
-
-        /* Ticker Bar Styling */
+        /* Ticker Bar */
         .ticker-container {
             width: 100%;
             overflow: hidden;
-            background: #f5efe6; 
-            border-top: 1px solid #000;
-            border-bottom: 1px solid #000;
-            padding: 6px 0; 
-            margin: 10px 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 12px 0; 
+            margin: 20px 0;
             white-space: nowrap;
             position: relative;
             z-index: 60;
@@ -398,17 +266,17 @@
 
         .ticker-wrapper {
             display: inline-block;
-            animation: ticker-scroll 35s linear infinite; 
+            animation: ticker-scroll 40s linear infinite; 
         }
 
         .ticker-item {
             display: inline-block;
-            padding: 0 10px; 
-            font-size: 13px; 
-            font-weight: 800; 
+            padding: 0 20px; 
+            font-size: 12px; 
+            font-weight: 700; 
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #111;
+            color: #444;
         }
 
         @keyframes ticker-scroll {
@@ -416,86 +284,79 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Only hide the default system cursor on Desktop */
+        /* Desktop Cursors */
         @media (pointer: fine) {
-            body, a, button, video, .slider-card, .card-container {
-                cursor: none !important;
-            }
-
+            body, a, button, video, .slider-card, .card-container { cursor: none !important; }
             #cursor {
-                width: 8px; height: 8px; background: #000; border-radius: 50%;
+                width: 6px; height: 6px; background: #000; border-radius: 50%;
                 position: fixed; pointer-events: none; z-index: 9999;
-                transition: transform 0.1s ease;
-                display: block; 
+                transition: transform 0.08s ease-out;
             }
-
             #cursor-follower {
-                width: 30px; height: 30px; border: 1px solid rgba(0,0,0,0.2); border-radius: 50%;
+                width: 26px; height: 26px; border: 1px solid rgba(0,0,0,0.15); border-radius: 50%;
                 position: fixed; pointer-events: none; z-index: 9998;
-                transition: transform 0.2s ease, width 0.3s, height 0.3s;
-                display: block; 
+                transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
             }
         }
-
-        /* Hide custom cursor elements on Mobile/Tablets */
         @media (pointer: coarse) {
-            #cursor, #cursor-follower {
-                display: none !important;
-            }
-            body, a, button, video, .slider-card, .card-container {
-                cursor: auto !important;
-            }
+            #cursor, #cursor-follower { display: none !important; }
+            body, a, button, video, .slider-card, .card-container { cursor: auto !important; }
         }
 
-        /* Maintain the expansion effect only for desktop */
         .cursor-expand {
-            width: 60px !important;
-            height: 60px !important;
-            background: rgba(0, 0, 0, 0.03);
+            width: 50px !important;
+            height: 50px !important;
+            background: rgba(0, 0, 0, 0.02);
             border: 1px solid rgba(0, 0, 0, 0.1) !important;
         }
 
-        /* --- REFOCUSED COMPACT PRODUCT GRID PATTERN --- */
+        /* --- COMPACT, UNCLUTTERED ART GRID CONTROLLERS --- */
         .container-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px; 
-            padding: 20px 12px; 
-            justify-content: center;
-            max-width: 1400px; 
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 in a row configured for mobile */
+            gap: 16px; 
+            padding: 16px 12px; 
+            max-width: 1200px; 
             margin: 0 auto;
         }
 
-        /* Unified Card Architecture */
+        @media (min-width: 640px) {
+            .container-grid { gap: 20px; padding: 24px 20px; }
+        }
+
+        @media (min-width: 1024px) {
+            .container-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 40px 60px; }
+        }
+
         .card-container {
-            background-color: #fff;
-            width: calc(50% - 6px); /* Perfect mathematical layout mapping for 2 elements per row */
-            border-radius: 24px;
-            padding: 10px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
             display: flex;
             flex-direction: column; 
-            justify-content: flex-start;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+            background: transparent;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .card-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
         }
 
-        /* Image Wrapper with Square Constraint mapping */
+        /* Scaled Down Compact Image Constraint Configuration */
         .image-wrapper {
             position: relative;
             width: 100%;
-            aspect-ratio: 1 / 1; /* Standard square constraint configuration to avoid height shifts */
-            border-radius: 16px;
+            aspect-ratio: 1 / 1; /* Structured clean square aspect for tidy small presentation layouts */
+            border-radius: 8px;
             overflow: hidden;
-            background-color: #f0ede9;
-            flex-shrink: 0;
+            background-color: #ebdccd;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
         }
 
-        /* Sliding track configurations */
+        @media (min-width: 1024px) {
+            .image-wrapper {
+                aspect-ratio: 4 / 5; /* Elegant fine-art portrait frame format exclusive to large monitors */
+                border-radius: 12px;
+            }
+        }
+
         .slides-container {
             display: flex;
             width: 400%; 
@@ -508,7 +369,6 @@
             object-fit: cover;
         }
 
-        /* Hover animation workflow sequence */
         @keyframes slideShow {
             0% { transform: translateX(0); }
             33% { transform: translateX(-25%); }
@@ -517,249 +377,107 @@
         }
 
         .image-wrapper:hover .slides-container {
-            animation: slideShow 5s steps(1, end) infinite; 
+            animation: slideShow 6s steps(1, end) infinite; 
         }
 
-        /* Badges styling alignment */
-        .badge-best {
+        .badge-tag {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: rgba(0, 0, 0, 0.5); 
-            backdrop-filter: blur(10px); 
-            color: #fff;
-            font-size: 9px;
+            top: 8px;
+            left: 8px;
+            background-color: #fff; 
+            color: #111;
+            font-size: 8px;
             font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 20px;
+            padding: 3px 8px;
+            border-radius: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
         }
 
-        .badge-logo {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 28px;
-            height: 28px;
-            background-color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        @media (min-width: 1024px) {
+            .badge-tag {
+                top: 14px;
+                left: 14px;
+                font-size: 10px;
+                padding: 5px 12px;
+                border-radius: 20px;
+            }
         }
 
-        .brand-logo {
-            width: 16px;
-            height: 16px;
-            object-fit: contain;
-        }
-
-        /* Bottom Text Details Structural Engine */
         .details-wrapper {
             padding: 10px 2px 0 2px;
             display: flex;
             flex-direction: column;
-            flex-grow: 1; 
+        }
+
+        @media (min-width: 1024px) {
+            .details-wrapper {
+                padding: 14px 4px 0 4px;
+            }
         }
 
         .product-title {
-            font-size: 15px !important; 
-            font-weight: 800;
+            font-size: 14px; 
+            font-weight: 600;
             color: #111;
-            line-height: 1.2;
-            margin-bottom: 2px;
+            letter-spacing: -0.2px;
+            margin-bottom: 1px;
+        }
+
+        @media (min-width: 1024px) {
+            .product-title {
+                font-size: 17px;
+                margin-bottom: 2px;
+            }
         }
 
         .product-subtitle {
-            font-size: 11px !important;
-            font-weight: 500;
-            color: #999; 
-            margin-bottom: 12px;
+            font-size: 11px;
+            font-weight: 400;
+            color: #777; 
         }
 
-        /* Hide descriptions on responsive breakpoints to ensure compact layout architecture */
-        .product-description {
-            display: none !important; 
+        @media (min-width: 1024px) {
+            .product-subtitle {
+                font-size: 13px;
+            }
         }
 
-        /* Global structural button alignments across runtime */
-        .footer-action {
+        /* ART PROTECTION BUILD */
+        .blueprint-section { max-width: 1400px; margin: 0 auto; position: relative; }
+
+        .shipping-brick {
+            background-color: #ffffff; 
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: 24px;
+            padding: 32px;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            margin-top: auto; 
-            padding-top: 4px;
+            min-height: 240px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .price-bubble {
-            background-color: #f7f5f2;
-            color: #111;
-            font-size: 13px !important;
-            font-weight: 800;
-            padding: 6px 12px;
-            border-radius: 20px;
+        .shipping-brick:hover {
+            background-color: #f6f1ea; 
+            transform: translateY(-4px); 
         }
 
-        .buy-btn {
-            background-color: #111;
-            color: #fff;
-            font-size: 11px !important;
-            font-weight: 700;
-            border: none;
-            padding: 6px 6px 6px 12px; 
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .buy-btn:hover {
-            background-color: #000;
-        }
-
-        .btn-arrow {
-            width: 18px;
-            height: 18px;
-            background-color: #fff;
-            border-radius: 50%;
+        .brick-icon-container {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background-color: #fcfbfa;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #000;
+            color: #bfa38a;
         }
 
-        /* Desktop Media Query Layout Architecture Override Configurations */
-        @media (min-width: 1024px) {
-            .container-grid {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 24px;
-                padding: 40px 60px;
-            }
-            .card-container {
-                width: 100%;
-                max-width: 260px;
-                padding: 12px;
-                border-radius: 28px;
-            }
-            .product-title {
-                font-size: 18px !important;
-            }
-            .product-subtitle {
-                font-size: 13px !important;
-            }
-            .price-bubble {
-                font-size: 15px !important;
-                padding: 8px 16px;
-            }
-            .buy-btn {
-                font-size: 13px !important;
-                padding: 8px 8px 8px 16px;
-            }
-            .btn-arrow {
-                width: 22px;
-                height: 22px;
-            }
+        .shipping-brick:hover .brick-icon-container {
+            background-color: #ffffff;
         }
-        /* --- ART PROTECTION CANVAS ENGINE STYLES --- */
-.blueprint-section {
-    max-width: 1400px;
-    margin: 0 auto;
-    position: relative;
-}
-
-/* Central Museum Showcase Frame */
-.showcase-master-frame {
-    width: 100%;
-    max-width: 340px;
-    aspect-ratio: 1 / 1;
-    margin: 0 auto;
-    background: #fff;
-    padding: 16px;
-    border-radius: 12px;
-    box-shadow: 
-        0 0 0 2px #2c251e,
-        0 8px 0 #1c1713,
-        0 25px 60px -15px rgba(0, 0, 0, 0.35);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Diagonal glass glaze glare mask layer */
-.frame-glass-sheen {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0) 60%);
-    pointer-events: none;
-    z-index: 10;
-}
-
-/* Blueprint Line Drawing Overlay Track */
-.blueprint-line-overlay {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Fallback background helper for mobile images */
-.fallback-bg {
-    background-color: #ebdccd;
-    object-fit: cover;
-}
-/* ==========================================
-   COLLECTOR CARE HOVER INTERACTION
-   ========================================== */
-
-/* The base layout card structure */
-.shipping-brick {
-    background-color: #ffffff; /* Default crisp gallery white */
-    border: 1px solid #f3f3f3;
-    border-radius: 24px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 220px;
-    
-    /* Hardware acceleration for smooth frame animation loops */
-    will-change: transform, background-color;
-    transition: 
-        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-        background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Elegant color inversion state on hover */
-.shipping-brick:hover {
-    background-color: #f6f1ea; /* Complementing contrast linen shade */
-    border-color: rgba(0, 0, 0, 0.03);
-    transform: translateY(-4px); /* Clean uplift micro-interaction */
-}
-
-/* Icon box styling wrapper */
-.brick-icon-container {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    background-color: #fcfbfa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #111111;
-    transition: background-color 0.3s ease;
-}
-
-/* Invert icon background on parent hover for high-end feel */
-.shipping-brick:hover .brick-icon-container {
-    background-color: #ffffff;
-}
     </style>
 </head>
 
@@ -777,51 +495,50 @@
                 <span></span>
                 <span></span>
             </button>
-            <div class="desktop-nav gap-5">
+            <div class="desktop-nav gap-6">
                 <a href="#">Services</a>
-                <a href="#">Customer review</a>
-                <a href="#">Direct message</a> 
+                <a href="#">Customer Review</a>
+                <a href="#">Direct Message</a> 
             </div>
         </div>
 
-        <div class="logo">Mamaarts</div>
+        <div class="logo">Mama_artS</div>
 
         <div class="nav-right">
-            <div class="desktop-nav gap-5 items-center">
+            <div class="desktop-nav gap-6 items-center">
                 <a href="#">About</a>
                 <a href="#">Pricing</a>
                 <a href="#">Contact</a>
             </div>
-            <a href="#" class="btn">Get started</a>
         </div>
     </div>
 
     <div class="mobile-menu" id="mobileMenu">
         <a href="#">Services</a>
-        <a href="#">Customer review</a>
-        <a href="#">Direct message</a>
+        <a href="#">Customer Review</a>
+        <a href="#">Direct Message</a>
         <a href="#">About</a>
         <a href="#">Pricing</a>
         <a href="#">Contact</a>
     </div>
 
-    <div class="relative w-full max-w-[1340px] mx-auto my-auto py-4">
-        <div class="slider-viewport relative h-[32vh] md:h-[40vh] w-full flex items-center" id="touchArea">
+    <div class="relative w-full max-w-[1340px] mx-auto py-4">
+        <div class="slider-viewport relative h-[32vh] md:h-[42vh] w-full flex items-center" id="touchArea">
             <div class="slider-track relative w-full h-full flex items-center" id="sliderTrack">
                 
-                <div class="slider-card pos-1 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#7c7569] border border-white/10" data-index="0">
+                <div class="slider-card pos-1 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#7c7569]" data-index="0">
                     <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
                         <source src="video4.mp4" type="video/mp4">
                     </video>
                 </div>
 
-                <div class="slider-card pos-2 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#3c3443] border border-white/10" data-index="1">
+                <div class="slider-card pos-2 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#3c3443]" data-index="1">
                     <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
                         <source src="video2.mp4" type="video/mp4">
                     </video>
                 </div>
 
-                <div class="slider-card pos-3 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#212730] border border-white/15" data-index="2">
+                <div class="slider-card pos-3 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#212730]" data-index="2">
                     <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
                         <source src="video3.mp4" type="video/mp4">
                     </video>
@@ -833,376 +550,282 @@
                     </video>
                 </div>
 
-                <div class="slider-card pos-5 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#d194a8] border border-white/15" data-index="4">
+                <div class="slider-card pos-5 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#d194a8]" data-index="4">
                     <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
                         <source src="video5.mp4" type="video/mp4">
                     </video>
                 </div>
 
-                <div class="slider-card pos-6 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#4c3950] border border-white/10" data-index="5">
+                <div class="slider-card pos-6 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#4c3950]" data-index="5">
                     <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
                         <source src="https://drive.google.com/uc?export=download&id=1ma_35jvigq-dxrEt8qgAWWsBB9DzWwA5" type="video/mp4">
                     </video>
                 </div>
 
-                <div class="slider-card pos-7 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#bd7957] border border-white/10" data-index="6">
+                <div class="slider-card pos-7 w-[32%] lg:w-[16%] min-w-[110px] max-w-[190px] aspect-[3/4] overflow-hidden bg-[#bd7957]" data-index="6">
                     <video class="w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline>
                         <source src="https://player.cloudinary.com/embed/?cloud_name=df4bozkza&public_id=Some_women_love_jewelry_some_men_love_bikes_but_my_heart_awhb4m" type="video/mp4">
                     </video>
                 </div>
             </div>
 
-            <div class="absolute left-0 top-0 bottom-0 w-[15%] md:w-[18%] edge-fade-left pointer-events-none z-50"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-[15%] md:w-[18%] edge-fade-right pointer-events-none z-50"></div> 
+            <div class="absolute left-0 top-0 bottom-0 w-[15%] edge-fade-left pointer-events-none z-50"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-[15%] edge-fade-right pointer-events-none z-50"></div> 
         </div>
     </div>
 
     <section class="hero">
         <img src="image1.png" alt="Artwork" class="heart-img">
         <div class="hero-text">
-            <p class="uppercase tracking-widest text-xs mb-4">Fine Art Studio & Collective</p>
-            <h1>Every Stroke<br>Has a Soul.</h1>
-            <p class="max-w-md text-gray-500 italic">MamaArts is where raw graphite, flowing pigment, and hand-stitched threads converge to tell your unique story.</p>
+            <p class="uppercase tracking-widest text-xs font-semibold text-gray-500 mb-3">Fine Art Studio & Collective</p>
+            <h1 class="font-serif font-bold">Every Stroke<br>Has a Soul.</h1>
+            <p class="max-w-md text-gray-500 italic font-light">MamaArts is where raw graphite, flowing pigment, and hand-stitched threads converge to tell your unique story.</p>
         </div>
     </section>
 
     <div class="ticker-container">
         <div class="ticker-wrapper">
-            <span class="ticker-item">
-                MAMAARTS: WHERE EVERY STROKE TELLS A STORY &nbsp; • &nbsp; ART IS NOT JUST DECORATION, IT'S A MEMORY &nbsp; • &nbsp; EXPLORE OUR HANDMADE COLLECTION &nbsp; • &nbsp; NEW STYLES ADDED &nbsp; • &nbsp; CUSTOM ORDERS OPEN &nbsp; • &nbsp; PREMIUM QUALITY &nbsp; • &nbsp; CREATIVE &nbsp; • &nbsp; WARM &nbsp; • &nbsp; EST. 2026
-            </span>
-            <span class="ticker-item">
-                &nbsp; • &nbsp; MAMAARTS: WHERE EVERY STROKE TELLS A STORY &nbsp; • &nbsp; ART IS NOT JUST DECORATION, IT'S A MEMORY &nbsp; • &nbsp; EXPLORE OUR HANDMADE COLLECTION &nbsp; • &nbsp; NEW STYLES ADDED &nbsp; • &nbsp; CUSTOM ORDERS OPEN &nbsp; • &nbsp; PREMIUM QUALITY &nbsp; • &nbsp; CREATIVE &nbsp; • &nbsp; WARM &nbsp; • &nbsp; EST. 2026
-            </span>
+            <span class="ticker-item">MAMAARTS: WHERE EVERY STROKE TELLS A STORY &nbsp; • &nbsp; ART IS NOT JUST DECORATION, IT'S A MEMORY &nbsp; • &nbsp; EXPLORE OUR HANDMADE COLLECTION &nbsp; • &nbsp; EST. 2026</span>
+            <span class="ticker-item">MAMAARTS: WHERE EVERY STROKE TELLS A STORY &nbsp; • &nbsp; ART IS NOT JUST DECORATION, IT'S A MEMORY &nbsp; • &nbsp; EXPLORE OUR HANDMADE COLLECTION &nbsp; • &nbsp; EST. 2026</span>
         </div>
     </div>
 
     <div class="container-grid">
+        
         <div class="card-container">
             <div class="image-wrapper">
                 <div class="slides-container">
-                    <img src="product1.jpeg" alt="View 1" class="product-image">
-                    <img src="product1.0.jpeg" alt="View 2" class="product-image">
-                    <img src="product1.1.jpeg" alt="View 3" class="product-image">
-                    <img src="product1.2.jpeg" alt="View 4" class="product-image">
+                    <img src="product1.jpeg" alt="View 1">
+                    <img src="product1.0.jpeg" alt="View 2">
+                    <img src="product1.1.jpeg" alt="View 3">
+                    <img src="product1.2.jpeg" alt="View 4">
                 </div>
-                <div class="badge-best">Best Seller</div>
-                <div class="badge-logo">
-                    <img src="logo.png" alt="Logo" class="brand-logo">
-                </div>
+                <div class="badge-tag">Best Seller</div>
             </div>
             <div class="details-wrapper">
                 <h2 class="product-title">The Void</h2>
                 <p class="product-subtitle">Black Pen Art</p>
-                <div class="footer-action">
-                    <div class="price-bubble">₹2000</div>
-                    <button class="buy-btn">
-                        Buy Now 
-                        <span class="btn-arrow">
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                <polyline points="7 7 17 7 17 17"></polyline>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
             </div>
         </div>
 
         <div class="card-container">
             <div class="image-wrapper">
                 <div class="slides-container">
-                    <img src="product2.png" alt="View 1" class="product-image">
-                    <img src="product2.0.png" alt="View 2" class="product-image">
-                    <img src="product2.1.png" alt="View 3" class="product-image">
-                    <img src="product2.2.png" alt="View 4" class="product-image">
+                    <img src="product2.png" alt="View 1">
+                    <img src="product2.0.png" alt="View 2">
+                    <img src="product2.1.png" alt="View 3">
+                    <img src="product2.2.png" alt="View 4">
                 </div>
-                <div class="badge-best">New</div>
-                <div class="badge-logo">
-                    <img src="logo.png" alt="Logo" class="brand-logo">
-                </div>
+                <div class="badge-tag">New Entry</div>
             </div>
             <div class="details-wrapper">
                 <h2 class="product-title">Prism Fine</h2>
-                <p class="product-subtitle">Color Pen art</p>
-                <div class="footer-action">
-                    <div class="price-bubble">₹3000</div>
-                    <button class="buy-btn">
-                        Buy Now 
-                        <span class="btn-arrow">
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                <polyline points="7 7 17 7 17 17"></polyline>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
+                <p class="product-subtitle">Color Pen Art</p>
             </div>
         </div>
 
         <div class="card-container">
             <div class="image-wrapper">
                 <div class="slides-container">
-                    <img src="product3.jpeg" alt="View 1" class="product-image">
-                    <img src="product3.0.jpeg" alt="View 2" class="product-image">
-                    <img src="product3.1.jpeg" alt="View 3" class="product-image">
-                    <img src="product3.2.jpeg" alt="View 4" class="product-image">
+                    <img src="product3.jpeg" alt="View 1">
+                    <img src="product3.0.jpeg" alt="View 2">
+                    <img src="product3.1.jpeg" alt="View 3">
+                    <img src="product3.2.jpeg" alt="View 4">
                 </div>
-                <div class="badge-best">Limited</div>
-                <div class="badge-logo">
-                    <img src="logo.png" alt="Logo" class="brand-logo">
-                </div>
+                <div class="badge-tag">Limited Edition</div>
             </div>
             <div class="details-wrapper">
                 <h2 class="product-title">Tactile Layering</h2>
-                <p class="product-subtitle">Painting</p>
-                <div class="footer-action">
-                    <div class="price-bubble">₹2000</div>
-                    <button class="buy-btn">
-                        Buy Now 
-                        <span class="btn-arrow">
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                <polyline points="7 7 17 7 17 17"></polyline>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
+                <p class="product-subtitle">Acrylic Painting</p>
             </div>
         </div>
 
         <div class="card-container">
             <div class="image-wrapper">
                 <div class="slides-container">
-                    <img src="product4.png" alt="View 1" class="product-image">
-                    <img src="product4.0.png" alt="View 2" class="product-image">
-                    <img src="product4.1.png" alt="View 3" class="product-image">
-                    <img src="product4.2.png" alt="View 4" class="product-image">
+                    <img src="product4.png" alt="View 1">
+                    <img src="product4.0.png" alt="View 2">
+                    <img src="product4.1.png" alt="View 3">
+                    <img src="product4.2.png" alt="View 4">
                 </div>
-                <div class="badge-best">Limited</div>
-                <div class="badge-logo">
-                    <img src="logo.png" alt="Logo" class="brand-logo">
-                </div>
+                <div class="badge-tag">Featured</div>
             </div>
             <div class="details-wrapper">
                 <h2 class="product-title">Liquid Flow</h2>
                 <p class="product-subtitle">Water Painting</p>
-                <div class="footer-action">
-                    <div class="price-bubble">₹3500</div>
-                    <button class="buy-btn">
-                        Buy Now 
-                        <span class="btn-arrow">
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                <polyline points="7 7 17 7 17 17"></polyline>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
             </div>
         </div>
 
         <div class="card-container">
             <div class="image-wrapper">
                 <div class="slides-container">
-                    <img src="product5.png" alt="View 1" class="product-image">
-                    <img src="product5.0.png" alt="View 2" class="product-image">
-                    <img src="product5.1.png" alt="View 3" class="product-image">
-                    <img src="product5.2.png" alt="View 4" class="product-image">
+                    <img src="product5.png" alt="View 1">
+                    <img src="product5.0.png" alt="View 2">
+                    <img src="product5.1.png" alt="View 3">
+                    <img src="product5.2.png" alt="View 4">
                 </div>
-                <div class="badge-best">Limited</div>
-                <div class="badge-logo">
-                    <img src="logo.png" alt="Logo" class="brand-logo">
-                </div>
+                <div class="badge-tag">Original Work</div>
             </div>
             <div class="details-wrapper">
                 <h2 class="product-title">Physical Pixels</h2>
                 <p class="product-subtitle">Thread Painting</p>
-                <div class="footer-action">
-                    <div class="price-bubble">₹2000</div>
-                    <button class="buy-btn">
-                        Buy Now 
-                        <span class="btn-arrow">
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                <polyline points="7 7 17 7 17 17"></polyline>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
             </div>
         </div>
 
         <div class="card-container">
             <div class="image-wrapper">
                 <div class="slides-container">
-                    <img src="product6.png" alt="View 1" class="product-image">
-                    <img src="product4.0.png" alt="View 2" class="product-image">
-                    <img src="product4.1.png" alt="View 3" class="product-image">
-                    <img src="product4.2.png" alt="View 4" class="product-image">
+                    <img src="product6.png" alt="View 1">
+                    <img src="product4.0.png" alt="View 2">
+                    <img src="product4.1.png" alt="View 3">
+                    <img src="product4.2.png" alt="View 4">
                 </div>
-                <div class="badge-logo">
-                    <img src="logo.png" alt="Logo" class="brand-logo">
-                </div>
+                <div class="badge-tag">Pop Series</div>
             </div>
             <div class="details-wrapper">
                 <h2 class="product-title">Pop Pulp</h2>
-                <p class="product-subtitle">Cartoon Art</p>
-                <div class="footer-action">
-                    <div class="price-bubble">₹2000</div>
-                    <button class="buy-btn">
-                        Buy Now 
-                        <span class="btn-arrow">
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                <polyline points="7 7 17 7 17 17"></polyline>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
+                <p class="product-subtitle">Cartoon Illustration Art</p>
             </div>
         </div>
     </div>
 
 <section class="max-w-[1400px] mx-auto px-4 py-16 lg:px-12 relative" id="protection">
-    <div class="text-center mb-12">
-        <p class="uppercase tracking-widest text-[11px] text-gray-400 font-bold mb-2">ARCHIVAL STUDIO SPECIFICATIONS</p>
-        <h2 class="font-serif text-3xl lg:text-5xl font-bold tracking-tight text-gray-900">Art Protection</h2>
-    </div>
+        <div class="text-center mb-12">
+            <p class="uppercase tracking-widest text-[11px] text-gray-400 font-bold mb-2">ARCHIVAL STUDIO SPECIFICATIONS</p>
+            <h2 class="font-serif text-3xl lg:text-5xl font-bold tracking-tight text-gray-900">Art Protection</h2>
+        </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-[1150px] mx-auto">
-        
-        <div class="flex flex-col gap-6 lg:gap-16 justify-center order-2 lg:order-1">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-[1150px] mx-auto">
             
-            <div class="bg-[#ebdfcf] rounded-[24px] p-6 shadow-sm border border-black/5 transition-transform duration-300 hover:-translate-y-0.5 blueprint-pointer" id="card-acrylic">
-                <div class="flex items-center gap-3 mb-2">
-                    <span class="text-[9px] font-mono bg-black/10 px-2 py-0.5 rounded-full font-bold text-gray-700">LAYER</span>
-                    <h3 class="font-bold text-base lg:text-lg text-gray-900">Acrylic Paintings</h3>
-                </div>
-                <p class="text-xs text-gray-600 leading-relaxed font-medium">A professional varnish is applied to the surface to protect the texture and colors from dust and fading.</p>
+            <div class="flex flex-col gap-6 lg:gap-16 justify-center order-2 lg:order-1">
                 
-                <div class="block lg:hidden w-full aspect-[16/10] mt-4 rounded-xl overflow-hidden bg-black/5 border border-black/5 relative">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
-                    <img src="artcare1.png" alt="Varnish Layer Process" class="w-full h-full object-cover">
-                    <span class="absolute bottom-3 left-3 text-[9px] font-mono uppercase text-white tracking-widest z-20 bg-black/30 px-2 py-0.5 rounded-sm">Varnish Glaze Process</span>
+                <div class="bg-[#ebdfcf] rounded-[24px] p-6 shadow-sm border border-black/5 transition-transform duration-300 hover:-translate-y-0.5" id="card-acrylic">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-[9px] font-mono bg-black/10 px-2 py-0.5 rounded-full font-bold text-gray-700"></span>
+                        <h3 class="font-bold text-base lg:text-lg text-gray-900">Acrylic Paintings</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 leading-relaxed font-medium">A professional varnish is applied to the surface to protect the texture and colors from dust and fading.</p>
+                    
+                    <div class="block lg:hidden w-full aspect-[16/10] mt-4 rounded-xl overflow-hidden bg-black/5 border border-black/5 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
+                        <img src="artcare1.png" alt="Varnish Layer Process" class="w-full h-full object-cover fallback-bg">
+                        <span class="absolute bottom-3 left-3 text-[9px] font-mono uppercase text-white tracking-widest z-20 bg-black/30 px-2 py-0.5 rounded-sm">Varnish Glaze Process</span>
+                    </div>
+                </div>
+
+                <div class="bg-[#ebdfcf] rounded-[24px] p-6 shadow-sm border border-black/5 transition-transform duration-300 hover:-translate-y-0.5" id="card-stitch">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-[9px] font-mono bg-black/10 px-2 py-0.5 rounded-full font-bold text-gray-700"></span>
+                        <h3 class="font-bold text-base lg:text-lg text-gray-900">Stitch Inspection</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 leading-relaxed font-medium">For Silk Stitch (thread art), we perform a tension check to ensure every fiber is perfectly secure.</p>
+                    
+                    <div class="block lg:hidden w-full aspect-[16/10] mt-4 rounded-xl overflow-hidden bg-black/5 border border-black/5 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
+                        <img src="artcare3.png" alt="Fiber Tension Check" class="w-full h-full object-cover fallback-bg">
+                        <span class="absolute bottom-3 left-3 text-[9px] font-mono uppercase text-white tracking-widest z-20 bg-black/30 px-2 py-0.5 rounded-sm">Tension Inspection Grid</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="bg-[#ebdfcf] rounded-[24px] p-6 shadow-sm border border-black/5 transition-transform duration-300 hover:-translate-y-0.5 blueprint-pointer" id="card-stitch">
-                <div class="flex items-center gap-3 mb-2">
-                    <span class="text-[9px] font-mono bg-black/10 px-2 py-0.5 rounded-full font-bold text-gray-700">WEAVE</span>
-                    <h3 class="font-bold text-base lg:text-lg text-gray-900">Stitch Inspection</h3>
-                </div>
-                <p class="text-xs text-gray-600 leading-relaxed font-medium">For Silk Stitch (thread art), we perform a tension check to ensure every fiber is perfectly secure.</p>
-                
-                <div class="block lg:hidden w-full aspect-[16/10] mt-4 rounded-xl overflow-hidden bg-black/5 border border-black/5 relative">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
-                    <img src="artcare3.png" alt="Fiber Tension Check" class="w-full h-full object-cover">
-                    <span class="absolute bottom-3 left-3 text-[9px] font-mono uppercase text-white tracking-widest z-20 bg-black/30 px-2 py-0.5 rounded-sm">Tension Inspection Grid</span>
+            <div class="hidden lg:flex items-center justify-center order-1 lg:order-2 px-4">
+                <div class="w-full max-w-[340px] aspect-square bg-neutral-900 p-4 rounded-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)] relative group border-4 border-[#2c251e]" id="central-artwork-target">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent pointer-events-none z-10"></div>
+                    <div class="absolute inset-0 pointer-events-none border border-white/10 z-20"></div>
+                    
+                    <img src="frame1.png" alt="Archival Master Artwork Frame Showcase" class="w-full h-full object-cover rounded-sm border border-neutral-800">
                 </div>
             </div>
+
+            <div class="flex flex-col justify-center order-3">
+                <div class="bg-[#ebdfcf] rounded-[24px] p-6 shadow-sm border border-black/5 transition-transform duration-300 hover:-translate-y-0.5" id="card-frame">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-[9px] font-mono bg-black/10 px-2 py-0.5 rounded-full font-bold text-gray-700"></span>
+                        <h3 class="font-bold text-base lg:text-lg text-gray-900">Pen & Pencil Art</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 leading-relaxed font-medium">These delicate works are mounted in a premium wooden frame with glass, which acts as a permanent shield to prevent smudging and environmental damage.</p>
+                    
+                    <div class="block lg:hidden w-full aspect-[16/10] mt-4 rounded-xl overflow-hidden bg-black/5 border border-black/5 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
+                        <img src="artcare2.png" alt="Archival Glass Enclosure" class="w-full h-full object-cover fallback-bg">
+                        <span class="absolute bottom-3 left-3 text-[9px] font-mono uppercase text-white tracking-widest z-20 bg-black/30 px-2 py-0.5 rounded-sm">Archival Frame Shield</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
+    </section>
 
-        <div class="hidden lg:flex items-center justify-center order-1 lg:order-2 px-4">
-            <div class="w-full max-w-[340px] aspect-square bg-neutral-900 p-4 rounded-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)] relative group border-4 border-[#2c251e]" id="central-artwork-target">
-                <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent pointer-events-none z-10"></div>
-                <div class="absolute inset-0 pointer-events-none border border-white/10 z-20"></div>
-                <img src="frame1.png" alt="Archival Master Artwork Frame Showcase" class="w-full h-full object-cover rounded-sm border border-neutral-800">
-            </div>
+    <section class="max-w-[1400px] mx-auto px-4 pb-20 pt-4 lg:px-12" id="shipping">
+        <div class="mb-10 text-center lg:text-left">
+            <p class="uppercase tracking-widest text-[11px] text-gray-400 font-bold mb-2">White-Glove Distribution Networks</p>
+            <h2 class="font-serif text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">Collector Care</h2>
         </div>
-
-        <div class="flex flex-col justify-center order-3">
-            <div class="bg-[#ebdfcf] rounded-[24px] p-6 shadow-sm border border-black/5 transition-transform duration-300 hover:-translate-y-0.5 blueprint-pointer" id="card-frame">
-                <div class="flex items-center gap-3 mb-2">
-                    <span class="text-[9px] font-mono bg-black/10 px-2 py-0.5 rounded-full font-bold text-gray-700">SHIELD</span>
-                    <h3 class="font-bold text-base lg:text-lg text-gray-900">Pen & Pencil Art</h3>
-                </div>
-                <p class="text-xs text-gray-600 leading-relaxed font-medium">These delicate works are mounted in a premium wooden frame with glass, which acts as a permanent shield to prevent smudging and environmental damage.</p>
-                
-                <div class="block lg:hidden w-full aspect-[16/10] mt-4 rounded-xl overflow-hidden bg-black/5 border border-black/5 relative">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
-                    <img src="artcare2.png" alt="Archival Glass Enclosure" class="w-full h-full object-cover">
-                    <span class="absolute bottom-3 left-3 text-[9px] font-mono uppercase text-white tracking-widest z-20 bg-black/30 px-2 py-0.5 rounded-sm">Archival Frame Shield</span>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<section class="max-w-[1400px] mx-auto px-4 pb-20 pt-4 lg:px-12" id="shipping">
-    <div class="mb-10 text-center lg:text-left">
-        <p class="uppercase tracking-widest text-[11px] text-gray-400 font-bold mb-2">White-Glove Distribution Networks</p>
-        <h2 class="font-serif text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">Collector Care</h2>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         
-        <div class="shipping-brick shadow-[0_8px_30px_rgba(0,0,0,0.01)]">
-            <div class="brick-icon-container">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <div class="bg-white p-6 rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.02)] flex flex-col justify-between min-h-[200px] transition-transform duration-300 hover:-translate-y-1 border border-neutral-100">
+                <div class="w-10 h-10 rounded-xl bg-neutral-50 flex items-center justify-center text-gray-900 mb-6">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Secure Courier</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed font-medium">We partner with premium couriers experienced in handling fragile items.</p>
+                </div>
             </div>
-            <div>
-                <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Secure Courier</h4>
-                <p class="text-xs text-gray-400 leading-relaxed font-medium">We partner with premium couriers experienced in handling fragile items.</p>
-            </div>
-        </div>
 
-        <div class="shipping-brick shadow-[0_8px_30px_rgba(0,0,0,0.01)]">
-            <div class="brick-icon-container">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <div class="bg-white p-6 rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.02)] flex flex-col justify-between min-h-[200px] transition-transform duration-300 hover:-translate-y-1 border border-neutral-100">
+                <div class="w-10 h-10 rounded-xl bg-neutral-50 flex items-center justify-center text-gray-900 mb-6">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Tracking Link</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed font-medium">As soon as the package leaves the gallery, you receive a tracking number via email or DM.</p>
+                </div>
             </div>
-            <div>
-                <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Tracking Link</h4>
-                <p class="text-xs text-gray-400 leading-relaxed font-medium">As soon as the package leaves the gallery, you receive a tracking number via email or DM.</p>
-            </div>
-        </div>
 
-        <div class="shipping-brick shadow-[0_8px_30px_rgba(0,0,0,0.01)]">
-            <div class="brick-icon-container">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <div class="bg-white p-6 rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.02)] flex flex-col justify-between min-h-[200px] transition-transform duration-300 hover:-translate-y-1 border border-neutral-100">
+                <div class="w-10 h-10 rounded-xl bg-neutral-50 flex items-center justify-center text-gray-900 mb-6">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Delivery Alert</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed font-medium">Our system monitors the progress and alerts you when the "Every Stroke Has a Soul" package is arriving at your door.</p>
+                </div>
             </div>
-            <div>
-                <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Delivery Alert</h4>
-                <p class="text-xs text-gray-400 leading-relaxed font-medium">Our system monitors the progress and alerts you when the "Every Stroke Has a Soul" package is arriving at your door.</p>
-            </div>
-        </div>
 
-        <div class="shipping-brick shadow-[0_8px_30px_rgba(0,0,0,0.01)]">
-            <div class="brick-icon-container">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <div class="bg-white p-6 rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.02)] flex flex-col justify-between min-h-[200px] transition-transform duration-300 hover:-translate-y-1 border border-neutral-100">
+                <div class="w-10 h-10 rounded-xl bg-neutral-50 flex items-center justify-center text-gray-900 mb-6">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Art Insurance</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed font-medium">For high-value pieces like The Void or Aqueous Dreams, we use shipping insurance to cover the full value of the work in case of loss or damage.</p>
+                </div>
             </div>
-            <div>
-                <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Art Insurance</h4>
-                <p class="text-xs text-gray-400 leading-relaxed font-medium">For high-value pieces like The Void or Aqueous Dreams, we use shipping insurance to cover the full value of the work in case of loss or damage.</p>
-            </div>
-        </div>
 
-    </div>
-</section>
+        </div>
+    </section>
 
     <script>
-        // --- Custom Cursor Logic ---
+        // Custom Cursor Engine
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursor-follower');
         
         document.addEventListener('mousemove', e => {
-            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-            follower.style.transform = `translate3d(${e.clientX - 11}px, ${e.clientY - 11}px, 0)`;
+            if(cursor && follower) {
+                cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+                follower.style.transform = `translate3d(${e.clientX - 10}px, ${e.clientY - 10}px, 0)`;
+            }
         });
 
-        const interactives = document.querySelectorAll('a, button, .card-container, .slider-card, video');
-
+        const interactives = document.querySelectorAll('a, button, .card-container, .slider-card, video, .shipping-brick');
         interactives.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                follower.classList.add('cursor-expand');
-            });
-            el.addEventListener('mouseleave', () => {
-                follower.classList.remove('cursor-expand');
-            });
+            el.addEventListener('mouseenter', () => follower?.classList.add('cursor-expand'));
+            el.addEventListener('mouseleave', () => follower?.classList.remove('cursor-expand'));
         });
 
-        // --- 1. RESPONSIVE NAVIGATION CONTROLLER ---
+        // Mobile Menu Navigation Controller
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -1219,7 +842,7 @@
             }
         });
 
-        // --- 3. 3D CAROUSEL PORTFOLIO ENGINE ---
+        // 3D Carousel Implementation
         const cards = Array.from(document.querySelectorAll('.slider-card'));
         const totalCards = cards.length;
         const positionClasses = ['pos-1', 'pos-2', 'pos-3', 'pos-4', 'pos-5', 'pos-6', 'pos-7'];
@@ -1228,8 +851,7 @@
         function updateCarousel() {
             cards.forEach((card, idx) => {
                 positionClasses.forEach(cls => card.classList.remove(cls));
-                const assignedPosIndex = currentPositions[idx];
-                card.classList.add(positionClasses[assignedPosIndex]);
+                card.classList.add(positionClasses[currentPositions[idx]]);
             });
         }
 
@@ -1243,57 +865,41 @@
         }
 
         cards.forEach((card, clickedIdx) => {
-            card.addEventListener('click', (e) => {
+            card.addEventListener('click', () => {
                 if (isDragging) return; 
                 const targetPos = currentPositions[clickedIdx];
                 const offset = targetPos - 3;
                 if (offset !== 0) {
                     const shiftsNeeded = Math.abs(offset);
                     const direction = offset > 0 ? 'next' : 'prev';
-                    for (let i = 0; i < shiftsNeeded; i++) {
-                        shiftCarousel(direction);
-                    }
+                    for (let i = 0; i < shiftsNeeded; i++) shiftCarousel(direction);
                 }
             });
         });
 
         const touchArea = document.getElementById('touchArea');
-        let isDragging = false;
-        let startX = 0;
-        let currentX = 0;
+        let isDragging = false, startX = 0, currentX = 0;
         const dragThreshold = 50; 
 
-        function handleDragStart(x) {
-            isDragging = true;
-            startX = x;
-        }
-
-        function handleDragMove(x) {
+        touchArea.addEventListener('mousedown', (e) => { isDragging = true; startX = e.clientX; });
+        window.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
-            currentX = x;
+            currentX = e.clientX;
             const diff = currentX - startX;
+            if (diff > dragThreshold) { shiftCarousel('prev'); startX = currentX; } 
+            else if (diff < -dragThreshold) { shiftCarousel('next'); startX = currentX; }
+        });
+        window.addEventListener('mouseup', () => { setTimeout(() => { isDragging = false; }, 50); });
 
-            if (diff > dragThreshold) {
-                shiftCarousel('prev');
-                startX = currentX; 
-            } 
-            else if (diff < -dragThreshold) {
-                shiftCarousel('next');
-                startX = currentX; 
-            }
-        }
-
-        function handleDragEnd() {
-            setTimeout(() => { isDragging = false; }, 50);
-        }
-
-        touchArea.addEventListener('mousedown', (e) => handleDragStart(e.clientX));
-        window.addEventListener('mousemove', (e) => handleDragMove(e.clientX));
-        window.addEventListener('mouseup', handleDragEnd);
-
-        touchArea.addEventListener('touchstart', (e) => handleDragStart(e.touches[0].clientX));
-        window.addEventListener('touchmove', (e) => handleDragMove(e.touches[0].clientX));
-        window.addEventListener('touchend', handleDragEnd);
+        touchArea.addEventListener('touchstart', (e) => { isDragging = true; startX = e.touches[0].clientX; });
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+            const diff = currentX - startX;
+            if (diff > dragThreshold) { shiftCarousel('prev'); startX = currentX; }
+            else if (diff < -dragThreshold) { shiftCarousel('next'); startX = currentX; }
+        });
+        window.addEventListener('touchend', () => isDragging = false);
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') shiftCarousel('prev');
@@ -1302,49 +908,34 @@
 
         updateCarousel();
 
-        // --- 1. FALLING FLOWER PETAL EFFECT ---
+        // Canvas Flower Petals Fall Setup
         const canvas = document.getElementById('flower-canvas');
         const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
         const petals = [];
-        const petalCount = 30;
         const colors = ['#fce4ec', '#f8bbd0', '#ffffff', '#fff9c4']; 
 
         class FlowerPetal {
-            constructor() {
-                this.reset();
-            }
-
+            constructor() { this.reset(); }
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = -20;
                 this.size = Math.random() * 10 + 5;
                 this.speedY = Math.random() * 1.5 + 0.5;
-                this.speedX = Math.random() * 1 - 0.5;
                 this.opacity = Math.random() * 0.6 + 0.2;
                 this.color = colors[Math.floor(Math.random() * colors.length)];
                 this.angle = Math.random() * Math.PI * 2;
                 this.spin = Math.random() * 0.05 - 0.025;
-                this.sway = Math.random() * 2;
             }
-
             update() {
                 this.y += this.speedY;
-                this.x += Math.sin(this.y / 30 + this.sway) * 0.5;
+                this.x += Math.sin(this.y / 30) * 0.5;
                 this.angle += this.spin;
-
-                if (this.y > canvas.height + 20) {
-                    this.reset();
-                }
+                if (this.y > canvas.height + 20) this.reset();
             }
-
             draw() {
                 ctx.save();
                 ctx.translate(this.x, this.y);
@@ -1360,82 +951,102 @@
             }
         }
 
-        for (let i = 0; i < petalCount; i++) {
-            petals.push(new FlowerPetal());
-        }
-
+        for (let i = 0; i < 25; i++) petals.push(new FlowerPetal());
         function animatePetals() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            petals.forEach(p => {
-                p.update();
-                p.draw();
-            });
+            petals.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animatePetals);
         }
         animatePetals();
 
+        // Architectural Line Connector System 
+        function synchronizeBlueprintLines() {
+            if (window.innerWidth < 1024) return;
+            let svgOverlay = document.getElementById('blueprint-line-overlay');
+            if (!svgOverlay) {
+                svgOverlay = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svgOverlay.id = 'blueprint-line-overlay';
+                svgOverlay.setAttribute('class', 'absolute inset-0 w-full h-full hidden lg:block pointer-events-none');
+                svgOverlay.style.zIndex = '1';
+                svgOverlay.innerHTML = `
+                    <path id="line-acrylic" stroke="rgba(0,0,0,0.15)" stroke-width="1" stroke-dasharray="4 4" fill="none" />
+                    <path id="line-frame" stroke="rgba(0,0,0,0.15)" stroke-width="1" stroke-dasharray="4 4" fill="none" />
+                    <path id="line-stitch" stroke="rgba(0,0,0,0.15)" stroke-width="1" stroke-dasharray="4 4" fill="none" />
+                `;
+                document.getElementById('protection').appendChild(svgOverlay);
+            }
+
+            const sectionEl = document.getElementById('protection').getBoundingClientRect();
+            const frameEl = document.getElementById('central-artwork-target').getBoundingClientRect();
+            const cAcrylic = document.getElementById('card-acrylic').getBoundingClientRect();
+            const cFrame = document.getElementById('card-frame').getBoundingClientRect();
+            const cStitch = document.getElementById('card-stitch').getBoundingClientRect();
+
+            document.getElementById('line-acrylic').setAttribute('d', `M ${(cAcrylic.right - sectionEl.left)} ${(cAcrylic.top + cAcrylic.height/2 - sectionEl.top)} L ${(frameEl.left - sectionEl.left)} ${(frameEl.top + 40 - sectionEl.top)}`);
+            document.getElementById('line-frame').setAttribute('d', `M ${(cFrame.left - sectionEl.left)} ${(cFrame.top + cFrame.height/2 - sectionEl.top)} L ${(frameEl.right - sectionEl.left)} ${(frameEl.top + frameEl.height*0.5 - sectionEl.top)}`);
+            document.getElementById('line-stitch').setAttribute('d', `M ${(cStitch.right - sectionEl.left)} ${(cStitch.top + cStitch.height/2 - sectionEl.top)} L ${(frameEl.left - sectionEl.left)} ${(frameEl.bottom - 40 - sectionEl.top)}`);
+        }
+
+        window.addEventListener('resize', synchronizeBlueprintLines);
+        window.addEventListener('load', synchronizeBlueprintLines);
+        setTimeout(synchronizeBlueprintLines, 400);
+
         // --- DESKTOP BLUEPRINT OVERLAY VECTOR LINE SYNCHRONIZER ENGINE ---
-function synchronizeBlueprintLines() {
-    if (window.innerWidth < 1024) return;
+        function synchronizeBlueprintLines() {
+            if (window.innerWidth < 1024) return;
 
-    // Create the connection lines layer on runtime if it doesn't exist
-    let svgOverlay = document.getElementById('blueprint-line-overlay');
-    if (!svgOverlay) {
-        svgOverlay = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svgOverlay.id = 'blueprint-line-overlay';
-        svgOverlay.setAttribute('class', 'absolute inset-0 w-full h-full hidden lg:block pointer-events-none');
-        svgOverlay.style.zIndex = '1';
-        svgOverlay.innerHTML = `
-            <path id="line-acrylic" stroke="#111" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
-            <path id="line-frame" stroke="#111" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
-            <path id="line-stitch" stroke="#111" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
-        `;
-        document.getElementById('protection').appendChild(svgOverlay);
-    }
+            // Create connector layer on runtime if it doesn't exist
+            let svgOverlay = document.getElementById('blueprint-line-overlay');
+            if (!svgOverlay) {
+                svgOverlay = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svgOverlay.id = 'blueprint-line-overlay';
+                svgOverlay.setAttribute('class', 'absolute inset-0 w-full h-full hidden lg:block pointer-events-none');
+                svgOverlay.style.zIndex = '1';
+                svgOverlay.innerHTML = `
+                    <path id="line-acrylic" stroke="#111" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
+                    <path id="line-frame" stroke="#111" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
+                    <path id="line-stitch" stroke="#111" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
+                `;
+                document.getElementById('protection').appendChild(svgOverlay);
+            }
 
-    const sectionEl = document.getElementById('protection').getBoundingClientRect();
-    const frameEl = document.getElementById('central-artwork-target').getBoundingClientRect();
+            const sectionEl = document.getElementById('protection').getBoundingClientRect();
+            const frameEl = document.getElementById('central-artwork-target').getBoundingClientRect();
 
-    const cAcrylic = document.getElementById('card-acrylic').getBoundingClientRect();
-    const cFrame = document.getElementById('card-frame').getBoundingClientRect();
-    const cStitch = document.getElementById('card-stitch').getBoundingClientRect();
+            const cAcrylic = document.getElementById('card-acrylic').getBoundingClientRect();
+            const cFrame = document.getElementById('card-frame').getBoundingClientRect();
+            const cStitch = document.getElementById('card-stitch').getBoundingClientRect();
 
-    // Line 1: Acrylic Varnish Card -> Top Core of Central Painting
-    document.getElementById('line-acrylic').setAttribute('d', 
-        `M ${(cAcrylic.right - sectionEl.left)} ${(cAcrylic.top + cAcrylic.height/2 - sectionEl.top)} ` +
-        `L ${(frameEl.left + frameEl.width*0.35 - sectionEl.left)} ${(frameEl.top + 20 - sectionEl.top)}`
-    );
+            // Connect Card 01 -> Top of Frame
+            document.getElementById('line-acrylic').setAttribute('d', 
+                `M ${(cAcrylic.right - sectionEl.left)} ${(cAcrylic.top + cAcrylic.height/2 - sectionEl.top)} ` +
+                `L ${(frameEl.left + frameEl.width*0.35 - sectionEl.left)} ${(frameEl.top + 20 - sectionEl.top)}`
+            );
 
-    // Line 2: Frame Shield Card -> Right Wooden Outer Frame Rim Edge
-    document.getElementById('line-frame').setAttribute('d', 
-        `M ${(cFrame.left - sectionEl.left)} ${(cFrame.top + cFrame.height/2 - sectionEl.top)} ` +
-        `L ${(frameEl.right - 4 - sectionEl.left)} ${(frameEl.top + frameEl.height*0.5 - sectionEl.top)}`
-    );
+            // Connect Card 02 -> Right Outer Frame Rim
+            document.getElementById('line-frame').setAttribute('d', 
+                `M ${(cFrame.left - sectionEl.left)} ${(cFrame.top + cFrame.height/2 - sectionEl.top)} ` +
+                `L ${(frameEl.right - 4 - sectionEl.left)} ${(frameEl.top + frameEl.height*0.5 - sectionEl.top)}`
+            );
 
-    // Line 3: Stitch Inspection Card -> Bottom Weave Base Edge of Frame
-    document.getElementById('line-stitch').setAttribute('d', 
-        `M ${(cStitch.right - sectionEl.left)} ${(cStitch.top + cStitch.height/2 - sectionEl.top)} ` +
-        `L ${(frameEl.left + frameEl.width*0.5 - sectionEl.left)} ${(frameEl.bottom - 20 - sectionEl.top)}`
-    );
-}
+            // Connect Card 03 -> Bottom Base of Frame
+            document.getElementById('line-stitch').setAttribute('d', 
+                `M ${(cStitch.right - sectionEl.left)} ${(cStitch.top + cStitch.height/2 - sectionEl.top)} ` +
+                `L ${(frameEl.left + frameEl.width*0.5 - sectionEl.left)} ${(frameEl.bottom - 20 - sectionEl.top)}`
+            );
+        }
 
-// Attach listeners for fluid real-time alignment mapping
-window.addEventListener('resize', synchronizeBlueprintLines);
-window.addEventListener('load', synchronizeBlueprintLines);
-setTimeout(synchronizeBlueprintLines, 500); // Fail-safe delay initialization check
+        // Initialize script event handles
+        window.addEventListener('resize', synchronizeBlueprintLines);
+        window.addEventListener('load', synchronizeBlueprintLines);
+        setTimeout(synchronizeBlueprintLines, 500);
 
-// Register custom cursor expansion triggers for the newly styled shipping elements
-const shippingElements = document.querySelectorAll('.shipping-brick');
-
-shippingElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        // Triggers your premium custom layout follower ring expanding macro animation
-        if (follower) follower.classList.add('cursor-expand');
-    });
-    el.addEventListener('mouseleave', () => {
-        if (follower) follower.classList.remove('cursor-expand');
-    });
-});
+        // Register custom cursor expansion triggers for the new blueprint pointer containers
+        const blueprintInteractives = document.querySelectorAll('.blueprint-pointer');
+        blueprintInteractives.forEach(el => {
+            el.addEventListener('mouseenter', () => follower.classList.add('cursor-expand'));
+            el.addEventListener('mouseleave', () => follower.classList.remove('cursor-expand'));
+        });
     </script>
 </body>
 </html>
