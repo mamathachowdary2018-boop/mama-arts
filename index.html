@@ -478,6 +478,191 @@
         .shipping-brick:hover .brick-icon-container {
             background-color: #ffffff;
         }
+
+        /* --- COMPACT, UNCLUTTERED ART GRID CONTROLLERS --- */
+.container-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Forces 2 in a row on mobile */
+    gap: 16px; 
+    padding: 16px 12px; 
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+    .container-grid { gap: 20px; padding: 24px 20px; }
+}
+
+@media (min-width: 1024px) {
+    .container-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 40px 60px; }
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column; 
+    background: transparent;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-container:hover {
+    transform: translateY(-4px);
+}
+
+/* Scaled Down Compact Image Configuration */
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Clean square on mobile */
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #ebdccd;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+@media (min-width: 1024px) {
+    .image-wrapper {
+        aspect-ratio: 4 / 5; /* Elegant portrait crop on desktop */
+        border-radius: 12px;
+    }
+}
+
+.slides-container {
+    display: flex;
+    width: 400%; 
+    height: 100%;
+}
+
+.slides-container img {
+    width: 25%; 
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes slideShow {
+    0% { transform: translateX(0); }
+    33% { transform: translateX(-25%); }
+    66% { transform: translateX(-50%); }
+    100% { transform: translateX(-75%); }
+}
+
+.image-wrapper:hover .slides-container {
+    animation: slideShow 6s steps(1, end) infinite; 
+}
+
+.badge-tag {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: #fff; 
+    color: #111;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+@media (min-width: 1024px) {
+    .badge-tag {
+        top: 14px;
+        left: 14px;
+        font-size: 10px;
+        padding: 5px 12px;
+        border-radius: 20px;
+    }
+}
+
+.details-wrapper {
+    padding: 10px 2px 0 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+    .details-wrapper { padding: 14px 4px 0 4px; }
+}
+
+.product-title {
+    font-size: 14px; 
+    font-weight: 600;
+    color: #111;
+    letter-spacing: -0.2px;
+    margin-bottom: 1px;
+}
+
+@media (min-width: 1024px) {
+    .product-title { font-size: 17px; margin-bottom: 2px; }
+}
+
+.product-subtitle {
+    font-size: 11px;
+    font-weight: 400;
+    color: #777; 
+}
+
+@media (min-width: 1024px) {
+    .product-subtitle { font-size: 13px; }
+}
+
+/* --- PRODUCT OVERLAY MODAL LAYOUT --- */
+.product-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(18, 16, 13, 0.4);
+    backdrop-filter: blur(8px);
+    z-index: 200;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+    display: flex; justify-content: center; align-items: center;
+    padding: 16px;
+}
+
+.product-overlay.active {
+    opacity: 1; pointer-events: auto;
+}
+
+.product-sheet {
+    background: #ffffff;
+    width: 100%; max-width: 1020px;
+    max-height: 90vh;
+    border-radius: 20px;
+    overflow-y: auto;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.18);
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+.product-overlay.active .product-sheet {
+    transform: translateY(0) scale(1);
+}
+
+.sheet-grid { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 768px) { .sheet-grid { grid-template-columns: 1.1fr 0.9fr; } }
+
+.gallery-main { width: 100%; aspect-ratio: 1/1; background: #faf8f5; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+
+.thumb-strip { display: flex; gap: 8px; padding: 12px; overflow-x: auto; background: #ffffff; border-bottom: 1px solid #f0eae1; }
+.thumb-item { width: 60px; height: 60px; border-radius: 6px; overflow: hidden; border: 2px solid transparent; cursor: pointer; flex-shrink: 0; transition: border 0.2s ease; }
+.thumb-item.active { border-color: #111; }
+.thumb-item img { width: 100%; height: 100%; object-fit: cover; }
+
+.size-chip {
+    border: 1px solid #e5e5e5;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 6px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.size-chip.selected {
+    background: #000; color: #fff; border-color: #000;
+}
     </style>
 </head>
 
@@ -590,105 +775,154 @@
         </div>
     </div>
 
-    <div class="container-grid">
-        
-        <div class="card-container">
-            <div class="image-wrapper">
-                <div class="slides-container">
-                    <img src="product1.jpeg" alt="View 1">
-                    <img src="product1.0.jpeg" alt="View 2">
-                    <img src="product1.1.jpeg" alt="View 3">
-                    <img src="product1.2.jpeg" alt="View 4">
-                </div>
-                <div class="badge-tag">Best Seller</div>
+<div class="container-grid" id="catalog-grid">
+    
+    <div class="card-container" data-id="1" data-title="The Void" data-subtitle="Black Pen Art" data-badge="Best Seller" data-imgs='["product1.jpeg", "product1.0.jpeg", "product1.1.jpeg", "product1.2.jpeg"]'>
+        <div class="image-wrapper">
+            <div class="slides-container">
+                <img src="product1.jpeg" alt="View 1">
+                <img src="product1.0.jpeg" alt="View 2">
+                <img src="product1.1.jpeg" alt="View 3">
+                <img src="product1.2.jpeg" alt="View 4">
             </div>
-            <div class="details-wrapper">
-                <h2 class="product-title">The Void</h2>
-                <p class="product-subtitle">Black Pen Art</p>
-            </div>
+            <div class="badge-tag">Best Seller</div>
         </div>
-
-        <div class="card-container">
-            <div class="image-wrapper">
-                <div class="slides-container">
-                    <img src="product2.png" alt="View 1">
-                    <img src="product2.0.png" alt="View 2">
-                    <img src="product2.1.png" alt="View 3">
-                    <img src="product2.2.png" alt="View 4">
-                </div>
-                <div class="badge-tag">New Entry</div>
-            </div>
-            <div class="details-wrapper">
-                <h2 class="product-title">Prism Fine</h2>
-                <p class="product-subtitle">Color Pen Art</p>
-            </div>
-        </div>
-
-        <div class="card-container">
-            <div class="image-wrapper">
-                <div class="slides-container">
-                    <img src="product3.jpeg" alt="View 1">
-                    <img src="product3.0.jpeg" alt="View 2">
-                    <img src="product3.1.jpeg" alt="View 3">
-                    <img src="product3.2.jpeg" alt="View 4">
-                </div>
-                <div class="badge-tag">Limited Edition</div>
-            </div>
-            <div class="details-wrapper">
-                <h2 class="product-title">Tactile Layering</h2>
-                <p class="product-subtitle">Acrylic Painting</p>
-            </div>
-        </div>
-
-        <div class="card-container">
-            <div class="image-wrapper">
-                <div class="slides-container">
-                    <img src="product4.png" alt="View 1">
-                    <img src="product4.0.png" alt="View 2">
-                    <img src="product4.1.png" alt="View 3">
-                    <img src="product4.2.png" alt="View 4">
-                </div>
-                <div class="badge-tag">Featured</div>
-            </div>
-            <div class="details-wrapper">
-                <h2 class="product-title">Liquid Flow</h2>
-                <p class="product-subtitle">Water Painting</p>
-            </div>
-        </div>
-
-        <div class="card-container">
-            <div class="image-wrapper">
-                <div class="slides-container">
-                    <img src="product5.png" alt="View 1">
-                    <img src="product5.0.png" alt="View 2">
-                    <img src="product5.1.png" alt="View 3">
-                    <img src="product5.2.png" alt="View 4">
-                </div>
-                <div class="badge-tag">Original Work</div>
-            </div>
-            <div class="details-wrapper">
-                <h2 class="product-title">Physical Pixels</h2>
-                <p class="product-subtitle">Thread Painting</p>
-            </div>
-        </div>
-
-        <div class="card-container">
-            <div class="image-wrapper">
-                <div class="slides-container">
-                    <img src="product6.png" alt="View 1">
-                    <img src="product4.0.png" alt="View 2">
-                    <img src="product4.1.png" alt="View 3">
-                    <img src="product4.2.png" alt="View 4">
-                </div>
-                <div class="badge-tag">Pop Series</div>
-            </div>
-            <div class="details-wrapper">
-                <h2 class="product-title">Pop Pulp</h2>
-                <p class="product-subtitle">Cartoon Illustration Art</p>
-            </div>
+        <div class="details-wrapper">
+            <h2 class="product-title">The Void</h2>
+            <p class="product-subtitle">Black Pen Art</p>
         </div>
     </div>
 
+    <div class="card-container" data-id="2" data-title="Prism Fine" data-subtitle="Color Pen Art" data-badge="New Entry" data-imgs='["product2.png", "product2.0.png", "product2.1.png", "product2.2.png"]'>
+        <div class="image-wrapper">
+            <div class="slides-container">
+                <img src="product2.png" alt="View 1">
+                <img src="product2.0.png" alt="View 2">
+                <img src="product2.1.png" alt="View 3">
+                <img src="product2.2.png" alt="View 4">
+            </div>
+            <div class="badge-tag">New Entry</div>
+        </div>
+        <div class="details-wrapper">
+            <h2 class="product-title">Prism Fine</h2>
+            <p class="product-subtitle">Color Pen Art</p>
+        </div>
+    </div>
+
+    <div class="card-container" data-id="3" data-title="Tactile Layering" data-subtitle="Acrylic Painting" data-badge="Limited Edition" data-imgs='["product3.jpeg", "product3.0.jpeg", "product3.1.jpeg", "product3.2.jpeg"]'>
+        <div class="image-wrapper">
+            <div class="slides-container">
+                <img src="product3.jpeg" alt="View 1">
+                <img src="product3.0.jpeg" alt="View 2">
+                <img src="product3.1.jpeg" alt="View 3">
+                <img src="product3.2.jpeg" alt="View 4">
+            </div>
+            <div class="badge-tag">Limited Edition</div>
+        </div>
+        <div class="details-wrapper">
+            <h2 class="product-title">Tactile Layering</h2>
+            <p class="product-subtitle">Acrylic Painting</p>
+        </div>
+    </div>
+
+    <div class="card-container" data-id="4" data-title="Liquid Flow" data-subtitle="Water Painting" data-badge="Featured" data-imgs='["product4.png", "product4.0.png", "product4.1.png", "product4.2.png"]'>
+        <div class="image-wrapper">
+            <div class="slides-container">
+                <img src="product4.png" alt="View 1">
+                <img src="product4.0.png" alt="View 2">
+                <img src="product4.1.png" alt="View 3">
+                <img src="product4.2.png" alt="View 4">
+            </div>
+            <div class="badge-tag">Featured</div>
+        </div>
+        <div class="details-wrapper">
+            <h2 class="product-title">Liquid Flow</h2>
+            <p class="product-subtitle">Water Painting</p>
+        </div>
+    </div>
+
+    <div class="card-container" data-id="5" data-title="Physical Pixels" data-subtitle="Thread Painting" data-badge="Original Work" data-imgs='["product5.png", "product5.0.png", "product5.1.png", "product5.2.png"]'>
+        <div class="image-wrapper">
+            <div class="slides-container">
+                <img src="product5.png" alt="View 1">
+                <img src="product5.0.png" alt="View 2">
+                <img src="product5.1.png" alt="View 3">
+                <img src="product5.2.png" alt="View 4">
+            </div>
+            <div class="badge-tag">Original Work</div>
+        </div>
+        <div class="details-wrapper">
+            <h2 class="product-title">Physical Pixels</h2>
+            <p class="product-subtitle">Thread Painting</p>
+        </div>
+    </div>
+
+    <div class="card-container" data-id="6" data-title="Pop Pulp" data-subtitle="Illustration Art" data-badge="Pop Series" data-imgs='["product6.png", "product4.0.png", "product4.1.png", "product4.2.png"]'>
+        <div class="image-wrapper">
+            <div class="slides-container">
+                <img src="product6.png" alt="View 1">
+                <img src="product4.0.png" alt="View 2">
+                <img src="product4.1.png" alt="View 3">
+                <img src="product4.2.png" alt="View 4">
+            </div>
+            <div class="badge-tag">Pop Series</div>
+        </div>
+        <div class="details-wrapper">
+            <h2 class="product-title">Pop Pulp</h2>
+            <p class="product-subtitle">Cartoon Illustration Art</p>
+        </div>
+    </div>
+</div>
+
+<div class="product-overlay" id="productOverlay">
+    <div class="product-sheet">
+        <button class="absolute top-4 right-4 z-50 bg-black text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm opacity-70 hover:opacity-100 transition-opacity" id="closeOverlay">✕</button>
+        
+        <div class="sheet-grid">
+            <div class="flex flex-col">
+                <div class="gallery-main">
+                    <img id="overlayMainImg" src="" alt="Main Showcase Frame">
+                </div>
+                <div class="thumb-strip" id="overlayThumbStrip">
+                    </div>
+            </div>
+
+            <div class="p-6 md:p-8 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400" id="overlaySubtitle">Category</span>
+                        <span class="bg-gray-100 text-[9px] font-bold px-2 py-0.5 rounded-full" id="overlayBadge">Tag</span>
+                    </div>
+                    <h1 class="font-serif text-2xl md:text-3xl font-bold mb-3 tracking-tight" id="overlayTitle">Product Title</h1>
+                    
+                    <div class="flex items-center gap-1 mb-4">
+                        <div class="flex text-amber-400 text-xs">★★★★★</div>
+                        <span class="text-xs text-gray-400 font-medium">(42 verified collector views)</span>
+                    </div>
+
+                    <p class="text-xs text-gray-500 leading-relaxed mb-6 font-medium">This original studio masterpiece is completely engineered by hand using premium-grade archivals. Delivered with a signed physical certificate of authenticity verified by the gallery board.</p>
+
+                    <div class="mb-4">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-2">Select Canvas Size / Profile</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button class="size-chip selected">A4 Standard</button>
+                            <button class="size-chip">A3 Exhibition</button>
+                            <button class="size-chip">A2 Gallery XL</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-gray-100 mt-6">
+                    <button class="w-full bg-black text-white text-xs font-bold py-3.5 rounded-xl uppercase tracking-wider hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                        Secure Acquisition Access
+                    </button>
+                    <p class="text-[10px] text-center text-gray-400 mt-2.5 font-medium">✓ Custom museum-grade packaging & full insurance coverage included</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <section class="max-w-[1400px] mx-auto px-4 py-16 lg:px-12 relative" id="protection">
         <div class="text-center mb-12">
             <p class="uppercase tracking-widest text-[11px] text-gray-400 font-bold mb-2">ARCHIVAL STUDIO SPECIFICATIONS</p>
@@ -1047,6 +1281,78 @@
             el.addEventListener('mouseenter', () => follower.classList.add('cursor-expand'));
             el.addEventListener('mouseleave', () => follower.classList.remove('cursor-expand'));
         });
+        // Dynamic Overlay Sheet Engine 
+const overlay = document.getElementById('productOverlay');
+const closeOverlay = document.getElementById('closeOverlay');
+const catalogCards = document.querySelectorAll('#catalog-grid .card-container');
+
+catalogCards.forEach(card => {
+    card.addEventListener('click', () => {
+        // Read dataset attributes from the clicked card
+        const title = card.getAttribute('data-title');
+        const subtitle = card.getAttribute('data-subtitle');
+        const badge = card.getAttribute('data-badge');
+        const images = JSON.parse(card.getAttribute('data-imgs'));
+
+        // Inject content fields into overlay module
+        document.getElementById('overlayTitle').innerText = title;
+        document.getElementById('overlaySubtitle').innerText = subtitle;
+        document.getElementById('overlayBadge').innerText = badge;
+        
+        // Initialize the first image as the main featured frame
+        const mainImg = document.getElementById('overlayMainImg');
+        mainImg.src = images[0];
+
+        // Clean and render thumbnail strip modules 
+        const thumbStrip = document.getElementById('overlayThumbStrip');
+        thumbStrip.innerHTML = '';
+        
+        images.forEach((imgUrl, loopIndex) => {
+            const thumbItem = document.createElement('div');
+            thumbItem.className = `thumb-item ${loopIndex === 0 ? 'active' : ''}`;
+            thumbItem.innerHTML = `<img src="${imgUrl}" alt="Preview thumbnail variant">`;
+            
+            // Switch main image preview frame on thumbnail click
+            thumbItem.addEventListener('click', (event) => {
+                event.stopPropagation(); // Stop overlay from capturing click
+                document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+                thumbItem.classList.add('active');
+                mainImg.src = imgUrl;
+            });
+            thumbStrip.appendChild(thumbItem);
+        });
+
+        // Trigger transition opening animation
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        
+        // Re-call your custom cursor target register if necessary
+        if (typeof registerCursorTargets === "function") {
+            registerCursorTargets();
+        }
+    });
+});
+
+// Close window click triggers
+closeOverlay.addEventListener('click', () => {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Size selection chips logic loop
+document.querySelectorAll('.size-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+        chip.parentElement.querySelectorAll('.size-chip').forEach(c => c.classList.remove('selected'));
+        chip.classList.add('selected');
+    });
+});
     </script>
 </body>
 </html>
