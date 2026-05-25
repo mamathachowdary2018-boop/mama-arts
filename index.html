@@ -878,17 +878,16 @@
     <div class="product-sheet">
         <button class="absolute top-4 right-4 z-50 bg-black text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm opacity-70 hover:opacity-100 transition-opacity" id="closeOverlay">✕</button>
         
-        <div class="sheet-grid">
+        <div class="sheet-grid border-b border-gray-100">
             <div class="flex flex-col">
                 <div class="gallery-main">
                     <img id="overlayMainImg" src="" alt="Main Showcase Frame">
                 </div>
-                <div class="thumb-strip" id="overlayThumbStrip">
-                    </div>
+                <div class="thumb-strip" id="overlayThumbStrip"></div>
             </div>
 
-            <div class="p-6 md:p-8 flex flex-col justify-between">
-                <div>
+            <div class="p-6 md:p-8 flex flex-col justify-between relative">
+                <div class="mb-6">
                     <div class="flex items-center gap-2 mb-2">
                         <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400" id="overlaySubtitle">Category</span>
                         <span class="bg-gray-100 text-[9px] font-bold px-2 py-0.5 rounded-full" id="overlayBadge">Tag</span>
@@ -897,10 +896,10 @@
                     
                     <div class="flex items-center gap-1 mb-4">
                         <div class="flex text-amber-400 text-xs">★★★★★</div>
-                        <span class="text-xs text-gray-400 font-medium">(42 verified collector views)</span>
+                        <span class="text-xs text-gray-400 font-medium">(245 verified collector reviews)</span>
                     </div>
 
-                    <p class="text-xs text-gray-500 leading-relaxed mb-6 font-medium">This original studio masterpiece is completely engineered by hand using premium-grade archivals. Delivered with a signed physical certificate of authenticity verified by the gallery board.</p>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-6 font-medium">This original studio masterpiece is completely engineered by hand using premium-grade archival foundations. Delivered safely inside custom structural protection framing with an official certificate of authenticity.</p>
 
                     <div class="mb-4">
                         <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-2">Select Canvas Size / Profile</label>
@@ -912,17 +911,85 @@
                     </div>
                 </div>
 
-                <div class="pt-4 border-t border-gray-100 mt-6">
+                <div class="sticky bottom-0 bg-white pt-4 pb-2 border-t border-gray-100 mt-auto z-10">
                     <button class="w-full bg-black text-white text-xs font-bold py-3.5 rounded-xl uppercase tracking-wider hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                         Secure Acquisition Access
                     </button>
-                    <p class="text-[10px] text-center text-gray-400 mt-2.5 font-medium">✓ Custom museum-grade packaging & full insurance coverage included</p>
+                    <p class="text-[10px] text-center text-gray-400 mt-2.5 font-small">✓ Custom museum-grade packaging & full insurance coverage included</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6 md:p-8 bg-neutral-50/50">
+            <h3 class="font-serif text-xl font-bold mb-6 text-gray-900 border-b border-gray-100 pb-3">Collector Feedback & Reviews</h3>
+            
+            <div class="flex flex-col md:flex-row items-center gap-6 mb-8 bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
+                <div class="text-center md:border-r border-gray-100 md:pr-8">
+                    <div class="text-4xl font-extrabold text-gray-900">4.8</div>
+                    <div class="flex text-amber-400 justify-center my-1 text-xs">★★★★★</div>
+                    <div class="text-[11px] text-gray-400 font-medium">(245 Reviews)</div>
+                </div>
+                <div class="flex-1 w-full flex flex-col gap-1.5">
+                    <div class="flex items-center gap-3 text-xs text-gray-500 font-medium">
+                        <span class="w-10">5 Star</span>
+                        <div class="flex-1 bg-gray-100 h-2 rounded-full overflow-hidden"><div class="bg-amber-400 h-full w-[85%]"></div></div>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-gray-500 font-medium">
+                        <span class="w-10">4 Star</span>
+                        <div class="flex-1 bg-gray-100 h-2 rounded-full overflow-hidden"><div class="bg-amber-400 h-full w-[10%]"></div></div>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-gray-500 font-medium">
+                        <span class="w-10">3 Star</span>
+                        <div class="flex-1 bg-gray-100 h-2 rounded-full overflow-hidden"><div class="bg-amber-400 h-full w-[4%]"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-6">
+                <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-3">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-xs text-gray-900">Kristin Watson</h4>
+                            <span class="text-[10px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full font-semibold">✓ Verified Collector</span>
+                        </div>
+                        <span class="text-[11px] text-gray-400 font-medium">1 month ago</span>
+                    </div>
+                    <div class="flex text-amber-400 text-[10px]">★★★★★</div>
+                    <p class="text-xs text-gray-600 leading-relaxed font-medium">Absolutely love this piece! The attention to detail on the lines is breath-taking. It looks even cleaner and more dynamic on my studio canvas than on the display screen. Wrapped beautifully on delivery.</p>
+                    
+                    <div class="flex gap-2 mt-1 review-gallery">
+                        <img src="frame1.png" class="w-16 h-16 object-cover rounded-lg border border-gray-100 cursor-pointer hover:opacity-90 transition-opacity" alt="Collector display setup 1">
+                        <img src="product1.0.jpeg" class="w-16 h-16 object-cover rounded-lg border border-gray-100 cursor-pointer hover:opacity-90 transition-opacity" alt="Collector display setup 2">
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-3">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-xs text-gray-900">Jenny Wilson</h4>
+                            <span class="text-[10px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full font-semibold">✓ Verified Collector</span>
+                        </div>
+                        <span class="text-[11px] text-gray-400 font-medium">2 months ago</span>
+                    </div>
+                    <div class="flex text-amber-400 text-[10px]">★★★★★</div>
+                    <p class="text-xs text-gray-600 leading-relaxed font-medium">Perfect addition to my gallery collection! The layering profiles create rich texture variations under warm focus lights. Highly recommended studio portfolio.</p>
+                    
+                    <div class="flex gap-2 mt-1 review-gallery">
+                        <img src="product3.jpeg" class="w-16 h-16 object-cover rounded-lg border border-gray-100 cursor-pointer hover:opacity-90 transition-opacity" alt="Collector display setup 3">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div id="imageLightbox" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[300] opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+    <button id="closeLightbox" class="absolute top-6 right-6 text-white text-2xl font-light hover:scale-110 transition-transform">✕</button>
+    <img id="lightboxImg" src="" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300" alt="Enlarged review context view">
+</div>
+
+
 <section class="max-w-[1400px] mx-auto px-4 py-16 lg:px-12 relative" id="protection">
         <div class="text-center mb-12">
             <p class="uppercase tracking-widest text-[11px] text-gray-400 font-bold mb-2">ARCHIVAL STUDIO SPECIFICATIONS</p>
@@ -1281,78 +1348,93 @@
             el.addEventListener('mouseenter', () => follower.classList.add('cursor-expand'));
             el.addEventListener('mouseleave', () => follower.classList.remove('cursor-expand'));
         });
-        // Dynamic Overlay Sheet Engine 
 const overlay = document.getElementById('productOverlay');
-const closeOverlay = document.getElementById('closeOverlay');
-const catalogCards = document.querySelectorAll('#catalog-grid .card-container');
+    const closeOverlay = document.getElementById('closeOverlay');
+    const catalogCards = document.querySelectorAll('#catalog-grid .card-container');
 
-catalogCards.forEach(card => {
-    card.addEventListener('click', () => {
-        // Read dataset attributes from the clicked card
-        const title = card.getAttribute('data-title');
-        const subtitle = card.getAttribute('data-subtitle');
-        const badge = card.getAttribute('data-badge');
-        const images = JSON.parse(card.getAttribute('data-imgs'));
+    catalogCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.getAttribute('data-title');
+            const subtitle = card.getAttribute('data-subtitle');
+            const badge = card.getAttribute('data-badge');
+            const images = JSON.parse(card.getAttribute('data-imgs'));
 
-        // Inject content fields into overlay module
-        document.getElementById('overlayTitle').innerText = title;
-        document.getElementById('overlaySubtitle').innerText = subtitle;
-        document.getElementById('overlayBadge').innerText = badge;
-        
-        // Initialize the first image as the main featured frame
-        const mainImg = document.getElementById('overlayMainImg');
-        mainImg.src = images[0];
-
-        // Clean and render thumbnail strip modules 
-        const thumbStrip = document.getElementById('overlayThumbStrip');
-        thumbStrip.innerHTML = '';
-        
-        images.forEach((imgUrl, loopIndex) => {
-            const thumbItem = document.createElement('div');
-            thumbItem.className = `thumb-item ${loopIndex === 0 ? 'active' : ''}`;
-            thumbItem.innerHTML = `<img src="${imgUrl}" alt="Preview thumbnail variant">`;
+            document.getElementById('overlayTitle').innerText = title;
+            document.getElementById('overlaySubtitle').innerText = subtitle;
+            document.getElementById('overlayBadge').innerText = badge;
             
-            // Switch main image preview frame on thumbnail click
-            thumbItem.addEventListener('click', (event) => {
-                event.stopPropagation(); // Stop overlay from capturing click
-                document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
-                thumbItem.classList.add('active');
-                mainImg.src = imgUrl;
+            const mainImg = document.getElementById('overlayMainImg');
+            mainImg.src = images[0];
+
+            const thumbStrip = document.getElementById('overlayThumbStrip');
+            thumbStrip.innerHTML = '';
+            
+            images.forEach((imgUrl, loopIndex) => {
+                const thumbItem = document.createElement('div');
+                thumbItem.className = `thumb-item ${loopIndex === 0 ? 'active' : ''}`;
+                thumbItem.innerHTML = `<img src="${imgUrl}" alt="Preview thumbnail">`;
+                
+                thumbItem.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+                    thumbItem.classList.add('active');
+                    mainImg.src = imgUrl;
+                });
+                thumbStrip.appendChild(thumbItem);
             });
-            thumbStrip.appendChild(thumbItem);
+
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+            if (typeof registerCursorTargets === "function") registerCursorTargets();
         });
-
-        // Trigger transition opening animation
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        
-        // Re-call your custom cursor target register if necessary
-        if (typeof registerCursorTargets === "function") {
-            registerCursorTargets();
-        }
     });
-});
 
-// Close window click triggers
-closeOverlay.addEventListener('click', () => {
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-});
-
-overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) {
+    closeOverlay.addEventListener('click', () => {
         overlay.classList.remove('active');
         document.body.style.overflow = '';
-    }
-});
-
-// Size selection chips logic loop
-document.querySelectorAll('.size-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-        chip.parentElement.querySelectorAll('.size-chip').forEach(c => c.classList.remove('selected'));
-        chip.classList.add('selected');
     });
-});
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    document.querySelectorAll('.size-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            chip.parentElement.querySelectorAll('.size-chip').forEach(c => c.classList.remove('selected'));
+            chip.classList.add('selected');
+        });
+    });
+
+    // LIGHTBOX POPUP MODAL ENGINE FOR REVIEW IMAGES
+    const lightbox = document.getElementById('imageLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeLightbox = document.getElementById('closeLightbox');
+    const reviewImages = document.querySelectorAll('.review-gallery img');
+
+    reviewImages.forEach(img => {
+        img.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+            lightboxImg.src = img.src;
+            lightbox.classList.remove('opacity-0', 'pointer-events-none');
+            lightboxImg.classList.remove('scale-95');
+            lightboxImg.classList.add('scale-100');
+        });
+    });
+
+    function dismissLightbox() {
+        lightbox.classList.add('opacity-0', 'pointer-events-none');
+        lightboxImg.classList.remove('scale-100');
+        lightboxImg.classList.add('scale-95');
+    }
+
+    closeLightbox.addEventListener('click', dismissLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) dismissLightbox();
+    });
+    
     </script>
 </body>
 </html>
