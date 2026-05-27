@@ -34,7 +34,7 @@
 
         .logo {
             font-family: 'Monsieur La Douise', cursive;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 400;
             letter-spacing: 0.5px;
             color: #111;
@@ -68,12 +68,12 @@
         .navbar {
             display: flex;
             justify-content: space-between;
-            padding: 8px 16px;
+            padding: 4px 16px;
             align-items: center;
             width: 100%;
             position: relative;
             z-index: 100;
-            height: 60px;
+            height: 50px;
         }
 
         @media (min-width: 1024px) {
@@ -134,21 +134,22 @@
         .menu-toggle.active span:nth-child(2) { opacity: 0; }
         .menu-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-        /* HERO FOLD FOR SCREEN CAPTURING BOTH ELEMENTS TOGETHER */
+        /* FIXED MOBILE SINGLE FOLD COMPRESSION */
         .landing-viewport-fold {
             width: 100%;
-            min-height: calc(100vh - 60px);
+            height: calc(100vh - 50px); /* Strictly lock mobile window fold height */
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center; /* Bring blocks close to the vertical center axis */
             align-items: center;
-            padding: 10px 0 24px 0;
+            padding: 0;
+            gap: 12px; /* Tight structural containment barrier gaps */
         }
         @media (min-width: 1024px) {
             .landing-viewport-fold {
-                min-height: calc(100vh - 70px);
+                height: calc(100vh - 70px);
                 justify-content: space-evenly;
-                padding-bottom: 20px;
+                gap: 0;
             }
         }
 
@@ -211,26 +212,26 @@
         .edge-fade-left { background: linear-gradient(to right, #f5efe6 0%, rgba(245, 239, 230, 0) 100%); }
         .edge-fade-right { background: linear-gradient(to left, #f5efe6 0%, rgba(245, 239, 230, 0) 100%); }
 
-        /* HERO MATRIX DESIGN (CENTERED FOR RESPONSIVE PHONES) */
+        /* HERO MATRIX DESIGN (COMPACT CELL FOR PHONE FITTING) */
         .hero { 
             display: flex; 
             flex-direction: column;
             align-items: center; 
             justify-content: center; 
-            gap: 16px; 
-            padding: 0px 24px;
+            gap: 8px; /* Tight image to text spacing */
+            padding: 0 24px;
             width: 100%;
             text-align: center;
         }
 
         .hero-text h1 { 
-            font-size: 36px; 
-            line-height: 1.0; 
-            margin-bottom: 8px; 
+            font-size: 28px; /* Scaled down slightly to fit on small displays without spilling */
+            line-height: 1.05; 
+            margin-bottom: 4px; 
         }
 
         .heart-img { 
-            width: 130px; 
+            width: 100px; /* Highly optimized baseline dimensions for mobile space conservation */
             filter: grayscale(1) contrast(1.1); 
             transition: 0.5s; 
         }
@@ -240,8 +241,9 @@
         }
 
         @media (min-width: 640px) {
-            .hero-text h1 { font-size: 44px; }
-            .heart-img { width: 160px; }
+            .hero-text h1 { font-size: 40px; }
+            .heart-img { width: 140px; }
+            .hero { gap: 16px; }
         }
 
         @media (min-width: 1024px) {
@@ -250,18 +252,18 @@
             .heart-img { width: 240px; }
         }
 
-        /* Ticker Separators Line - Gaps Removed, White Top/Bottom Border Added */
+        /* Ticker Separators Line */
         .ticker-container {
             width: 100%;
             overflow: hidden;
-            background-color: #f4f1e8; 
+            background-color: #9f4900; 
             padding: 10px 0; 
             margin: 0; 
             white-space: nowrap;
             position: relative;
             z-index: 60;
-            border-top: 1px solid #9f4900; 
-            border-bottom: 1px solid #9f4900; 
+            border-top: 1px solid #ffffff; 
+            border-bottom: 1px solid #ffffff; 
         }
         @media (min-width: 1024px) { .ticker-container { padding: 12px 0; margin: 0; } }
         .ticker-wrapper { display: inline-block; animation: ticker-scroll 40s linear infinite; }
@@ -272,7 +274,7 @@
             font-weight: 700; 
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #9f4900; 
+            color: #ffffff; 
         }
         @media (min-width: 1024px) { .ticker-item { font-size: 12px; } }
         @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -313,33 +315,33 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr); 
             gap: 16px; 
-            padding: 40px 16px 140px 16px; /* Generous bottom spacing fold for SVG mountains */
+            padding: 40px 16px 180px 16px; 
             max-width: 1200px; 
             margin: 0 auto;
             position: relative;
             z-index: 10;
         }
-        @media (min-width: 640px) { .container-grid { gap: 20px; padding: 60px 24px 180px 24px; } }
-        @media (min-width: 1024px) { .container-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 80px 80px 240px 80px; } }
+        @media (min-width: 640px) { .container-grid { gap: 20px; padding: 60px 24px 220px 24px; } }
+        @media (min-width: 1024px) { .container-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 100px 80px 280px 80px; } }
 
         /* Absolute Yellow Moon Elements */
         .absolute-moon-box {
             position: absolute;
-            top: 40px;
-            right: 5%;
+            top: 45px;
+            right: 4%;
             z-index: 1;
             pointer-events: none;
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            opacity: 0.85;
+            gap: 16px;
+            opacity: 0.9;
         }
         @media (max-width: 768px) {
-            .absolute-moon-box { top: 20px; right: 2%; transform: scale(0.65); }
+            .absolute-moon-box { top: 25px; right: 1%; transform: scale(0.85); }
         }
 
         .crescent-svg {
-            filter: drop-shadow(0 0 35px rgba(254, 240, 138, 0.6));
+            filter: drop-shadow(0 0 50px rgba(254, 240, 138, 0.75)); 
         }
 
         /* Absolute Mountain Floor Elements */
@@ -494,7 +496,7 @@
 
         <div class="flex justify-center">
             <a href="#" class="flex items-center justify-center hover:scale-105 transition-transform">
-                <img src="logo2.png" alt="Mamaarts Logo" class="h-10 md:h-12 w-auto object-contain">
+                <img src="logo2.png" alt="Mamaarts Logo" class="h-9 md:h-12 w-auto object-contain">
             </a>
         </div>
 
@@ -519,7 +521,7 @@
     <div class="landing-viewport-fold">
         
         <div class="relative w-full max-w-[1340px] mx-auto">
-            <div class="slider-viewport relative h-[26vh] sm:h-[30vh] md:h-[35vh] w-full flex items-center" id="touchArea">
+            <div class="slider-viewport relative h-[25vh] sm:h-[30vh] md:h-[35vh] w-full flex items-center" id="touchArea">
                 <div class="slider-track relative w-full h-full flex items-center" id="sliderTrack">
                     
                     <div class="slider-card pos-1 w-[28%] sm:w-[32%] lg:w-[15%] min-w-[85px] sm:min-w-[100px] max-w-[180px] aspect-[3/4] overflow-hidden bg-[#7c7569]" data-index="0">
@@ -573,9 +575,9 @@
         <section class="hero">
             <img src="image1.png" alt="Artwork" class="heart-img">
             <div class="hero-text lg:text-left">
-                <p class="uppercase tracking-widest text-[10px] font-bold text-gray-400 mb-2">Fine Art Studio & Collective</p>
+                <p class="uppercase tracking-widest text-[9px] font-bold text-gray-400 mb-1">Fine Art Studio & Collective</p>
                 <h1 class="font-serif font-bold text-gray-900">Every Stroke<br>Has a Soul.</h1>
-                <p class="max-w-md text-sm text-gray-500 italic font-light leading-relaxed">MamaArts is where raw graphite, flowing pigment, and hand-stitched threads converge to tell your unique story.</p>
+                <p class="max-w-md text-xs sm:text-sm text-gray-500 italic font-light leading-relaxed">MamaArts is where raw graphite, flowing pigment, and hand-stitched threads converge to tell your unique story.</p>
             </div>
         </section>
         
@@ -591,10 +593,10 @@
     <div class="grid-wrapper-parent">
 
         <div class="absolute-moon-box">
-            <svg class="crescent-svg" width="130" height="130" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="crescent-svg" width="165" height="165" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M85 15C75 32 75 58 85 75C50 85 20 65 15 45C15 25 35 5 85 15Z" fill="#FEF08A"/>
             </svg>
-            <svg width="45" height="75" viewBox="0 0 50 80" fill="#FEF08A" class="mt-4 opacity-90 drop-shadow-[0_0_10px_rgba(254,240,138,0.5)]" xmlns="http://www.w3.org/2000/svg">
+            <svg width="55" height="90" viewBox="0 0 50 80" fill="#FEF08A" class="mt-6 opacity-95 drop-shadow-[0_0_15px_rgba(254,240,138,0.65)]" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 10 L17 15 L22 15 L18 18 L20 23 L15 20 L10 23 L12 18 L8 15 L13 15 Z" />
                 <path d="M35 35 L36 38 L39 38 L37 40 L38 43 L35 41 L32 43 L33 40 L31 38 L34 38 Z" />
                 <path d="M20 55 L21 57 L24 57 L22 59 L23 62 L20 60 L17 62 L18 59 L16 57 L19 57 Z" />
@@ -698,9 +700,9 @@
         </div>
 
         <div class="mountain-container-svg">
-            <svg width="100%" height="100" viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 120 L0 85 Q90 55 180 80 Q320 115 460 65 Q580 20 710 75 Q890 130 1020 60 Q1190 -10 1320 45 Q1380 70 1440 50 L1440 120 Z" fill="#173f20" opacity="0.65"/>
-                <path d="M0 120 L0 95 Q140 40 280 85 Q390 120 520 70 Q680 10 840 90 Q980 130 1120 75 Q1280 20 1440 90 L1440 120 Z" fill="#1f4d28"/>
+            <svg width="100%" height="170" viewBox="0 0 1440 170" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 170 L0 100 L120 40 L280 130 L410 20 L580 110 L760 30 L930 140 L1080 15 L1240 125 L1360 35 L1440 90 L1440 170 Z" fill="#173f20" opacity="0.55"/>
+                <path d="M0 170 L0 120 L180 35 L340 140 L490 50 L640 125 L790 20 L960 145 L1140 40 L1290 120 L1440 55 L1440 170 Z" fill="#1f4d28"/>
             </svg>
         </div>
     </div>
