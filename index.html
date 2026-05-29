@@ -557,6 +557,16 @@
         @keyframes spinRing {
             100% { transform: rotate(360deg); }
         }
+        /* Add this to your <style> block */
+    .brush-spin-animation {
+        animation: slowRotate 15s linear infinite;
+        filter: drop-shadow(0 25px 25px rgba(0,0,0,0.25));
+    }
+
+    @keyframes slowRotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
     </style>
 </head>
 
@@ -981,114 +991,112 @@
         <img id="lightboxImg" src="" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300" alt="Enlarged view">
     </div>
 
-    <section class="max-w-[1400px] mx-auto px-4 py-16 lg:px-12 relative" id="protection">
-        <div class="text-center mb-12">
-            <p class="uppercase tracking-widest text-[11px] text-gray-400 font-bold mb-2">ARCHIVAL STUDIO SPECIFICATIONS</p>
-            <h2 class="font-serif text-3xl lg:text-5xl font-bold tracking-tight text-gray-900">Art Protection</h2>
-        </div>
+    <section class="relative w-full py-24 px-6 bg-[#f5efe6] overflow-hidden">
+    <img src="paper.png" class="absolute top-0 left-0 w-64 opacity-80 pointer-events-none" alt="Paper texture">
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-[1150px] mx-auto text-left">
-            
-            <div class="flex flex-col gap-6 lg:gap-16 justify-center order-2 lg:order-1">
-                <div class="bg-[#ebdfcf] rounded-[24px] p-6 shadow-sm border border-black/5 transition-transform duration-300 hover:-translate-y-0.5" id="card-acrylic">
-                    <div class="flex items-center gap-3 mb-2">
-                        <h3 class="font-bold text-base lg:text-lg text-gray-900">Acrylic Paintings</h3>
-                    </div>
-                    <p class="text-xs text-gray-600 leading-relaxed font-medium">A professional varnish is applied to the surface to protect the texture and colors from dust and fading.</p>
-                    
-                    <div class="block lg:hidden w-full aspect-[16/10] mt-4 rounded-xl overflow-hidden bg-black/5 border border-black/5 relative">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
-                        <img src="artcare1.png" alt="Varnish Layer Process" class="w-full h-full object-cover">
-                        <span class="absolute bottom-3 left-3 text-[9px] font-mono uppercase text-white tracking-widest z-20 bg-black/30 px-2 py-0.5 rounded-sm">Varnish Glaze Process</span>
-                    </div>
-                </div>
-
-                <div class="bg-[#ebdfcf] rounded-[24px] p-6 shadow-sm border border-black/5 transition-transform duration-300 hover:-translate-y-0.5" id="card-stitch">
-                    <div class="flex items-center gap-3 mb-2">
-                        <h3 class="font-bold text-base lg:text-lg text-gray-900">Stitch Inspection</h3>
-                    </div>
-                    <p class="text-xs text-gray-600 leading-relaxed font-medium">For Silk Stitch (thread art), we perform a tension check to ensure every fiber is perfectly secure.</p>
-                    
-                    <div class="block lg:hidden w-full aspect-[16/10] mt-4 rounded-xl overflow-hidden bg-black/5 border border-black/5 relative">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
-                        <img src="artcare3.png" alt="Fiber Tension Check" class="w-full h-full object-cover">
-                        <span class="absolute bottom-3 left-3 text-[9px] font-mono uppercase text-white tracking-widest z-20 bg-black/30 px-2 py-0.5 rounded-sm">Tension Inspection Grid</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hidden lg:flex items-center justify-center order-1 lg:order-2 px-4">
-                <div class="w-full max-w-[340px] aspect-square bg-neutral-900 p-4 rounded-xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)] relative group border-4 border-[#2c251e]" id="central-artwork-target">
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent pointer-events-none z-10"></div>
-                    <img src="frame1.png" alt="Archival Master Frame Showcase" class="w-full h-full object-cover rounded-sm border border-neutral-800">
-                </div>
-            </div>
-
-            <div class="flex flex-col justify-center order-3">
-                <div class="bg-[#ebdfcf] rounded-[24px] p-6 shadow-sm border border-black/5 transition-transform duration-300 hover:-translate-y-0.5" id="card-frame">
-                    <div class="flex items-center gap-3 mb-2">
-                        <h3 class="font-bold text-base lg:text-lg text-gray-900">Pen & Pencil Art</h3>
-                    </div>
-                    <p class="text-xs text-gray-600 leading-relaxed font-medium">These delicate works are mounted in a premium wooden frame with glass, which acts as a permanent shield to prevent smudging and environmental damage.</p>
-                    
-                    <div class="block lg:hidden w-full aspect-[16/10] mt-4 rounded-xl overflow-hidden bg-black/5 border border-black/5 relative">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
-                        <img src="artcare2.png" alt="Archival Glass Enclosure" class="w-full h-full object-cover">
-                        <span class="absolute bottom-3 left-3 text-[9px] font-mono uppercase text-white tracking-widest z-20 bg-black/30 px-2 py-0.5 rounded-sm">Archival Frame Shield</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="max-w-[1400px] mx-auto px-4 pb-20 pt-4 lg:px-12" id="shipping">
-        <div class="mb-10 text-center lg:text-left">
-            <p class="uppercase tracking-widest text-[11px] text-gray-400 font-bold mb-2">White-Glove Distribution Networks</p>
-            <h2 class="font-serif text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">Collector Care</h2>
-        </div>
+    <div class="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-center gap-12">
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
-            <div class="bg-white p-6 rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.02)] flex flex-col justify-between min-h-[200px] transition-transform duration-300 hover:-translate-y-1 border border-neutral-100">
-                <div class="w-10 h-10 rounded-xl bg-neutral-50 flex items-center justify-center text-gray-900 mb-6">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                </div>
-                <div>
-                    <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Secure Courier</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed font-medium">We partner with premium couriers experienced in handling fragile items.</p>
-                </div>
+        <div class="flex-1 space-y-12 text-center md:text-right">
+            <div>
+                <h2 class="font-serif text-4xl mb-4 text-[#111]">Stitch Inspection</h2>
+                <p class="text-gray-600 text-sm max-w-sm ml-auto">For Silk Stitch (thread art), we perform a tension check to ensure every fiber is perfectly secure.</p>
             </div>
+            
+            <div class="hidden md:block opacity-0">Placeholder</div>
+        </div>
 
-            <div class="bg-white p-6 rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.02)] flex flex-col justify-between min-h-[200px] transition-transform duration-300 hover:-translate-y-1 border border-neutral-100">
-                <div class="w-10 h-10 rounded-xl bg-neutral-50 flex items-center justify-center text-gray-900 mb-6">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                </div>
-                <div>
-                    <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Tracking Link</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed font-medium">As soon as the package leaves the gallery, you receive a tracking number via email or DM.</p>
-                </div>
+        <div class="flex-shrink-0 flex items-center justify-center">
+            <img src="cup.png" 
+                alt="Art Brushes" 
+                class="w-80 md:w-96 h-auto brush-spin-animation hover:scale-110 transition-transform duration-700">
+        </div>
+
+        <div class="flex-1 space-y-12 text-center md:text-left">
+            <div>
+                <h2 class="font-serif text-4xl mb-4 text-[#111]">Acrylic Paintings:</h2>
+                <p class="text-gray-600 text-sm max-w-sm">A professional varnish is applied to the surface to protect the texture and colors from dust and fading.</p>
             </div>
-
-            <div class="bg-white p-6 rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.02)] flex flex-col justify-between min-h-[200px] transition-transform duration-300 hover:-translate-y-1 border border-neutral-100">
-                <div class="w-10 h-10 rounded-xl bg-neutral-50 flex items-center justify-center text-gray-900 mb-6">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                </div>
-                <div>
-                    <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Delivery Alert</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed font-medium">Our system monitors the progress and alerts you when the "Every Stroke Has a Soul" package is arriving at your door.</p>
-                </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.02)] flex flex-col justify-between min-h-[200px] transition-transform duration-300 hover:-translate-y-1 border border-neutral-100">
-                <div class="w-10 h-10 rounded-xl bg-neutral-50 flex items-center justify-center text-gray-900 mb-6">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                </div>
-                <div>
-                    <h4 class="font-bold text-sm lg:text-base text-gray-900 mb-1">Art Insurance</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed font-medium">For high-value pieces like The Void or Aqueous Dreams, we use shipping insurance to cover the full value of the work in case of loss or damage.</p>
-                </div>
+            
+            <div>
+                <h2 class="font-serif text-4xl mb-4 text-[#111]">Pen and Pencil Art:</h2>
+                <p class="text-gray-600 text-sm max-w-sm">These delicate works are mounted in a premium wooden frame with glass, which acts as a permanent shield to prevent smudging and environmental damage.</p>
             </div>
         </div>
-    </section>
+    </div>
+
+    <img src="sun.png" class="absolute bottom-4 right-4 w-32 md:w-48 pointer-events-none" alt="Sunflower">
+</section>
+
+    <footer class="bg-white py-16 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-6 gap-12 mb-16">
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white font-bold text-sm">M</div>
+                    <span class="font-bold text-lg tracking-tight">MamaArts</span>
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs mb-6">
+                    Fine Art Studio & Collective. Crafting memories through graphite, pigment, and thread.
+                </p>
+                <div class="flex gap-3">
+                    <a href="https://www.facebook.com/yourprofile" target="_blank" class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">f</a>
+                    <a href="https://www.instagram.com/yourprofile" target="_blank" class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white transition-colors">ig</a>
+                    <a href="https://www.youtube.com/@yourchannel" target="_blank" class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors">yt</a>
+                    <a href="mailto:yourname@gmail.com" class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-800 hover:text-white transition-colors">@</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest mb-6">MA</h4>
+                <ul class="space-y-4 text-sm text-gray-500">
+                    <li><a href="#" class="hover:text-black transition-colors">About</a></li>
+                    <li><a href="#" class="hover:text-black transition-colors">project so far</a></li>
+                    <li><a href="#" class="hover:text-black transition-colors">customer Review</a></li>
+                    <li><a href="#" class="hover:text-black transition-colors">contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest mb-6">Help</h4>
+                <ul class="space-y-4 text-sm text-gray-500">
+                    <li><a href="#" class="hover:text-black transition-colors">Support</a></li>
+                    <li><a href="#" class="hover:text-black transition-colors">Delivery</a></li>
+                    <li><a href="#" class="hover:text-black transition-colors">Terms</a></li>
+                    <li><a href="#" class="hover:text-black transition-colors">Privacy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest mb-6">FAQ</h4>
+                <ul class="space-y-4 text-sm text-gray-500">
+                    <li><a href="#" class="hover:text-black transition-colors">Account</a></li>
+                    <li><a href="#" class="hover:text-black transition-colors">Manage</a></li>
+                    <li><a href="#" class="hover:text-black transition-colors">Orders</a></li>
+                    <li><a href="#" class="hover:text-black transition-colors">Payments</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest mb-6">Contact</h4>
+                <ul class="space-y-4 text-sm text-gray-500">
+                    <li><a href="#" class="hover:text-black transition-colors">DT(Direct Talk)</a></li>
+                    <li><a href="#" class="hover:text-black transition-colors">Instagram DM</a></li>
+                    <li><a href="#" class="hover:text-black transition-colors">Mail</a></li>
+                    <li><a href="#" class="hover:text-black transition-colors">write a latter</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-100 text-[11px] text-gray-400">
+            <p>© 2026 MamaArts. All Rights Reserved.</p>
+            <div class="flex gap-4 mt-4 md:mt-0 font-bold tracking-widest">
+                <span>VISA</span>
+                <span>MASTER</span>
+                <span>PAYPAL</span>
+            </div>
+        </div>
+    </div>
+</footer>
 
     <script>
         // Custom Mouse Pointer Tracker Hardware
