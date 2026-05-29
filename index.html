@@ -14,6 +14,7 @@
                 extend: {
                     colors: {
                         'canvas-bg': '#f5efe6',
+                        'brand-green': '#1f4d28'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -34,7 +35,7 @@
 
         .logo {
             font-family: 'Monsieur La Douise', cursive;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 400;
             letter-spacing: 0.5px;
             color: #111;
@@ -68,12 +69,12 @@
         .navbar {
             display: flex;
             justify-content: space-between;
-            padding: 4px 16px;
+            padding: 8px 16px;
             align-items: center;
             width: 100%;
             position: relative;
             z-index: 100;
-            height: 50px;
+            height: 60px;
         }
 
         @media (min-width: 1024px) {
@@ -134,22 +135,21 @@
         .menu-toggle.active span:nth-child(2) { opacity: 0; }
         .menu-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-        /* FIXED MOBILE SINGLE FOLD COMPRESSION */
+        /* HERO FOLD FOR SCREEN CAPTURING BOTH ELEMENTS TOGETHER */
         .landing-viewport-fold {
             width: 100%;
-            height: calc(100vh - 50px); /* Strictly lock mobile window fold height */
+            height: calc(100vh - 60px); 
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Bring blocks close to the vertical center axis */
+            justify-content: space-around; 
             align-items: center;
-            padding: 0;
-            gap: 12px; /* Tight structural containment barrier gaps */
+            padding: 12px 0 20px 0;
         }
         @media (min-width: 1024px) {
             .landing-viewport-fold {
                 height: calc(100vh - 70px);
                 justify-content: space-evenly;
-                gap: 0;
+                padding-bottom: 20px;
             }
         }
 
@@ -212,26 +212,26 @@
         .edge-fade-left { background: linear-gradient(to right, #f5efe6 0%, rgba(245, 239, 230, 0) 100%); }
         .edge-fade-right { background: linear-gradient(to left, #f5efe6 0%, rgba(245, 239, 230, 0) 100%); }
 
-        /* HERO MATRIX DESIGN (COMPACT CELL FOR PHONE FITTING) */
+        /* HERO MATRIX DESIGN */
         .hero { 
             display: flex; 
             flex-direction: column;
             align-items: center; 
             justify-content: center; 
-            gap: 8px; /* Tight image to text spacing */
-            padding: 0 24px;
+            gap: 12px; 
+            padding: 0px 24px;
             width: 100%;
             text-align: center;
         }
 
         .hero-text h1 { 
-            font-size: 28px; /* Scaled down slightly to fit on small displays without spilling */
-            line-height: 1.05; 
-            margin-bottom: 4px; 
+            font-size: 28px; 
+            line-height: 1.1; 
+            margin-bottom: 6px; 
         }
 
         .heart-img { 
-            width: 100px; /* Highly optimized baseline dimensions for mobile space conservation */
+            width: 110px; 
             filter: grayscale(1) contrast(1.1); 
             transition: 0.5s; 
         }
@@ -243,7 +243,6 @@
         @media (min-width: 640px) {
             .hero-text h1 { font-size: 40px; }
             .heart-img { width: 140px; }
-            .hero { gap: 16px; }
         }
 
         @media (min-width: 1024px) {
@@ -303,7 +302,7 @@
             border: 1px solid rgba(0, 0, 0, 0.1) !important;
         }
 
-        /* --- PRODUCT DISPLAY SECTION WRAPPER --- */
+        /* --- PRODUCT GALLERY --- */
         .grid-wrapper-parent {
             position: relative;
             width: 100%;
@@ -315,14 +314,23 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr); 
             gap: 16px; 
-            padding: 40px 16px 180px 16px; 
-            max-width: 1200px; 
+            padding: 50px 12px 140px 12px; 
+            max-width: 1340px; 
             margin: 0 auto;
             position: relative;
             z-index: 10;
+            justify-items: center;
         }
-        @media (min-width: 640px) { .container-grid { gap: 20px; padding: 60px 24px 220px 24px; } }
-        @media (min-width: 1024px) { .container-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 100px 80px 280px 80px; } }
+        @media (min-width: 640px) { 
+            .container-grid { gap: 20px; padding: 70px 24px 160px 24px; } 
+        }
+        @media (min-width: 1024px) { 
+            .container-grid { 
+                grid-template-columns: repeat(4, 1fr); 
+                gap: 28px; 
+                padding: 100px 50px 180px 50px; 
+            } 
+        }
 
         /* Absolute Yellow Moon Elements */
         .absolute-moon-box {
@@ -344,8 +352,8 @@
             filter: drop-shadow(0 0 50px rgba(254, 240, 138, 0.75)); 
         }
 
-        /* Absolute Mountain Floor Elements */
-        .mountain-container-svg {
+        /* Absolute Wave Floor Elements Container */
+        .wave-container-svg {
             position: absolute;
             bottom: -2px;
             left: 0;
@@ -355,19 +363,35 @@
             line-height: 0;
         }
 
-        .card-container { display: flex; flex-direction: column; background: transparent; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .card-container:hover { transform: translateY(-4px); }
+        /* Beautiful Editorial Spec Cards */
+        .card-container { 
+            display: flex; 
+            flex-direction: column; 
+            background-color: #fffaf2; 
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            width: 100%;
+            max-width: 280px; 
+            padding: 12px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.25);
+            position: relative;
+        }
+        .card-container:hover { 
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px -5px rgba(0,0,0,0.35);
+        }
 
         .image-wrapper {
             position: relative;
             width: 100%;
             aspect-ratio: 1 / 1; 
-            border-radius: 8px;
+            border-radius: 2px;
             overflow: hidden;
             background-color: #ebdccd;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
-        @media (min-width: 1024px) { .image-wrapper { aspect-ratio: 4 / 5; border-radius: 12px; } }
+        @media (min-width: 1024px) { 
+            .image-wrapper { aspect-ratio: 4 / 5; } 
+        }
 
         .slides-container { display: flex; width: 400%; height: 100%; }
         .slides-container img { width: 25%; height: 100%; object-fit: cover; }
@@ -382,23 +406,56 @@
 
         .badge-tag {
             position: absolute;
-            top: 8px; left: 8px;
-            background-color: #fff; color: #111;
-            font-size: 8px; font-weight: 700;
-            padding: 3px 8px; border-radius: 12px;
-            text-transform: uppercase; letter-spacing: 0.3px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            top: 6px; left: 6px;
+            background-color: #111111; color: #fffaf2;
+            font-size: 7px; font-weight: 700;
+            padding: 3px 6px; border-radius: 0px;
+            text-transform: uppercase; letter-spacing: 0.5px;
         }
-        @media (min-width: 1024px) { .badge-tag { top: 14px; left: 14px; font-size: 10px; padding: 5px 12px; border-radius: 20px; } }
+        @media (min-width: 1024px) { .badge-tag { top: 10px; left: 10px; font-size: 8px; } }
 
-        .details-wrapper { padding: 12px 4px 0 4px; display: flex; flex-direction: column; }
-        @media (min-width: 1024px) { .details-wrapper { padding: 16px 6px 0 6px; } }
+        /* Typography Specs layout block matching fine oliveiras text alignments */
+        .details-wrapper { 
+            padding: 12px 2px 2px 2px; 
+            display: flex; 
+            flex-direction: column;
+            text-align: left;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            margin-top: 10px;
+        }
 
-        .product-title { font-size: 14px; font-weight: 600; color: #ffffff; letter-spacing: -0.2px; margin-bottom: 2px; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
-        @media (min-width: 1024px) { .product-title { font-size: 18px; margin-bottom: 3px; } }
+        .product-title { 
+            font-family: 'Playfair Display', serif;
+            font-size: 15px; 
+            font-weight: 700; 
+            color: #1a1510; 
+            letter-spacing: -0.1px; 
+            margin-bottom: 2px;
+        }
+        @media (min-width: 1024px) { .product-title { font-size: 18px; } }
 
-        .product-subtitle { font-size: 11px; font-weight: 400; color: rgba(255, 255, 255, 0.75); text-shadow: 0 1px 1px rgba(0,0,0,0.2); }
-        @media (min-width: 1024px) { .product-subtitle { font-size: 13px; } }
+        .product-subtitle { 
+            font-size: 10px; 
+            font-weight: 500; 
+            color: #706555; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        @media (min-width: 1024px) { .product-subtitle { font-size: 11px; } }
+
+        /* Bottom Micro Spec Tag Alignment */
+        .card-micro-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #a39580;
+            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 1px dashed rgba(0, 0, 0, 0.05);
+        }
 
         /* ART CRADLE LAYOUT BLOCKS */
         .blueprint-section { max-width: 1400px; margin: 0 auto; position: relative; }
@@ -470,6 +527,36 @@
             transition: all 0.2s ease;
         }
         .size-chip.selected { background: #000; color: #fff; border-color: #000; }
+
+        /* --- ANIMATED STATS SECTION --- */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-element.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Elegant Circular Line Spinner Frame Decoration */
+        .sketch-ring {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sketch-ring svg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            animation: spinRing 25s linear infinite;
+        }
+        @keyframes spinRing {
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 
@@ -496,7 +583,7 @@
 
         <div class="flex justify-center">
             <a href="#" class="flex items-center justify-center hover:scale-105 transition-transform">
-                <img src="logo2.png" alt="Mamaarts Logo" class="h-9 md:h-12 w-auto object-contain">
+                <img src="logo2.png" alt="Mamaarts Logo" class="h-10 md:h-12 w-auto object-contain">
             </a>
         </div>
 
@@ -521,7 +608,7 @@
     <div class="landing-viewport-fold">
         
         <div class="relative w-full max-w-[1340px] mx-auto">
-            <div class="slider-viewport relative h-[25vh] sm:h-[30vh] md:h-[35vh] w-full flex items-center" id="touchArea">
+            <div class="slider-viewport relative h-[26vh] sm:h-[30vh] md:h-[35vh] w-full flex items-center" id="touchArea">
                 <div class="slider-track relative w-full h-full flex items-center" id="sliderTrack">
                     
                     <div class="slider-card pos-1 w-[28%] sm:w-[32%] lg:w-[15%] min-w-[85px] sm:min-w-[100px] max-w-[180px] aspect-[3/4] overflow-hidden bg-[#7c7569]" data-index="0">
@@ -575,9 +662,9 @@
         <section class="hero">
             <img src="image1.png" alt="Artwork" class="heart-img">
             <div class="hero-text lg:text-left">
-                <p class="uppercase tracking-widest text-[9px] font-bold text-gray-400 mb-1">Fine Art Studio & Collective</p>
-                <h1 class="font-serif font-bold text-gray-900">Every Stroke<br>Has a Soul.</h1>
-                <p class="max-w-md text-xs sm:text-sm text-gray-500 italic font-light leading-relaxed">MamaArts is where raw graphite, flowing pigment, and hand-stitched threads converge to tell your unique story.</p>
+                <p class="uppercase tracking-widest text-[10px] font-bold text-gray-400 mb-2">Fine Art Studio & Collective</p>
+                <h1 class="font-serif font-bold text-gray-900 text-brand-green">Every Stroke<br>Has a Soul.</h1>
+                <p class="max-w-md text-sm text-gray-500 italic font-light leading-relaxed">MamaArts is where raw graphite, flowing pigment, and hand-stitched threads converge to tell your unique story.</p>
             </div>
         </section>
         
@@ -605,7 +692,7 @@
 
         <div class="container-grid" id="catalog-grid">
             
-            <div class="card-container" data-id="1" data-title="The Void" data-subtitle="Black Pen Art" data-badge="Best Seller" data-imgs='["product1.jpeg", "product1.0.jpeg", "product1.1.jpeg", "product1.2.jpeg"]'>
+            <div class="card-container" data-id="1" data-title="The Void" data-subtitle="Black Pen Art" data-badge="Featured" data-imgs='["product1.jpeg", "product1.0.jpeg", "product1.1.jpeg", "product1.2.jpeg"]'>
                 <div class="image-wrapper">
                     <div class="slides-container">
                         <img src="product1.jpeg" alt="View 1">
@@ -619,9 +706,13 @@
                     <h2 class="product-title">The Void</h2>
                     <p class="product-subtitle">Black Pen Art</p>
                 </div>
+                <div class="card-micro-footer">
+                    <span>Index / #001</span>
+                    <span>Edition 2026</span>
+                </div>
             </div>
 
-            <div class="card-container" data-id="2" data-title="Prism Fine" data-subtitle="Color Pen Art" data-badge="New Entry" data-imgs='["product2.png", "product2.0.png", "product2.1.png", "product2.2.png"]'>
+            <div class="card-container" data-id="2" data-title="Prism Fine" data-subtitle="Color Pen Art" data-badge="Best Seller" data-imgs='["product2.png", "product2.0.png", "product2.1.png", "product2.2.png"]'>
                 <div class="image-wrapper">
                     <div class="slides-container">
                         <img src="product2.png" alt="View 1">
@@ -635,9 +726,13 @@
                     <h2 class="product-title">Prism Fine</h2>
                     <p class="product-subtitle">Color Pen Art</p>
                 </div>
+                <div class="card-micro-footer">
+                    <span>Index / #002</span>
+                    <span>Edition 2026</span>
+                </div>
             </div>
 
-            <div class="card-container" data-id="3" data-title="Tactile Layering" data-subtitle="Acrylic Painting" data-badge="Limited Edition" data-imgs='["product3.jpeg", "product3.0.jpeg", "product3.1.jpeg", "product3.2.jpeg"]'>
+            <div class="card-container" data-id="3" data-title="Tactile Layering" data-subtitle="Acrylic Painting" data-badge="Limited" data-imgs='["product3.jpeg", "product3.0.jpeg", "product3.1.jpeg", "product3.2.jpeg"]'>
                 <div class="image-wrapper">
                     <div class="slides-container">
                         <img src="product3.jpeg" alt="View 1">
@@ -650,9 +745,13 @@
                     <h2 class="product-title">Tactile Layering</h2>
                     <p class="product-subtitle">Acrylic Painting</p>
                 </div>
+                <div class="card-micro-footer">
+                    <span>Index / #003</span>
+                    <span>Edition 2026</span>
+                </div>
             </div>
 
-            <div class="card-container" data-id="4" data-title="Liquid Flow" data-subtitle="Water Painting" data-badge="Featured" data-imgs='["product4.png", "product4.0.png", "product4.1.png", "product4.2.png"]'>
+            <div class="card-container" data-id="4" data-title="Liquid Flow" data-subtitle="Water Painting" data-badge="New Entry" data-imgs='["product4.png", "product4.0.png", "product4.1.png", "product4.2.png"]'>
                 <div class="image-wrapper">
                     <div class="slides-container">
                         <img src="product4.png" alt="View 1">
@@ -666,9 +765,13 @@
                     <h2 class="product-title">Liquid Flow</h2>
                     <p class="product-subtitle">Water Painting</p>
                 </div>
+                <div class="card-micro-footer">
+                    <span>Index / #004</span>
+                    <span>Edition 2026</span>
+                </div>
             </div>
 
-            <div class="card-container" data-id="5" data-title="Physical Pixels" data-subtitle="Thread Painting" data-badge="Original Work" data-imgs='["product5.png", "product5.0.png", "product5.1.png", "product5.2.jpeg"]'>
+            <div class="card-container" data-id="5" data-title="Physical Pixels" data-subtitle="Thread Painting" data-badge="Original" data-imgs='["product5.png", "product5.0.png", "product5.1.png", "product5.2.jpeg"]'>
                 <div class="image-wrapper">
                     <div class="slides-container">
                         <img src="product5.png" alt="View 1">
@@ -680,6 +783,10 @@
                 <div class="details-wrapper">
                     <h2 class="product-title">Physical Pixels</h2>
                     <p class="product-subtitle">Thread Painting</p>
+                </div>
+                <div class="card-micro-footer">
+                    <span>Index / #005</span>
+                    <span>Edition 2026</span>
                 </div>
             </div>
 
@@ -696,13 +803,18 @@
                     <h2 class="product-title">Pop Pulp</h2>
                     <p class="product-subtitle">Cartoon Illustration Art</p>
                 </div>
+                <div class="card-micro-footer">
+                    <span>Index / #006</span>
+                    <span>Edition 2026</span>
+                </div>
             </div>
         </div>
 
-        <div class="mountain-container-svg">
-            <svg width="100%" height="170" viewBox="0 0 1440 170" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 170 L0 100 L120 40 L280 130 L410 20 L580 110 L760 30 L930 140 L1080 15 L1240 125 L1360 35 L1440 90 L1440 170 Z" fill="#173f20" opacity="0.55"/>
-                <path d="M0 170 L0 120 L180 35 L340 140 L490 50 L640 125 L790 20 L960 145 L1140 40 L1290 120 L1440 55 L1440 170 Z" fill="#1f4d28"/>
+        <div class="wave-container-svg">
+            <svg width="100%" height="110" viewBox="0 0 1440 110" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 110 L0 50 C240 100 480 20 720 70 C960 120 1200 40 1440 60 L1440 110 Z" fill="#173f20" opacity="0.45"/>
+                <path d="M0 110 L0 30 C300 90 600 10 900 80 C1100 110 1270 40 1440 45 L1440 110 Z" fill="#1f4d28" opacity="0.65"/>
+                <path d="M0 110 L0 65 C180 15 420 95 660 55 C900 15 1140 85 1440 35 L1440 110 Z" fill="#1f4d28"/>
             </svg>
         </div>
     </div>
@@ -816,6 +928,53 @@
             </div>
         </div>
     </div>
+
+    <section class="w-full py-16 bg-brand-green border-t border-b border-white/10" id="statsDashboardBox">
+        <div class="max-w-6xl mx-auto px-6 relative flex flex-col items-center">
+            
+            <div class="flex flex-col items-center mb-12 text-center select-none reveal-element duration-700">
+                <span class="text-[10px] uppercase font-bold tracking-[0.35em] text-white/50 mb-2">Historical Preservation Logs</span>
+                <h2 class="font-signature text-4xl md:text-5xl text-[#fef08a] tracking-wide transform -rotate-1"></h2>
+            </div>
+            
+            <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-4 items-center justify-items-center">
+                
+                <div class="flex flex-col items-center gap-4 reveal-element duration-1000">
+                    <div class="sketch-ring">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="46" stroke="rgba(255,254,242,0.15)" stroke-width="1" fill="none" />
+                            <circle cx="50" cy="50" r="46" stroke="#fef08a" stroke-width="1.5" stroke-dasharray="140 180" stroke-linecap="round" fill="none" />
+                        </svg>
+                        <span class="font-serif text-3xl md:text-4xl font-bold text-[#fffaf2] tracking-tight count-target" data-value="20">0+</span>
+                    </div>
+                    <p class="text-[10px] font-bold tracking-[0.2em] text-white/70 uppercase">Orders Delivered</p>
+                </div>
+                
+                <div class="flex flex-col items-center gap-4 reveal-element duration-1000 delay-200">
+                    <div class="sketch-ring">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="46" stroke="rgba(255,254,242,0.15)" stroke-width="1" fill="none" />
+                            <circle cx="50" cy="50" r="46" stroke="#fef08a" stroke-width="1.5" stroke-dasharray="80 200" stroke-linecap="round" fill="none" />
+                        </svg>
+                        <span class="font-serif text-3xl md:text-4xl font-bold text-[#fffaf2] tracking-tight count-target" data-value="10">0+</span>
+                    </div>
+                    <p class="text-[10px] font-bold tracking-[0.2em] text-white/70 uppercase">Happy Customers</p>
+                </div>
+                
+                <div class="flex flex-col items-center gap-4 reveal-element duration-1000 delay-400">
+                    <div class="sketch-ring">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="46" stroke="rgba(255,254,242,0.15)" stroke-width="1" fill="none" />
+                            <circle cx="50" cy="50" r="46" stroke="#fef08a" stroke-width="1.5" stroke-dasharray="210 100" stroke-linecap="round" fill="none" />
+                        </svg>
+                        <span class="font-serif text-3xl md:text-4xl font-bold text-[#fffaf2] tracking-tight count-target" data-value="10">0+</span>
+                    </div>
+                    <p class="text-[10px] font-bold tracking-[0.2em] text-white/70 uppercase">Projects Done</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     <div id="imageLightbox" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[300] opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
         <button id="closeLightbox" class="absolute top-6 right-6 text-white text-2xl font-light hover:scale-110 transition-transform">✕</button>
@@ -1214,6 +1373,55 @@
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) dismissLightbox();
         });
+
+        // DYNAMIC SMOOTH SCROLL ODOMETER COUNTING ANIMATION ENGINE
+        const animateCountingNumbers = () => {
+            const targets = document.querySelectorAll('.count-target');
+            
+            targets.forEach(target => {
+                const targetValue = parseInt(target.getAttribute('data-value'), 10);
+                let currentCount = 0;
+                const totalDuration = 1400; // Total ms execution envelope
+                const processingStepTime = Math.max(Math.floor(totalDuration / targetValue), 25);
+                
+                const progressionEngine = setInterval(() => {
+                    currentCount += 1;
+                    target.innerText = currentCount + '+';
+                    
+                    if (currentCount >= targetValue) {
+                        target.innerText = targetValue + '+';
+                        clearInterval(progressionEngine);
+                    }
+                }, processingStepTime);
+            });
+        };
+
+        // INTERSECTION OBSERVER COMPONENT FOR DASHBOARD CONTAINER VISIBILITY
+        const dashboardBox = document.getElementById('statsDashboardBox');
+        
+        if ('IntersectionObserver' in window && dashboardBox) {
+            const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+            
+            const dashboardRevealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const reveals = entry.target.querySelectorAll('.reveal-element');
+                        reveals.forEach(el => el.classList.add('active'));
+                        animateCountingNumbers();
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+            
+            dashboardRevealObserver.observe(dashboardBox);
+        } else {
+            // Fallback framework configuration for outdated layout runtimes
+            if(dashboardBox) {
+                const reveals = dashboardBox.querySelectorAll('.reveal-element');
+                reveals.forEach(el => el.classList.add('active'));
+            }
+            animateCountingNumbers();
+        }
     </script>
 </body>
 </html>
